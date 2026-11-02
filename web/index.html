@@ -1,0 +1,399 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>栖 · GPT Robot</title>
+    <link rel="stylesheet" href="/style.css" />
+  </head>
+  <body>
+    <aside>
+      <a class="brand" href="/">栖<span>GPT ROBOT</span></a>
+      <div class="workspace">本地角色工作台 <span class="dot"></span></div>
+      <nav aria-label="主导航">
+        <button data-tab="home" class="active"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg>概览</button>
+        <button data-tab="character"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4 21v-2a8 8 0 0 1 16 0v2"/></svg>角色设定</button>
+        <button data-tab="models"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m12 3 9 5-9 5-9-5 9-5Zm-9 9 9 5 9-5M3 16l9 5 9-5"/></svg>大模型配置</button>
+        <button data-tab="platforms"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="8" cy="12" r="5"/><circle cx="16" cy="12" r="5"/></svg>互动平台</button>
+        <button data-tab="diary"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 6v15M3 4c4-1 7 0 9 2 2-2 5-3 9-2v15c-4-1-7 0-9 2-2-2-5-3-9-2V4Z"/></svg>角色日记</button>
+        <button data-tab="memory"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 4C8 3 3 8 5 15s15 5 15-11ZM5 20 16 9"/></svg>记忆资料</button>
+        <button data-tab="operations"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 20V10h4v10m4 0V4h4v16m4 0V8h3v12"/></svg>历史记录</button>
+      </nav>
+      <div class="aside-foot"><svg class="side-branch" viewBox="0 0 80 65" aria-hidden="true"><path d="M15 62Q38 33 65 7M31 43Q12 43 17 25q19-2 14 18ZM45 29Q44 10 59 11q6 14-14 18ZM38 35Q57 33 63 40q-12 11-25-5Z"/></svg>
+        LOCAL FIRST<br /><span>你的角色，留在你的电脑。</span>
+      </div>
+    </aside>
+    <main>
+      <div class="workbench-top"><span>栖 / 本地角色工作台</span><span id="robot-state" class="runtime-status" role="status">机器人状态读取中</span></div>
+      <header>
+        <div>
+          <span class="eyebrow">YOUR CHARACTER, YOUR WORLD</span>
+          <h1 id="page-title">今天，从一次对话开始。</h1>
+
+        </div>
+        <svg class="header-botanical" viewBox="0 0 190 140" aria-hidden="true"><g stroke="currentColor"><circle cx="95" cy="70" r="48"/><circle cx="95" cy="70" r="62" stroke-dasharray="2 7"/><ellipse cx="95" cy="70" rx="77" ry="25" transform="rotate(-30 95 70)"/><ellipse cx="95" cy="70" rx="77" ry="25" transform="rotate(30 95 70)"/><path d="m95 43 8 19 19 8-19 8-8 19-8-19-19-8 19-8Z"/><circle cx="155" cy="35" r="3" fill="currentColor"/></g></svg>
+        <div id="overview-controls" class="header-actions" hidden>
+          <button id="robot-start" disabled>启动机器人</button><button id="robot-stop" class="quiet" disabled>关闭机器人</button><button id="robot-pause" class="quiet" disabled>暂停</button><button id="robot-resume" class="quiet" disabled>恢复</button><button id="service-shutdown" class="quiet danger" disabled>退出整个程序</button>
+          <span id="mode" class="badge">读取中</span
+          ><button id="refresh" class="quiet">刷新数据 ↻</button>
+        </div>
+      </header>
+      <div id="notice" role="status" hidden></div>
+      <section id="platforms" class="panel" hidden>
+        <p class="section-intro">选择一个互动平台，集中管理它的账号、任务、回复额度、过滤规则和记录。</p>
+        <div class="platform-grid">
+          <button class="platform-card" data-platform="bilibili"><span class="platform-mark">B</span><span class="badge">已接入</span><h2>B 站</h2><p>评论与楼中楼、动态、大号私信</p><span class="platform-card-link">进入 B 站工作台 →</span></button>
+          <button class="platform-card" data-platform="qq"><span class="platform-mark">Q</span><span class="badge pending">未接入</span><h2>QQ</h2><p>好友与会话互动，等待接入</p><span class="platform-card-link">查看平台 →</span></button>
+          <button class="platform-card" data-platform="douyin"><span class="platform-mark">D</span><span class="badge pending">未接入</span><h2>抖音</h2><p>视频与评论互动，等待接入</p><span class="platform-card-link">查看平台 →</span></button>
+        </div>
+      </section>
+      <div id="platform-workspace" hidden>
+        <div class="platform-heading"><button id="platform-back" class="quiet">← 所有互动平台</button><span id="platform-current" class="badge"></span></div>
+        <nav id="platform-navigation" class="platform-tabs" aria-label="平台功能">
+          <button data-platform-tab="platform-overview">平台概览</button><button data-platform-tab="account">账号登录</button><button data-platform-tab="browsing">浏览偏好</button><button data-platform-tab="auto">回复策略</button><button data-platform-tab="replies">回复工作台</button><button data-platform-tab="private">大号私信</button>
+        </nav>
+      </div>
+      <section id="platform-overview" class="panel" hidden>
+        <div class="platform-summary grid">
+          <article class="card"><span class="eyebrow">ACCOUNT</span><h3>连接的账号</h3><p id="platform-summary-account">尚未读取</p><button data-platform-tab="account" class="quiet">管理账号</button></article>
+          <article class="card"><span class="eyebrow">INTERACTION</span><h3>评论自动回复</h3><p id="platform-summary-auto">尚未读取</p><p id="platform-summary-quota" class="muted"></p><button data-platform-tab="auto" class="quiet">设置回复策略</button></article>
+          <article class="card"><span class="eyebrow">PRIVATE CHAT</span><h3>大号私信</h3><p id="platform-summary-private">尚未读取</p><button data-platform-tab="private" class="quiet">管理大号私信</button></article>
+          <article class="card"><span class="eyebrow">ACTIVITY</span><h3>平台互动记录</h3><p>只查看 B 站的业务记录、处理结果与真实 Token 用量。</p><button data-tab="operations" class="quiet">查看历史记录</button></article>
+        </div>
+      </section>
+      <section id="platform-unavailable" class="panel" hidden><article class="card platform-empty"><span class="eyebrow">COMING LATER</span><h2 id="platform-unavailable-title"></h2><p>这个平台尚未接入。接入后，它的账号、互动任务、规则与日志都会集中在这里管理。</p><button data-tab="platforms" class="quiet">返回平台列表</button></article></section>
+      <section id="diary" class="panel" hidden>
+        <div class="diary-heading"><div><span class="eyebrow">A LITTLE LIFE, IN HER WORDS</span><h2>她的日记本</h2><p>留住一天里的相遇、好奇与心情。</p></div><span class="diary-emblem">✧</span></div>
+        <article class="card"><label class="toggle"><input id="diary-enabled" type="checkbox" disabled />每天 23:00 自动写一篇（北京时间）</label><label class="toggle"><input id="diary-testing" type="checkbox" disabled />测试模式：允许没有新经历也写、同一天重复生成（每次点击都会调用 AI）</label><div class="grid"><label>日记偏好关键词（最多10个，逗号分隔）<input id="diary-topics" placeholder="例如：动物、植物、狗" disabled /></label><label>已绑定主人互动加分（0–10）<input id="diary-owner-weight" type="number" min="0" max="10" disabled /></label><label>命中兴趣加分（0–10）<input id="diary-interest-weight" type="number" min="0" max="10" disabled /></label></div><p class="muted">基础分1，加主人分和兴趣分后选取当天素材。关键词和人设中明确的正向喜好影响选材，不自动改写永久爱好；陌生账号自称主人不会获得加分。</p><div class="row"><button id="diary-save" class="quiet" disabled>保存日记设置</button><button id="diary-write" disabled>写今日日记</button><button id="diary-refresh" class="quiet">刷新日记本</button></div><p id="diary-state" class="muted">正在读取日记设置…</p><p class="muted">日记是角色根据实际经历写的回顾，不是操作报告。只记录读过的材料，不把评论或标题当成看完视频；获准的私聊片段可用于这本私密日记；私聊和日记不会带入公开评论。</p></article>
+        <div class="record-section-heading"><h3>日记记录</h3><div class="history-toolbar" aria-label="日记记录显示方式"><button type="button" data-history-target="diary-entries" data-history-view="compact" class="active" aria-pressed="true">缩略</button><button type="button" data-history-target="diary-entries" data-history-view="detailed" aria-pressed="false">详细</button></div></div><div id="diary-entries" class="diary-entries"></div>
+      </section>
+      <section id="home" class="panel">
+        <div class="hero">
+          <span class="eyebrow">A PLACE FOR YOUR AI TO REMEMBER</span>
+          <h2>让每次相遇，<br />都有迹可循。</h2>
+          <p>在 Codex 中对话，在这里管理人设、记忆与每一次对外回复。</p>
+          <svg class="hero-orbit" viewBox="0 0 220 220" aria-hidden="true"><circle cx="110" cy="110" r="83" stroke-dasharray="2 8"/><circle cx="110" cy="110" r="63"/><ellipse cx="110" cy="110" rx="96" ry="32" transform="rotate(-35 110 110)"/><ellipse cx="110" cy="110" rx="96" ry="32" transform="rotate(35 110 110)"/><path d="m110 64 14 32 32 14-32 14-14 32-14-32-32-14 32-14Z"/><path d="m110 87 7 16 16 7-16 7-7 16-7-16-16-7 16-7Z" fill="currentColor"/><circle cx="184" cy="63" r="4" fill="currentColor"/></svg>
+        </div>
+        <div class="stats">
+          <article>
+            <span>已记录经历</span><strong id="event-count">0</strong>
+          </article>
+          <article>
+            <span>等待你审核</span><strong id="draft-count">0</strong>
+          </article>
+          <article>
+            <span>记忆与日记</span><strong id="note-count">0</strong>
+          </article>
+        </div>
+        <div class="grid">
+          <article class="card">
+            <span class="eyebrow">GET STARTED</span>
+            <h3>第一次使用</h3>
+            <ol>
+              <li>写下角色的人设与口吻</li>
+              <li>扫码登录 B 站账号</li>
+              <li>设置允许互动的视频范围</li>
+              <li>将 MCP 接入 Codex，生成回复草稿</li>
+              <li>在回复工作台亲自审核发送</li>
+            </ol>
+          </article>
+          <article class="card">
+            <span class="eyebrow">BOUNDARIES MATTER</span>
+            <h3>边界，由你决定。</h3>
+            <p>
+              默认关闭发送。Codex
+              可以读取资料和准备草稿，真实发送由你在网页确认。
+            </p>
+            <p class="muted">
+              目前是 macOS
+              本地预览版。自动回复需要在专页明确开启并限定范围；草稿不代表已发送。
+            </p>
+            <div id="data-path" class="path"></div>
+          </article>
+        </div>
+      </section>
+      <section id="models" class="panel" hidden>
+        <div class="model-current"><span class="eyebrow">CURRENT CONNECTION · 当前使用</span><p id="model-state" hidden>正在读取当前模型接入配置…</p></div>
+        <div class="model-section-heading"><h2>连接与模型</h2><button id="model-refresh" class="quiet">重新读取配置</button></div>
+        <div class="model-layout"><div class="model-editor">
+        <article id="model-local-page" class="card">
+          <h3 class="model-step"><span>01</span> 选择本机程序</h3>
+          <div class="provider-choices"><button type="button" data-provider-target="model-local-provider" data-provider-value="codex" disabled><b>Codex</b><small>复用本机登录</small></button><button type="button" data-provider-target="model-local-provider" data-provider-value="deepseek" disabled><b>DeepSeek</b><small>本机 Harness</small></button></div><label class="provider-native">本机程序<select id="model-local-provider" disabled><option value="codex">Codex</option><option value="deepseek">DeepSeek Harness</option></select></label>
+          <div id="model-codex-options" class="model-fields"><h3 class="model-step"><span>02</span> 选择模型与思考级别</h3><label>Codex 具体模型<select id="model-codex-model" disabled><option value="">请选择模型</option></select></label><button id="model-list-refresh" class="quiet">读取本机可用模型</button><label>Codex 思考档位<select id="model-codex-effort" disabled><option value="low">low · 低</option><option value="medium">medium · 中</option><option value="high">high · 高</option></select></label></div>
+          <div id="model-local-deepseek-options" class="model-fields" hidden><h3 class="model-step"><span>02</span> 选择模型与思考级别</h3><label>DeepSeek Harness 模型<select id="model-harness-model" disabled><option value="deepseek-flash">DeepSeek Flash</option><option value="deepseek-v4-pro">DeepSeek V4 Pro</option></select></label><label>思考档位<select id="model-harness-effort" disabled><option value="low">low · 低</option><option value="high">high · 高</option></select></label></div>
+          <p id="model-local-found" class="muted"></p>
+          <p id="model-draft-state" class="model-draft" role="status">按所选配置连接后生效</p><button id="model-connect" disabled>连接并使用</button><p id="model-connect-result" class="muted"></p>
+          <p class="muted">复用本机程序的账户凭证，无需填写 API Key。严格使用所选模型和思考档位；不支持、无权限或失败时停止，不自动升档或更换模型。</p>
+          <p class="muted">连接成功表示程序握手通过，不会调用模型测试；账号登录和模型服务可用性在实际生成时核验。程序未找到或握手失败时会明确提示，保留原配置。</p>
+        </article>
+        </div><div class="model-notes"><div><h3>选择多少，就使用多少</h3><p>严格保留所选模型与思考级别。连接异常时停止并提示，不自动升级或切换服务商。</p></div><div><h3>本机接入，明确选择</h3><p>复用本机程序与登录。连接只做握手，不进行测试生成；所选模型或档位不可用时停止，不自动切换。</p></div><div><h3>同一个角色，同一种声音</h3><p>评论回复、私信与角色日记共用此配置。切换会结束旧会话窗口，后续使用新的明确选择。</p></div><blockquote>留一点空间，<br>让思考自然发生。</blockquote><small>LESS NOISE. MORE CHARACTER.</small></div></div>
+        <article class="card conversation-settings">
+          <div class="section-heading"><h3>会话窗口与记忆</h3><span class="eyebrow">CONVERSATION WINDOW</span></div>
+          <p class="muted">主人私聊在窗口内连续对话。本机 Harness 复用临时会话；陌生人评论和日记保持独立单轮。轮换不退出模型账号、不清除长期记忆。</p>
+          <label class="toggle"><input id="conversation-enabled" type="checkbox" disabled />启用有限多轮会话</label>
+          <div class="grid"><label>每个窗口最多对话轮数<input id="conversation-turns" type="number" min="1" max="50" disabled /></label><label>空闲多少分钟结束<input id="conversation-idle" type="number" min="1" max="60" disabled /></label><label>窗口最长存活（分钟）<input id="conversation-age" type="number" min="1" max="240" disabled /></label><label>上下文阈值（Token）<input id="conversation-context" type="number" min="6000" max="64000" disabled /></label><label>窗口累计已知用量阈值（Token）<input id="conversation-total" type="number" min="12000" max="1000000" disabled /></label></div>
+          <p class="muted">一问一答算一轮，任一阈值达到就轮换。输入按字节保守估算并预留4096 Token；真实用量按回执累计，单轮可能越线，未知用量立即结束窗口。已有每日预算仍生效。</p>
+          <p class="muted">开启私聊记忆时，正常回复同一次调用可附带关键原文摘录；仅在发送明确成功后保存有限交接。到期直接关闭，不额外调用模型总结。切模型或档位会结束旧窗口。</p>
+          <div class="row"><button id="conversation-save" disabled>保存会话策略</button><button id="conversation-refresh" class="quiet">读取会话状态</button></div><p id="conversation-state" class="muted" role="status"></p>
+        </article>
+        <article class="card safety-settings">
+          <h3>对话保护与生成预算</h3><p class="muted">主人按已绑定账号识别，可正常谈技术、提到 API / Token，消息最长500字。凭证会脱敏，聊天不能获得本机执行权限。</p>
+          <div class="grid"><div><h4>主人与角色日记</h4><label>每日生成调用上限（0为不限制）<input id="safety-owner-calls" type="number" min="0" max="10000" disabled /></label><label>每日已知 Token 上限（0为不限制）<input id="safety-owner-tokens" type="number" min="0" max="100000000" disabled /></label><p id="safety-owner-usage" class="muted"></p></div><div><h4>其他用户</h4><label>每日生成调用上限<input id="safety-other-calls" type="number" min="1" max="1000" disabled /></label><label>每日已知 Token 上限<input id="safety-other-tokens" type="number" min="1000" max="10000000" disabled /></label><p id="safety-other-usage" class="muted"></p></div></div>
+          <p class="muted">按北京时间每日分别计数，失败、空回复、未知用量均计调用次数。Token 是已知输入与输出之和，达到上限后停止后续生成，单次可能越线；未知不按零计算，也不保证精确费用上限。保存不会清空今日用量或自动恢复已暂停的渠道。</p><button id="safety-save" disabled>保存生成预算</button><button id="safety-refresh" class="quiet">读取今日用量</button><p id="safety-state" class="muted" role="status"></p>
+        </article>
+      </section>
+      <section id="character" class="panel" hidden>
+        <article class="card">
+          <h3>她是谁，由你来写。</h3>
+          <p>
+            写下身份、说话方式、偏好和你希望她记住的原则。人设不能改变互动权限。
+          </p>
+          <label for="persona">角色人设 · Markdown</label
+          ><textarea id="persona" rows="16" maxlength="20000"></textarea>
+          <div class="row">
+            <span class="muted">下一次生成回复或日记时读取新设定。</span
+            ><button id="save-persona">保存人设</button>
+          </div>
+        </article>
+        <article class="card"><h3>兴趣养成与关系网</h3><p class="muted">真实新经历自动积累，熟悉度与喜好分开；关系是角色模拟，不改变权限。私聊成长与公开成长分开，重启保留。</p><div class="record-section-heading"><h3>兴趣记录</h3><div class="history-toolbar" aria-label="兴趣记录显示方式"><button type="button" data-history-target="development-interests" data-history-view="compact" class="active" aria-pressed="true">缩略</button><button type="button" data-history-target="development-interests" data-history-view="detailed" aria-pressed="false">详细</button></div></div><div id="development-interests"></div><div class="record-section-heading"><h3>关系记录</h3><div class="history-toolbar" aria-label="关系记录显示方式"><button type="button" data-history-target="development-relationships" data-history-view="compact" class="active" aria-pressed="true">缩略</button><button type="button" data-history-target="development-relationships" data-history-view="detailed" aria-pressed="false">详细</button></div></div><div id="development-relationships"></div></article><article class="card"><h3>成长与情绪</h3><p id="character-state" class="muted">尚未读取</p><div id="character-traits" class="grid"></div><button id="character-refresh" class="quiet">刷新成长状态</button><p class="muted">近期情绪会影响口吻，并随时间缓和；亲切、好奇、活泼等倾向通过多次真实互动缓慢变化。变化保存在本机，不额外调用模型。这里是角色模拟状态。</p></article>
+        <div class="record-section-heading"><h3>最近变化</h3><div class="history-toolbar" aria-label="最近变化显示方式"><button type="button" data-history-target="character-changes" data-history-view="compact" class="active" aria-pressed="true">缩略</button><button type="button" data-history-target="character-changes" data-history-view="detailed" aria-pressed="false">详细</button></div></div><div id="character-changes"></div>
+      </section>
+      <section id="account" class="panel" hidden>
+        <article class="card">
+          <h3>B 站账号</h3>
+          <p>凭证只留在本机，不进入角色记忆，也不会返回给 Codex。</p>
+          <div id="account-state" class="account-state">尚未检查登录状态</div>
+          <div class="row">
+            <button id="check-account" class="quiet">检查登录状态</button
+            ><button id="get-qr">生成登录二维码</button
+            ><button id="poll-qr" class="quiet" disabled>
+              已扫码，检查结果
+            </button>
+          </div>
+          <details>
+            <summary>导入已登录浏览器的 B 站会话（可选）</summary>
+            <p>
+              仅导入本人授权账号。可以粘贴 Cookie 请求头或浏览器 Cookie
+              表格，提交后立即清空；不会把原文写入日志。
+            </p>
+            <label for="expected-uid">必须匹配的账号 UID</label
+            ><input id="expected-uid" value="" placeholder="填写你自己的机器人账号 UID" /><label
+              for="import-cookie"
+              >会话信息</label
+            ><textarea
+              id="import-cookie"
+              rows="4"
+              autocomplete="off"
+              spellcheck="false"
+            ></textarea
+            ><button id="import-session">验证账号并导入本机</button>
+          </details>
+          <img id="qr" alt="使用 B 站 App 扫码登录" hidden />
+          <p id="qr-state" class="muted">
+            扫码登录属于真实账号操作，请确认账号后再扫码。
+          </p>
+        </article>
+      </section>
+      <section id="replies" class="panel" hidden>
+        <details id="manual-send-settings" class="card manual-send-settings"><summary>手动发送设置与账号名单</summary>
+          <p>手动草稿与文字动态的发送设置；不会开启自主浏览或自动回复。账号名单与冷却也适用于自动评论。</p>
+          <p>
+            禁止名单优先。视频必须在允许列表；用户允许列表为空表示不额外限制用户。一级评论没有目标用户。
+          </p>
+          <label class="toggle"
+            ><input id="enabled" type="checkbox" />
+            允许生成可发送草稿，并由我逐条确认发送</label
+          ><label class="toggle"
+            ><input id="allow-dynamic" type="checkbox" />
+            允许审核后发布本人账号的文字动态</label
+          >
+          <div class="grid">
+            <div>
+              <label for="videos">允许的视频 BV 号（每行一个）</label
+              ><textarea
+                id="videos"
+                rows="5"
+                placeholder="BV161nZ6JE6b"
+              ></textarea>
+            </div>
+            <div>
+              <label for="allowed-users">仅允许回复的用户 UID（可留空）</label
+              ><textarea id="allowed-users" rows="5"></textarea>
+            </div>
+          </div>
+          <label for="blocked-users">禁止回复的用户 UID（每行一个）</label
+          ><textarea id="blocked-users" rows="3"></textarea>
+          <div class="grid">
+            <div>
+              <label for="daily">每日手动发送尝试上限（UTC 日，1–30）</label
+              ><input id="daily" type="number" min="1" max="30" />
+            </div>
+            <div>
+              <label for="cooldown">发送冷却（秒，至少 60）</label
+              ><input id="cooldown" type="number" min="60" max="86400" />
+            </div>
+          </div>
+          <div class="row">
+            <span class="muted">启用不会自动发送；每条仍需在工作台审核。</span
+            ><button id="save-permissions">保存发送设置</button>
+          </div>
+        </details>
+        <article class="card">
+          <h3>先读，再认真回应。</h3>
+          <div class="row">
+            <input id="video" placeholder="视频 BV 号" /><input
+              id="comment-root"
+              placeholder="根评论 ID（楼中楼可填）"
+            /><input id="page" type="number" min="1" value="1" /><button
+              id="load-comments"
+            >
+              读取评论
+            </button>
+          </div>
+          <p id="comments-meta" class="muted">
+            读取不会触发发送。也可以让 Codex 读取评论并准备草稿。
+          </p>
+          <div class="record-section-heading"><h3>已读取的评论</h3><div class="history-toolbar" aria-label="已读取的评论显示方式"><button type="button" data-history-target="comments" data-history-view="compact" class="active" aria-pressed="true">缩略</button><button type="button" data-history-target="comments" data-history-view="detailed" aria-pressed="false">详细</button></div></div><div id="comments"></div>
+        </article>
+        <article class="card">
+          <h3>准备一条回复</h3>
+          <div class="grid">
+            <div>
+              <label>根评论 ID</label><input id="draft-root" value="0" />
+            </div>
+            <div>
+              <label>目标评论 ID</label><input id="draft-parent" value="0" />
+            </div>
+          </div>
+          <label for="draft-text">回复正文</label
+          ><textarea
+            id="draft-text"
+            rows="4"
+            maxlength="1000"
+            placeholder="由 Codex 生成，或在这里手动填写。"
+          ></textarea
+          ><button id="prepare">生成待审草稿</button>
+        </article>
+        <article class="card">
+          <h3>发布一条文字动态</h3>
+          <p>正文应来自当前角色；仅发布到已登录账号，不支持图片。</p>
+          <textarea
+            id="dynamic-text"
+            rows="4"
+            maxlength="1000"
+            placeholder="先让 Codex 读取人设，再生成动态草稿。"
+          ></textarea
+          ><button id="prepare-dynamic">生成动态草稿</button>
+        </article>
+        
+        <div class="record-section-heading"><h3>草稿与回复记录</h3><div class="history-toolbar" aria-label="草稿与回复记录显示方式"><button type="button" data-history-target="drafts" data-history-view="compact" class="active" aria-pressed="true">缩略</button><button type="button" data-history-target="drafts" data-history-view="detailed" aria-pressed="false">详细</button></div></div><div id="drafts"></div>
+      </section>
+      <section id="memory" class="panel" hidden>
+        <article class="card">
+          <h3>记得住，也找得到。</h3>
+          <div class="row">
+            <input id="search" placeholder="搜索关键词、人物或日期" /><button
+              id="search-memory"
+            >
+              查询
+            </button>
+          </div>
+          <div class="record-section-heading"><h3>搜索结果</h3><div class="history-toolbar" aria-label="搜索结果显示方式"><button type="button" data-history-target="search-results" data-history-view="compact" class="active" aria-pressed="true">缩略</button><button type="button" data-history-target="search-results" data-history-view="detailed" aria-pressed="false">详细</button></div></div><div id="search-results"></div>
+        </article>
+        <div class="record-section-heading"><h3>记忆记录</h3><div class="history-toolbar" aria-label="记忆记录显示方式"><button type="button" data-history-target="notes" data-history-view="compact" class="active" aria-pressed="true">缩略</button><button type="button" data-history-target="notes" data-history-view="detailed" aria-pressed="false">详细</button></div></div><div id="notes"></div>
+        <p class="muted">
+          日记与摘要由 Codex
+          基于现有事件生成，必须关联真实来源；不会自动获取整个 Codex 聊天。
+        </p>
+      </section>
+      <section id="logs" class="panel" hidden>
+        <p class="muted">
+          这里只记录项目实际观察到的操作与经历。时间按本机显示；每日限额以 UTC
+          日期计算。
+        </p>
+        <div class="record-section-heading"><h3>经历记录</h3><div class="history-toolbar" aria-label="经历记录显示方式"><button type="button" data-history-target="events" data-history-view="compact" class="active" aria-pressed="true">缩略</button><button type="button" data-history-target="events" data-history-view="detailed" aria-pressed="false">详细</button></div></div><div id="events"></div>
+      </section>
+      <section id="browsing" class="panel" hidden>
+        <article class="card browse-preferences"><span class="eyebrow">FOLLOW HER CURIOSITY</span><h2>让好奇，找到下一段故事。</h2><p>你可以给她一点方向，也可以让她跟随自己的人设与兴趣。</p>
+          <label class="toggle"><input id="browse-enabled" type="checkbox" />开启自主浏览（默认关闭，不会因此开启回复）</label>
+          <div class="browse-mode-cards"><label><input type="radio" name="browse-mode" id="browse-mode-persona" value="persona" checked /><span><strong>跟随角色兴趣</strong><small>从人设和已积累的公开兴趣中选择主题；暂无兴趣时轻量探索</small></span></label><label><input type="radio" name="browse-mode" id="browse-mode-custom" value="custom" /><span><strong>我来设置方向</strong><small>用关键词告诉她想看什么</small></span></label></div>
+          <div id="browse-custom-fields" hidden><label>兴趣关键词（最多10个，逗号分隔）<input id="browse-keywords" placeholder="猫猫、狗狗、植物、足球比赛" /></label><div class="topic-presets"><button data-browse-keyword="猫猫" class="quiet">+ 猫猫</button><button data-browse-keyword="狗狗" class="quiet">+ 狗狗</button><button data-browse-keyword="植物" class="quiet">+ 植物</button><button data-browse-keyword="足球比赛" class="quiet">+ 足球比赛</button></div></div>
+          <label>不想看的关键词（可留空）<input id="browse-excluded" placeholder="例如：剧透、惊悚" /></label>
+          <div class="grid"><label>浏览检查间隔（秒）<input id="browse-interval" type="number" min="300" max="86400" value="900" /></label><label>视频最长时长（分钟）<input id="browse-max-duration" type="number" min="1" max="180" step="1" value="10" /></label><label>每天最多检查次数<input id="browse-daily" type="number" min="1" max="50" value="5" /></label></div>
+          <p class="muted">超过时长上限或时长未知的视频自动跳过；恰好达到上限可读取。每次最多读取1个未读视频，无结果或读取失败也占一次检查额度。轮换兴趣关键词，不新增模型调用。角色暂未形成明确兴趣时，先从日常科普、自然生活探索，不把探索主题写成固定爱好。当前读取标题、简介与评论，不播放画面、音轨或读取字幕。</p>
+          <div class="row"><button id="browse-save">保存浏览偏好</button><button id="browse-read" class="quiet" disabled>现在浏览一条（只读）</button><button id="browse-refresh" class="quiet">刷新状态</button></div>
+        </article>
+        <article class="card"><h3 id="browse-state">正在读取浏览设置…</h3><p id="browse-effective" class="muted"></p><p id="browse-usage" class="muted"></p></article>
+        <div class="record-section-heading"><h3>最近浏览</h3><div class="history-toolbar" aria-label="最近浏览显示方式"><button type="button" data-history-target="browse-records" data-history-view="compact" class="active" aria-pressed="true">缩略</button><button type="button" data-history-target="browse-records" data-history-view="detailed" aria-pressed="false">详细</button></div></div><div id="browse-records"></div>
+      </section>
+      <section id="auto" class="panel" hidden><nav class="reply-subnav" aria-label="回复策略子菜单"><button data-reply-page="settings" class="active">回复频率与开关</button><button data-reply-page="rules">过滤规则</button></nav><div id="reply-settings-page">
+        <article class="card stranger-policy">
+          <span class="eyebrow">SMALL CONVERSATIONS, CLEAR BOUNDARIES</span><h2>和陌生人聊多少，由你决定。</h2>
+          <p>这里只设置回复策略。看什么视频、去哪里找内容，请到“浏览偏好”设置。</p>
+          <label class="toggle"><input id="auto-enabled" type="checkbox" />允许回复浏览范围内的新评论</label>
+          <div class="grid policy-quotas"><div class="quota-card"><label for="auto-user-limit">同一陌生人</label><p>每天最多回复</p><div class="quota-value"><input id="auto-user-limit" type="number" min="1" max="20" value="5" /><span>条 / 人 / 天</span></div><small>让每次互动留有余地</small></div><div class="quota-card"><label for="auto-other-limit">所有陌生人</label><p>每天合计回复</p><div class="quota-value"><input id="auto-other-limit" type="number" min="1" max="100" value="30" /><span>条 / 天</span></div><small>统一控制每天的回复总量</small></div></div>
+          <p class="muted">按北京时间每天计算，失败和结果未知也计入发送尝试。主人不占陌生人额度，仍遵守独立的生成预算和凭证保护。</p>
+          <details class="policy-advanced"><summary>账号绑定与检查频率</summary><div class="grid"><label>机器人账号 UID<input id="auto-account" /></label><label>主人账号 UID<input id="auto-priority" /></label></div><label>新评论检查间隔（秒）<input id="auto-interval" type="number" min="120" max="3600" value="300" /></label></details>
+          <p id="auto-source-state" class="muted"></p><p class="muted">回复开关是本功能的发送授权；账号、浏览来源、名单、冷却和额度仍需通过校验。首次接触视频只建立评论基线，不补回历史评论；只读取标题、简介和评论，不能声称看过画面。</p>
+          <div class="row"><button id="auto-save">保存回复策略</button><button id="auto-stop" class="quiet">停止自动回复</button><button data-platform-tab="browsing" class="quiet">设置浏览偏好 →</button></div>
+        </article>
+        <article class="card">
+          <h3 id="auto-state">尚未读取状态</h3>
+          <p id="auto-quota" class="muted"></p><p id="auto-times" class="muted"></p><p id="auto-users" class="muted"></p>
+          <div class="row"><button id="auto-refresh" class="quiet">刷新状态</button><button id="auto-scan" class="quiet">立即检查（开启时会自动回复）</button></div>
+        </article>
+        </div><div id="reply-history-page" hidden><div class="record-section-heading"><h3>历史记录</h3><div class="history-toolbar" aria-label="历史记录显示方式"><button type="button" data-history-target="auto-entries" data-history-view="compact" class="active" aria-pressed="true">缩略</button><button type="button" data-history-target="auto-entries" data-history-view="detailed" aria-pressed="false">详细</button></div></div><div id="auto-entries"></div>
+      </div><div id="reply-rules-page" hidden>
+        <article class="card"><h3>先判断是否值得回应，再交给 AI。</h3><p>陌生人仅处理简单短互动：数学题、代码、复杂长任务、链接、诱导指令及纯标点会被跳过。已绑定主人可正常谈技术、发送较长消息；所有人都不能通过聊天获取凭证或本机执行权限。冷却或额度不足时不调用模型。</p><p class="muted">这些是当前生效的内置规则，不在页面里伪装成可修改的开关。回复额度在陌生人回复策略中设置，浏览主题在浏览偏好中设置，账号名单在回复工作台的“手动发送设置与账号名单”中设置。</p></article>
+        <article class="card"><h3>试一下陌生人的过滤规则</h3><p class="muted">只做本地预览，不调用模型或平台，也不发送。</p><input id="auto-preview-text" placeholder="例如：你好呀，或：帮我算一下2+2" maxlength="1000" /><button id="auto-preview">预览规则</button><p id="auto-preview-result" role="status"></p></article>
+      </div></section>
+      <section id="private" class="panel" hidden>
+        <article class="card">
+          <h3>只与大号私聊</h3><p id="private-binding" class="muted"></p>
+          <p>仅对绑定大号的新文字消息自动生成AI回复。首次检查只建立基线；不回复历史消息、数学题或复杂任务。不读取其他人的会话。</p>
+          <label class="toggle"><input id="private-enabled" type="checkbox" />开启私信功能</label>
+          <label class="toggle"><input id="private-send-enabled" type="checkbox" />允许向大号发送私信</label>
+          <label class="toggle"><input id="private-memory-enabled" type="checkbox" />自动记住大号私聊中的有用陈述（仅限此会话）</label>
+          <label class="toggle"><input id="private-auto" type="checkbox" />自动用AI回复大号新私信</label>
+          <label>断线兜底间隔（秒）<input id="private-interval" type="number" min="15" max="3600" value="30" /></label>
+          <div class="row"><button id="private-save">保存私信设置</button><button id="private-stop" class="quiet">关闭私信自动回复</button></div>
+          <h3 id="private-state">尚未读取</h3><p id="private-times" class="muted"></p>
+          <div class="row"><button id="private-status" class="quiet">刷新本地状态</button><button id="private-resume" class="quiet">恢复AI回复（只回新消息）</button><button id="private-refresh" class="quiet">读取大号会话</button></div>
+        </article>
+        <article class="card"><h3>手动发给大号</h3><textarea id="private-text" rows="3" maxlength="500" placeholder="只会发给上方绑定的大号"></textarea><button id="private-send">发送私信给大号</button><p class="muted">暂停机器人只停止自动任务，手动操作仍可使用。发送结果未知时不要重复发送，请到B站核对。</p></article>
+        <article class="card"><h3>大号私聊记忆</h3><p class="muted">只保存开启后新读到的有用陈述及日期／消息来源，不回填历史，不额外调用模型。私信回答最多检索3条，公开评论和公共记忆检索不能读取。关键词不保证匹配所有近义说法；密码、验证码等不入记忆。</p><label>查询关键词或日期<input id="private-memory-query" maxlength="100" placeholder="例如：我养的植物、昨天、2026-10-31；留空看最近记录" /></label><div class="row"><button id="private-memory-search" class="quiet">查询私聊记忆</button><button id="private-memory-prev" class="quiet">上一页</button><button id="private-memory-next" class="quiet">下一页</button></div><p id="private-memory-count" class="muted"></p><div class="record-section-heading"><h3>匹配的私聊记忆</h3><div class="history-toolbar" aria-label="匹配的私聊记忆显示方式"><button type="button" data-history-target="private-memory-items" data-history-view="compact" class="active" aria-pressed="true">缩略</button><button type="button" data-history-target="private-memory-items" data-history-view="detailed" aria-pressed="false">详细</button></div></div><div id="private-memory-items"></div></article>
+        <div class="record-section-heading"><h3>大号会话</h3><div class="history-toolbar" aria-label="大号会话显示方式"><button type="button" data-history-target="private-inbox" data-history-view="compact" class="active" aria-pressed="true">缩略</button><button type="button" data-history-target="private-inbox" data-history-view="detailed" aria-pressed="false">详细</button></div></div><div id="private-inbox"></div>
+        <div class="record-section-heading"><h3>发送记录</h3><div class="history-toolbar" aria-label="发送记录显示方式"><button type="button" data-history-target="private-outbox" data-history-view="compact" class="active" aria-pressed="true">缩略</button><button type="button" data-history-target="private-outbox" data-history-view="detailed" aria-pressed="false">详细</button></div></div><div id="private-outbox"></div>
+      </section>
+      <section id="operations" class="panel" hidden>
+        <article class="card">
+          <span class="eyebrow">ACTIVITY &amp; USAGE</span>
+          <h3 id="usage-heading">今天做了什么，都在这里。</h3>
+          <p id="usage-scope">浏览了什么、回复了谁、写了哪篇日记。展开一条记录，查看具体内容、耗时和 Token。</p>
+          <p class="muted">用量来自真实回执，共享调用只统计一次；未获取不等于零。</p>
+          <div class="usage-filters">
+            <label>平台<select id="usage-platform"><option value="">全部平台</option><option value="bilibili">B站</option><option value="local">本地角色与记忆</option><option value="qq">QQ（未接入）</option><option value="douyin">抖音（未接入）</option></select></label>
+            <label>账号 ID<input id="usage-account" placeholder="全部账号" maxlength="100" /></label>
+            <label>操作<select id="usage-action"><option value="">全部操作</option></select></label>
+            <label>结果<select id="usage-status"><option value="">全部结果</option><option value="succeeded">操作成功</option><option value="failed">操作失败</option><option value="unknown">结果未知</option><option value="running">执行中</option><option value="recorded">历史事实</option><option value="visible">本账号可查</option><option value="restricted">展示受限</option><option value="pending_review">待审</option><option value="submitted">已提交</option></select></label>
+            <label>用量<select id="usage-reported"><option value="">全部记录</option><option value="true">已获取</option><option value="false">未获取</option></select></label>
+            <label>开始日期<input id="usage-from" type="date" /></label>
+            <label>结束日期<input id="usage-to" type="date" /></label>
+            <button id="usage-query">查询</button>
+          </div>
+        </article>
+        <div class="stats">
+          <article><span>筛选范围内操作</span><strong id="usage-count">—</strong></article>
+          <article><span>已记录 Token · 输入 + 输出</span><strong id="usage-tokens">—</strong></article>
+          <article><span>已关联用量的操作</span><strong id="usage-coverage">—</strong></article>
+        </div>
+        <p id="usage-collection" class="muted" role="status"></p>
+        <p id="usage-summary" class="muted" role="status">进入页面后读取本地流水，不自动轮询。</p>
+        <div class="record-section-heading"><h3>活动记录</h3><div class="history-toolbar" hidden aria-label="业务记录显示方式"><button type="button" data-history-target="usage-summary-list" data-history-view="compact" class="active" aria-pressed="true">缩略</button><button type="button" data-history-target="usage-summary-list" data-history-view="detailed" aria-pressed="false">详细</button></div></div><div id="usage-summary-list"></div><div id="usage-detail-table" class="usage-table-wrap" hidden><table class="usage-table"><thead><tr><th>时间 / 来源</th><th>平台 / 账号</th><th>操作 / 结果</th><th>用量</th><th>详情</th></tr></thead><tbody id="usage-rows"></tbody></table></div>
+        <div class="row usage-pages"><button id="usage-prev" class="quiet" disabled>上一页</button><span id="usage-page" class="muted"></span><button id="usage-next" class="quiet" disabled>下一页</button></div>
+      </section>
+      <footer>栖 · GPT Robot <span>v0.2 · 本地预览 / Codex MCP</span></footer>
+    </main>
+    <script type="module" src="/app.js"></script>
+  </body>
+</html>

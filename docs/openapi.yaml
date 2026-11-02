@@ -1,0 +1,408 @@
+openapi: 3.0.3
+info:
+  title: GPT Robot 本地工作台 API
+  version: 0.2.0
+  description: 仅限本地回环服务。账号密码不属于登录协议；B 站会话不返回给模型。
+servers:
+  - url: http://127.0.0.1:3217
+paths:
+  /:
+    get:
+      summary: 固定本机网页入口
+      description: >-
+        浏览器从地址栏或书签直接打开顶层页面时建立或续期HttpOnly、SameSite=Strict的30天Cookie。
+        仅接受回环来源及浏览器navigate/document、用户导航元数据，拒绝跨站/iframe/普通fetch领取会话。
+        网页会话保存于私有文件，同一本机地址重启不失效；CSRF及MCP凭据仍每次重启轮换。
+        其他请求可读取不含凭据的静态页面，但不能因此获取API权限。
+      responses:
+        '200': { description: 本机网页HTML }
+  /session:
+    post:
+      summary: 兼容旧客户端的密钥换取会话入口，新网页不再使用
+      deprecated: true
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [key]
+              properties:
+                key: { type: string }
+      responses:
+        '200':
+          description: 设置 HttpOnly Cookie 并返回本次 CSRF 值；不可分享
+    get:
+      summary: 已登录网页获取或恢复本次 CSRF 值，重启后无需更换地址
+      security: [{ browserSession: [] }]
+      responses:
+        '200': { description: 网页会话有效 }
+        '401': { description: 网页会话无效 }
+  /api/{action}:
+    post:
+      summary: 网页操作入口（同源、会话与 CSRF 必需）
+      description: |
+        主人私聊采用系统内部自然表达策略：每轮随机1–3条目标/上限（含表情），短消息不硬拆，正常回复只调用模型一次。候选表情只允许既有平台表情ID和主人明确保存的素材ID。没有新增网页设置或任意图片发送入口，公开评论仍单条。
+        已绑定主人可以在三分钟内先发图片后说学习一下，或先说学习一下再发图；可附“叫开心猫”等标签。开启私聊记忆才下载保存，学习用本地规则、不调用模型。支持2MiB以内、宽高2048以内PNG/JPEG/GIF，私有库每绑定范围最多24张，按SHA256去重，跨模型和服务重启保留，撤回移除。只保存原图与主人标签，不冒充视觉理解；未找到或下载失败明确说明未保存。
+        private-sticker-learn为新的本地学习动作，沿用automation来源、不计模型生成调用。私信outbox响应新增groupId、part（从0开始）、sticker布尔标志，不返回图片原文/私有路径。每条独立sent/failed/unknown；部分送达操作可为partial，剩余不补发。账号与发送阶段计时累加组内各次调用，分条等待和中途只读查新消息仅计入操作总耗时。公共用量仍不保存私聊正文。
+        conversation-status/config仅限认证网页，MCP拒绝。config完整接收enabled、maxTurns(1–50)、idleSeconds(60–3600)、maxAgeSeconds(60–14400)、contextTokens(6000–64000)、totalTokens(12000–1000000)，本地保存会结束旧窗口，不调用模型或发送消息。默认true/10/600/1800/12000/60000。status返回config和windows数组，每项id、turns、tokens、pending，不返回原文或账号。生成处理中只返回匿名标识和pending=true，轮数/用量暂不可用；未处理中为已知快照。
+        有限多轮目前仅用于已核验主人私聊，Harness复用临时线程/API携带有限历史。按字节保守估算上下文并预留4096 Token，累计按真实输入+输出结算；未知结束窗口，单轮可能越线，不是精确费用保证。每日预算仍生效。关键原文摘录在同一次正常回复中返回，发送明确成功后保存本地私有交接；到期不额外请求总结。切换供应商/模型/档位、人设或授权使旧窗口失效，长期记忆不清除。
+        overview 返回人设、权限、账号公开信息、草稿、经历与记忆列表；persona 保存人设；permissions 保存权限。
+        diary-status返回本机角色日记最近30天和自动/测试模式；diary-config保存enabled和可选testing。日记仅本地认证网页可访问，MCP及公共记忆不开放。
+        diary-generate仅写北京时间当天日记，retry=true才允许重试失败/中断；同日成功默认复用，无经历默认零模型，testing=true开放空素材和手动重复生成，自动任务仍每天最多一次。
+        自动日记在北京时间23点执行，服从机器人总开关；素材最多12段且业务JSON最多6000字节，主人私信仅使用互动计数不读取原文，真实Token按独立local/diary-generate业务操作记录。
+        qr 生成登录二维码图像；poll 检查最近二维码；account 验证登录。
+        import-session 验证本人提供的 Cookie，expectedUid 不匹配则拒绝。原文不记录、不返回。
+        comments 读取指定页；draft/dynamic-draft 准备草稿；send 真实发送，cancel 取消待审，recheck 回查已有平台 ID。
+        context/search/note 分别返回角色资料、检索记录、保存带来源的主观记录。
+        context人设最多800字，最多5条记忆正文各160字及8条经历摘要；search最多3条笔记和3条经历，笔记正文160字、经历摘要200字，省略原始事件Data；来源ID仍返回，完整记录保留在本地。
+        operations 按需增量采集本机Codex计量，查询跨平台业务流水和Token汇总；不请求模型或平台，不记录查询自身。
+        browsing-status/config/read仅限认证网页，MCP拒绝。config需enabled、mode(persona/custom)、keywords、excluded(各最多10个，每个1–20字)、intervalSeconds(300–86400)、dailyLimit(1–50)、maxDurationMinutes(1–180，缺省10)。搜索候选及详情均校验时长，超过上限或时长未知跳过，等于上限可读。首次默认关闭；persona使用明确人设及当前账号公开正向/熟悉兴趣，未形成兴趣时从日常科普/自然生活轻量探索，不写成固定爱好；custom使用关键词，无可用主题时拒绝启用。每日按北京时间最多dailyLimit次检查（失败/无结果也计），每次最多读取1条未读视频标题/简介/评论，不读取画面、音轨或字幕，不调用模型。启用只绑定当前核验账号，不开启回复或修改平台权限；关闭/改偏好使旧浏览来源不能继续授权发送。read只读当前已开启浏览范围，用户手动请求可提前检查，但不绕过日限额。
+        auto-config的source=browsing表示跟随最近24小时当前版本浏览记录（最多20视频）的新评论，不要求手动BV列表；只有显式开启浏览、回复及平台发送权限，且账号、来源版本、目标和额度复核全部通过时可发送。未传source保留旧指定视频协议兼容，新网页不再填写BV。保存浏览偏好不恢复评论/私信暂停。每人每天与陌生人每日总上限可分别设置，新默认5/30，旧已保存值保留。
+        operations认证网页响应items增加activityTitle/activityText，按本地当前账号及关联来源即时组装摘要（含私聊时仍仅认证网页），不持久化到通用流水、context/search或公共记忆。缺失来源不编造内容；展示方式切换不触发生成或发送。
+        generation-safety-status/config仅限认证网页，MCP拒绝。config需完整ownerDailyCalls(0–10000)、otherDailyCalls(1–1000)、ownerDailyTokens(0–100000000)、otherDailyTokens(1000–10000000)。主人0关闭该项限制；按北京时间每日分开计数，保存不重置当日用量。status返回config、day及owner/other各calls/tokens/unknown/pending；calls在生成前持久占额，失败/空回复/未知均计数；tokens为回执已知输入+输出，非金额，达到后阻止后续调用，单次可能越线，未知不冒充零。不增加模型调用。
+        model-status/model-config/model-connect仅限认证网页，MCP拒绝。model-status只读本地供应商配置及程序检测结果，不回显任何API Key。model-connect接收provider=codex/deepseek，检测程序并完成无生成的SDK握手后切换为local模式；HARNESS_NOT_FOUND/HARNESS_CONNECT/HARNESS_VERSION失败保留原配置。握手成功不代表模型登录态或推理已验收。
+        model-list仅认证网页，读取本机Codex目录返回models[{id,name}]，不调用推理。model-connect的Codex选择必须提供目录中的codexModel及codexEffort（low/medium/high）；未提供具体型号或不存在则拒绝，thread/start返回不同型号时在turn/start前以MODEL_MISMATCH停止。DeepSeek本机选择deepseekModel及harnessEffort（low/high）；均按所选原值执行，不自动升档、回退或切换供应商。
+        API配置另接受openaiEffort（low/medium/high）和deepseekEffort（none/low/high），未填保留原值；默认OpenAI低、DeepSeek关闭思考。OpenAI调用官方Responses API且store=false；DeepSeek调用官方Chat Completions。不保证所有账号/型号支持这些参数，不支持时停止报错，不自动提高档位重试。Codex当前尚未另行选择时保留原模型设置，用户点击连接需明确选型。
+        model-config接收mode=api，provider=openai/deepseek，deepseekModel/openaiModel及可选apiKey。空/省略密钥保留所选供应商原值，供应商密钥独立；未配置密钥拒绝保存，不调用模型验证。只支持固定官方HTTPS地址，不接受自定义命令/端点。配置在.private/model-provider.json以0600保存，下一次生成读取快照，不改变已执行生成或机器人开关/权限/安全暂停；失败不自动切换供应商。
+        回复与日记共用JSONBackend及原提示/预算/后置校验。DeepSeek本机Harness复用原账户，独立临时profile默认禁用全部非必要插件（工具/技能/持久聊天/标题模型/重试/压缩等），单轮输入；API用原生usage，source为openai_api/deepseek_api，本机为deepseek_harness，缺失用量不记零。两种模式不新增模型测试或平台发送。
+        主人按绑定UID识别，私聊及公开主人消息允许1–500字正常对话，不套用陌生人API/Token/代码关键词预筛选；回复仍为短回应，无工具或任意执行权限。敏感输入先脱敏，SENSITIVE_OUTPUT只跳过本条，不暂停主人后续对话。
+        私信自动回复流水新增timings（旧记录null，不回填）：generationMs为上下文准备、宿主生成及本地用量/成长保存耗时；accountCheckMs为发送前只读账号核验（含重试等待）；sendMs为实际平台发送调用（含平台客户端限速等待）。三项单位毫秒，未执行阶段为null，实际不足1ms可为0；accountAttempts为核验尝试数。分段不含外围校验/账本保存及入站等待，不能把总耗时减分段差值当模型时间。计时只用本机单调时钟，不增加模型或平台调用。
+        返回collectionStatus；操作新增usageOwner/usageThread/usageTurn，usage明细新增source/threadId/turnId/scope/relatedOperations。
+        source为codex_local（本机实测）、codex_app_server（生成宿主实际回执）或host_reported（外部宿主上报）；共享业务轮次命中任一操作时包含整轮，当前筛选合计按请求ID去重，不能将不同筛选小计相加。
+        开发聊天排除名单与混合工具轮次不计入；历史无可靠关联保持null，不默认为0。
+        auto-status 查询自动回复范围、暂停原因、北京时间当日他人/单人用量及最近处理记录；不触发平台请求。
+        auto-config 保存自动回复范围；enabled=true时核验绑定账号与视频白名单，不授予MCP配置权限。
+        auto-preview 仅本地规则预览，返回allowed/reply空串/reason/modelTokens=0，不生成固定话术；auto-scan在已启用范围执行一次检查，可能真实发送最多一条回复。
+        自动回复优先账号免次数限制；其他用户按北京时间独立日限额，默认总20/单人3，设置后不重置账本。手动额度仍以UTC日计，两者独立，共用冷却。
+        operations支持activitiesOnly布尔筛选，true只展示实际活动并隐藏账号核验、检索等内部步骤；详情关联私密内容仅供认证管理员。
+        development-status仅管理员网页查询永久兴趣/关系档案，返回interests及relationships数组，包含平台账号、私密范围、主题熟悉度/偏好及关系分/天数/标签；interests增加familiarityUnits、preferenceUnits（整数，100为1点）和stage；relationships增加familiarityUnits、affinityUnits及declaredRole。abstract仅表示允许共享粗略兴趣阶段，不包含私人来源，无私聊原文；MCP不可调用。只查本地，不调用模型或平台。
+        character-status为管理员网页合并返回development兴趣/关系档案，减少一次HTTP查询；公共context不包含该字段。其余只查询有效情绪、三项风格倾向及最近100次变化来源，不创造新经历、不调用模型；character_context的state.description包含同一有效摘要。
+        robot-status返回enabled及status（running/paused/stopped）；robot-control接收action=start/stop/pause/resume，兼容旧enabled二选一。关闭后启动重建基线，暂停后恢复保留进度与额度，网页控制台继续可用。已提交平台的请求无法撤回。
+        shutdown仅限认证网页POST，confirmed=true后先保存机器人stopped，再返回shuttingDown并通知正常退出；取消后台、收尾HTTP与账本，最多25秒，不作为崩溃重新拉起。退出后需本机scripts/start.command重新打开，不能从已经退出的网页启动。
+        private-status新增push.connected/verified/mode/errorCode及不含正文的通知诊断计数，connected仅认证订阅成功，verified才表示收到可处理通知；lastTriggerKind/key/at记录最近合格消息的推送/匿名提示/轮询/恢复同步来源，旧记录保持空；push为已订阅通知，polling为断线按配置兜底，disabled为监听停止。推送连接不授予新账号/收件人权限，通知本身不调用AI。
+        private-resume仅认证网页：检查无在途/未知发送、实时核验账号、读取最新会话并持久保存水位后解除暂停；恢复本身不生成/发送，只处理此后的新消息。MCP不可调用。
+        private-status新增readPaused/readFailures/lastErrorCode/lastErrorStage/lastErrorAt；会话只读NETWORK错误按配置间隔退避，上限15分钟，连续5次停止。lastErrorStage区分read/generation/send-preflight/send；旧processing仍兼容显示。发送前只读账号核验NETWORK最多尝试3次、等待1/2秒，复用已生成回复，不重调AI；登录/账号/平台拒绝立即停止，生成及实际发送失败不自动重试。
+        private-status只读本地状态；private-config设置enabled/allowSend/autoReply/intervalSeconds，不接受UID修改，收件人锁定大号。检查间隔15–3600秒，默认30秒；仅修改间隔不解除暂停、不重置游标或网络退避。绑定大号私信发送尝试间隔至少10秒，公开评论冷却不变。
+        private-config新增可选memoryEnabled，未传保持原设置；开启后首轮建立独立记忆基线，仅本地筛选新陈述，不调用模型。
+        private-memories仅认证网页按关键词/日期查询本会话私密记忆，先校验登录UID再读取；private-memory-forget按记忆ID清除私域正文，不删除原消息。两项均不向MCP开放，不接受账号或收件人覆盖参数。
+        私信回复最多带入3条各160字相关用户陈述，附来源日期；公开生成入口拒绝privateMemories，公共记忆/经历/角色/用量输出不含私聊正文。
+        private-refresh只读取绑定大号会话，private-send只向该大号发送，requestId按正文幂等；未知结果不可重发。
+        评论和私信均先过滤、去重和冷却检查，合格新消息由隔离AI短会话生成；没有新输入不调用模型，失败不回退固定话术。
+        私信首次建立基线不回复历史；仅新文字私信、总开关和渠道开关均启用时自动回复。正文只留私信目录，不进入公共记忆/事件/用量账本。
+        usage-report 接收真实模型调用方的用量，不是模型可调用工具；无用量不等于零。
+        业务操作返回X-Operation-ID响应头，成功JSON额外带operationId。
+        回查结果包含 platformState、rootPlatformState（若平台提供）和 visibilityCheckedAt，并保留发送回执platformMessage。
+        visible 仅表示本账号可查，不保证公开展示；restricted 表示本条或根楼状态17，pending_review表示状态11。
+        受限或待审核记录仍不可重复发送，只允许回查，不自动申诉、删除或重发。
+        发送默认禁用，必须通过权限和状态检查。无头浏览器或其他同用户权限程序不属于此 API 能隔离的对象。
+      security: [{ browserSession: [], csrf: [] }]
+      parameters:
+        - in: path
+          name: action
+          required: true
+          schema:
+            type: string
+            enum: [overview, persona, permissions, qr, poll, account, import-session, comments, draft, dynamic-draft, send, cancel, recheck, context, search, note, operations, usage-report, auto-config, auto-status, auto-preview, auto-scan, robot-status, robot-control, private-status, private-config, private-refresh, private-send, character-status, development-status, shutdown, private-memories, private-memory-forget, private-resume, diary-status, diary-config, diary-generate, model-status, model-config, model-connect, model-list, browsing-status, browsing-config, browsing-read, generation-safety-status, generation-safety-config, conversation-status, conversation-config]
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              oneOf:
+                - type: object
+                  additionalProperties: false
+                  required: [enabled, maxTurns, idleSeconds, maxAgeSeconds, contextTokens, totalTokens]
+                  properties:
+                    enabled: {type: boolean}
+                    maxTurns: {type: integer, minimum: 1, maximum: 50}
+                    idleSeconds: {type: integer, minimum: 60, maximum: 3600}
+                    maxAgeSeconds: {type: integer, minimum: 60, maximum: 14400}
+                    contextTokens: {type: integer, minimum: 6000, maximum: 64000}
+                    totalTokens: {type: integer, minimum: 12000, maximum: 1000000}
+                - type: object
+                  additionalProperties: false
+                  required: [enabled, mode, keywords, excluded, intervalSeconds, dailyLimit]
+                  properties:
+                    enabled: {type: boolean}
+                    mode: {type: string, enum: [persona, custom]}
+                    keywords: {type: array, maxItems: 10, items: {type: string, minLength: 1, maxLength: 20}}
+                    excluded: {type: array, maxItems: 10, items: {type: string, minLength: 1, maxLength: 20}}
+                    intervalSeconds: {type: integer, minimum: 300, maximum: 86400}
+                    dailyLimit: {type: integer, minimum: 1, maximum: 50}
+                    maxDurationMinutes: {type: integer, minimum: 1, maximum: 180, default: 10}
+                - type: object
+                  additionalProperties: false
+                  required: [ownerDailyCalls, otherDailyCalls, ownerDailyTokens, otherDailyTokens]
+                  properties:
+                    ownerDailyCalls: {type: integer, minimum: 0, maximum: 10000}
+                    otherDailyCalls: {type: integer, minimum: 1, maximum: 1000}
+                    ownerDailyTokens: {type: integer, minimum: 0, maximum: 100000000}
+                    otherDailyTokens: {type: integer, minimum: 1000, maximum: 10000000}
+                - { type: object, additionalProperties: false, description: 无参数操作 }
+                - { $ref: '#/components/schemas/Persona' }
+                - { $ref: '#/components/schemas/Permissions' }
+                - { $ref: '#/components/schemas/ImportSession' }
+                - { $ref: '#/components/schemas/CommentsInput' }
+                - { $ref: '#/components/schemas/ReplyInput' }
+                - { $ref: '#/components/schemas/DynamicInput' }
+                - { $ref: '#/components/schemas/IdInput' }
+                - { $ref: '#/components/schemas/NoteInput' }
+                - { $ref: '#/components/schemas/SearchInput' }
+                - { $ref: '#/components/schemas/OperationQuery' }
+                - { $ref: '#/components/schemas/UsageReport' }
+                - { $ref: '#/components/schemas/AutoConfig' }
+                - { $ref: '#/components/schemas/AutoPreview' }
+                - { $ref: '#/components/schemas/RobotControl' }
+                - { $ref: '#/components/schemas/Shutdown' }
+                - { $ref: '#/components/schemas/DiaryConfig' }
+                - { $ref: '#/components/schemas/DiaryGenerate' }
+                - { $ref: '#/components/schemas/PrivateConfig' }
+                - { $ref: '#/components/schemas/PrivateSend' }
+                - { $ref: '#/components/schemas/PrivateMemoryQuery' }
+                - { $ref: '#/components/schemas/ModelProviderInput' }
+                - { $ref: '#/components/schemas/HarnessConnect' }
+      responses:
+        '200':
+          description: 按 action 返回对应白名单 DTO；send 的成功 HTTP 响应不代表平台发布成功，必须检查 status
+          content:
+            application/json:
+              schema:
+                type: object
+                description: 具体 DTO 由 http/msg/protocol.go 显式投影；事件 data 是公开的原始事件字段，不含凭证
+        '400': { description: 参数、权限、状态、账号、额度或平台业务错误 }
+        '401': { description: 会话或 CSRF 无效 }
+        '403': { description: 来源或 Host 不受信任 }
+        '404': { description: 操作或草稿不存在 }
+        '413': { description: 内容超过限制 }
+        '415': { description: 不是 JSON }
+        '500': { description: 本地持久化或内部错误，不向客户端输出原始底层异常 }
+        '502': { description: 平台网络异常；写入可能为未知结果，禁止盲目重发 }
+  /mcp-action:
+    post:
+      summary: stdio MCP 适配器的本地桥接（不等同远程 MCP）
+      description: 独立令牌允许下述工具动作及宿主用量上报，不允许发送、导入账号或修改权限。usage-report不注册为模型工具；返回X-Operation-ID及MCP结果元数据供宿主关联。
+      security: [{ mcpToken: [] }]
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [action, input]
+              properties:
+                action:
+                  type: string
+                  enum: [context, search, note, comments, draft, dynamic-draft, account, usage-report]
+                input: { type: object }
+      responses:
+        '200': { description: 对应工具白名单 DTO }
+        '401': { description: 连接令牌无效 }
+        '403': { description: 不允许的动作 }
+components:
+  securitySchemes:
+    browserSession: { type: apiKey, in: cookie, name: robot_session }
+    csrf: { type: apiKey, in: header, name: X-CSRF-Token }
+    mcpToken: { type: http, scheme: bearer }
+  schemas:
+    HarnessConnect:
+      type: object
+      additionalProperties: false
+      required: [provider]
+      properties:
+        provider: { type: string, enum: [codex, deepseek] }
+        codexModel: { type: string, maxLength: 100 }
+        codexEffort: { type: string, enum: [low, medium, high] }
+        deepseekModel: { type: string, enum: [deepseek-flash, deepseek-v4-pro] }
+        harnessEffort: { type: string, enum: [low, high] }
+    ModelProviderInput:
+      type: object
+      additionalProperties: false
+      required: [mode, provider]
+      properties:
+        mode: { type: string, enum: [api] }
+        provider: { type: string, enum: [openai, deepseek] }
+        deepseekModel: { type: string, enum: [deepseek-flash, deepseek-v4-pro] }
+        openaiModel: { type: string, maxLength: 100, description: 支持Responses和JSON的模型ID；未填保留原值 }
+        openaiEffort: { type: string, enum: [low, medium, high] }
+        deepseekEffort: { type: string, enum: [none, low, high] }
+        apiKey: { type: string, maxLength: 512, writeOnly: true, description: 仅更新所选API供应商；空或省略保留原值，从不回显 }
+    DiaryConfig:
+      type: object
+      additionalProperties: false
+      required: [enabled]
+      properties:
+        enabled: { type: boolean, description: 每天23点自动写日记 }
+        testing: { type: boolean, description: 测试时允许空素材及手动重复，不改变自动每天一次 }
+        topics:
+          type: array
+          maxItems: 10
+          items: { type: string, minLength: 1, maxLength: 20 }
+          description: 日记选材偏好关键词，不代表永久人设变更
+        ownerWeight: { type: integer, minimum: 0, maximum: 10, description: 已绑定主人互动加分，默认4 }
+        interestWeight: { type: integer, minimum: 0, maximum: 10, description: 命中兴趣的加分，默认2 }
+    DiaryGenerate:
+      type: object
+      additionalProperties: false
+      required: [retry]
+      properties:
+        retry: { type: boolean, default: false, description: 明确重试失败或中断的当天生成，会再次调用模型 }
+
+    Persona:
+      type: object
+      additionalProperties: false
+      required: [persona]
+      properties:
+        persona: { type: string, minLength: 1, maxLength: 20000 }
+    Permissions:
+      type: object
+      additionalProperties: false
+      required: [enabled, allowedVideos, allowedUsers, blockedUsers, dailyLimit, cooldownSeconds]
+      properties:
+        enabled: { type: boolean }
+        allowDynamic: { type: boolean, default: false }
+        allowedVideos: { type: array, maxItems: 100, items: { type: string, pattern: '^BV[0-9A-Za-z]{10}$' } }
+        allowedUsers: { type: array, maxItems: 100, items: { type: string, pattern: '^\d+$' } }
+        blockedUsers: { type: array, maxItems: 100, items: { type: string, pattern: '^\d+$' } }
+        dailyLimit: { type: integer, minimum: 1, maximum: 30, description: UTC 日内发送尝试上限 }
+        cooldownSeconds: { type: integer, minimum: 60, maximum: 86400 }
+    ImportSession:
+      type: object
+      additionalProperties: false
+      required: [cookie, expectedUid]
+      properties:
+        cookie: { type: string, minLength: 1, maxLength: 30000, writeOnly: true }
+        userAgent: { type: string, maxLength: 512, writeOnly: true, description: 可选，实际来源浏览器的User-Agent；拒绝换行，不返回给MCP }
+        expectedUid: { type: string, pattern: '^\d+$' }
+    CommentsInput:
+      type: object
+      additionalProperties: false
+      required: [bvid]
+      properties:
+        bvid: { type: string, pattern: '^BV[0-9A-Za-z]{10}$' }
+        page: { type: integer, default: 1, minimum: 1, maximum: 500 }
+        root: { type: string, pattern: '^\d+$' }
+    ReplyInput:
+      type: object
+      additionalProperties: false
+      required: [bvid, text]
+      properties:
+        bvid: { type: string, pattern: '^BV[0-9A-Za-z]{10}$' }
+        text: { type: string, minLength: 1, maxLength: 1000 }
+        root: { type: string, default: '0', pattern: '^\d+$' }
+        parent: { type: string, default: '0', pattern: '^\d+$' }
+    DynamicInput:
+      type: object
+      additionalProperties: false
+      required: [text]
+      properties:
+        text: { type: string, minLength: 1, maxLength: 1000 }
+    IdInput:
+      type: object
+      additionalProperties: false
+      required: [id]
+      properties:
+        id: { type: string, format: uuid }
+    SearchInput:
+      type: object
+      additionalProperties: false
+      required: [query]
+      properties:
+        query: { type: string, minLength: 1, maxLength: 100 }
+    NoteInput:
+      type: object
+      additionalProperties: false
+      required: [kind, title, text, sources]
+      properties:
+        kind: { type: string, enum: [diary, memory] }
+        title: { type: string, minLength: 1, maxLength: 100 }
+        text: { type: string, minLength: 1, maxLength: 4000 }
+        sources: { type: array, minItems: 1, maxItems: 20, items: { type: string, format: uuid } }
+
+    OperationQuery:
+      type: object
+      additionalProperties: false
+      properties:
+        platform: { type: string, minLength: 1, maxLength: 100, description: 平台标识，如bilibili/local；不限定平台枚举 }
+        account: { type: string, minLength: 1, maxLength: 100 }
+        action: { type: string, minLength: 1, maxLength: 100 }
+        status: { type: string, minLength: 1, maxLength: 100 }
+        from: { type: string, format: date-time }
+        to: { type: string, format: date-time }
+        hasUsage: { type: boolean, description: 是否至少收到一份用量，不表示整次操作用量完整 }
+        page: { type: integer, default: 1, minimum: 1, maximum: 1000000 }
+        pageSize: { type: integer, default: 30, minimum: 1, maximum: 100 }
+    UsageReport:
+      type: object
+      additionalProperties: false
+      required: [operationId, requestId, provider, model, input, output]
+      properties:
+        operationId: { type: string, format: uuid }
+        requestId: { type: string, minLength: 1, maxLength: 200, description: 与provider共同幂等；跨操作重复归属或同ID异值返回CONFLICT }
+        provider: { type: string, minLength: 1, maxLength: 80 }
+        model: { type: string, minLength: 1, maxLength: 100 }
+        input: { type: integer, format: int64, minimum: 0, maximum: 1000000000 }
+        output: { type: integer, format: int64, minimum: 0, maximum: 1000000000 }
+        cachedInput: { type: integer, format: int64, nullable: true, minimum: 0, description: 输入子集，不能超过input；省略表示未获取 }
+        reasoningOutput: { type: integer, format: int64, nullable: true, minimum: 0, description: 输出子集，不能超过output；省略表示未获取 }
+
+    AutoConfig:
+      type: object
+      additionalProperties: false
+      required: [enabled, accountUid, priorityUid, videos, intervalSeconds, otherDailyLimit, perUserDailyLimit]
+      properties:
+        enabled: { type: boolean }
+        accountUid: { type: string, description: 启用时必须等于已登录机器人UID }
+        priorityUid: { type: string, description: 与机器人不同的优先账号UID，不占陌生人发送额度，仍受主人独立生成预算约束 }
+        source: { type: string, enum: ["", browsing], description: browsing跟随当前有效浏览来源；空字符串兼容旧指定视频 }
+        videos: { type: array, maxItems: 20, items: { type: string, pattern: '^BV[0-9A-Za-z]{10}$' } }
+        intervalSeconds: { type: integer, minimum: 120, maximum: 3600, default: 300 }
+        otherDailyLimit: { type: integer, minimum: 1, maximum: 100, default: 30 }
+        perUserDailyLimit: { type: integer, minimum: 1, maximum: 20, default: 5 }
+    AutoPreview:
+      type: object
+      additionalProperties: false
+      required: [text]
+      properties:
+        text: { type: string, minLength: 1, maxLength: 1000 }
+
+    RobotControl:
+      type: object
+      additionalProperties: false
+      oneOf:
+        - required: [action]
+        - required: [enabled]
+      properties:
+        action: { type: string, enum: [start, stop, pause, resume] }
+        enabled: { type: boolean, description: 兼容旧客户端，true为启动/恢复，false为暂停；不可与action同时提供 }
+    Shutdown:
+      type: object
+      additionalProperties: false
+      required: [confirmed]
+      properties:
+        confirmed: { type: boolean, enum: [true], description: 网页用户确认退出整个程序 }
+    PrivateConfig:
+      type: object
+      additionalProperties: false
+      required: [enabled, allowSend, autoReply, intervalSeconds]
+      properties:
+        enabled: { type: boolean }
+        allowSend: { type: boolean }
+        autoReply: { type: boolean }
+        memoryEnabled: { type: boolean, description: 可独立于自动回复启用；未传保持原值，重新开启不回填停用期间历史 }
+        intervalSeconds: { type: integer, minimum: 15, maximum: 3600, default: 30 }
+    PrivateSend:
+      type: object
+      additionalProperties: false
+      required: [requestId, text]
+      properties:
+        requestId: { type: string, format: uuid, description: 相同ID不同正文拒绝；相同ID返回已保存结果，不重发 }
+        text: { type: string, minLength: 1, maxLength: 500 }
+
+    PrivateMemoryQuery:
+      type: object
+      additionalProperties: false
+      properties:
+        query: { type: string, maxLength: 100, description: 不传或空串看最近记录；日期支持今天/昨天/前天（北京时间）和YYYY-MM-DD }
+        page: { type: integer, minimum: 1, default: 1 }
+        pageSize: { type: integer, minimum: 1, maximum: 20, default: 20 }
