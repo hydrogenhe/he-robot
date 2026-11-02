@@ -2,18 +2,30 @@
 
 给 AI 角色一个本地的家：独立人设、记忆、成长、日记和受控的平台互动。
 
-Go 后端、内置网页工作台、嵌入式 SQLite 与 stdio MCP。本地预览版，当前优先支持 macOS 与本机 Codex / DeepSeek Harness；QQ、抖音接入及 Windows 使用尚未完成验收。
+Go 后端、内置网页工作台、嵌入式 SQLite 与 stdio MCP。本地预览版，当前优先支持 macOS 与本机 Codex / DeepSeek Harness；QQ、抖音接入尚未实现，Windows 为待实机验收的预览包。
 
 ## 下载与启动
 
-首次使用需要 Go 1.25+。在 GitHub 点击 **Code → Download ZIP**，解压后在项目目录运行：
+普通使用者请到 [Releases 下载预编译包](https://github.com/hydrogenhe/he-robot/releases/latest)，无需安装 Go、Node.js 或数据库：
+
+| 你的电脑 | 下载文件后缀 | 解压后启动 |
+| --- | --- | --- |
+| macOS Apple Silicon（M 系列） | `darwin-arm64.zip` | 双击 `scripts/start.command` |
+| macOS Intel | `darwin-amd64.zip` | 双击 `scripts/start.command` |
+| Windows x64 | `windows-amd64.zip` | 双击 `scripts/start.cmd` |
+
+请先完整解压，再启动；不要在压缩包内直接运行。首次启动在解压目录创建自己的资料，升级前先退出程序并备份 `data/`、`config/`、`.private/`。包内提供 `START-HERE.txt`、MIT 与第三方许可证，发布页提供 SHA-256 校验值。
+
+当前为未签名的预览版，系统可能要求确认来源。Apple Silicon 包已本机启动验证；Intel / Windows 仅交叉编译，尚未实机验收。Windows 暂不支持 DeepSeek Harness 隔离适配及额外 Codex 历史索引用量采集；Codex 模型链路仍待 Windows 实机验收。本项目不自动安装或登录模型运行时。
+
+开发者也可下载源码（需要 Go 1.25+），在项目目录运行：
 
 ```bash
 bash scripts/build.sh
 bin/gpt-robot serve --root . --open
 ```
 
-macOS 也可双击 `scripts/start.command`，缺少程序时自动从源码构建。构建后的程序不需要 Go、Node.js 或另装数据库服务。当前提供源码下载，尚无预编译安装包。
+源码版 macOS 也可双击 `scripts/start.command` 自动构建。构建后的程序不需要 Go、Node.js 或另装数据库服务。
 
 打开或收藏 <http://127.0.0.1:3217/>。服务仅监听本机；保持终端运行，按 Ctrl+C 停止。网页“关闭机器人”保留控制台，“退出整个程序”才停止服务。
 
@@ -59,7 +71,9 @@ bin/gpt-robot config --root .
 bash scripts/test.sh
 ```
 
-测试使用临时资料、模拟平台与回环测试端口，不向真实平台发送内容。有 Node.js 时会额外运行网页脚本测试，Node.js 不是运行依赖。操作命令见 [操作入口](scripts/操作入口.md)，接口定义见 [OpenAPI](docs/openapi.yaml)。
+测试使用临时资料、模拟平台与回环测试端口，不向真实平台发送内容。有 Node.js 时会额外运行网页脚本测试，Node.js 不是运行依赖。发布打包使用 Python 3 标准库与 Go：`python3 scripts/release/package.py v0.2.0`，只从明确白名单复制程序、启动脚本、说明和许可证，不打包运行数据。
+
+操作命令见 [操作入口](scripts/操作入口.md)，接口定义见 [OpenAPI](docs/openapi.yaml)。
 
 通用业务在 `core/`，数据存储在 `storage/`，模型适配在 `businesshost/` 与 `modelprovider/`，平台适配在 `platforms/`，网页在 `web/`。扩展平台应复用权限、记忆和用量规则，保持账号与隐私隔离。
 
