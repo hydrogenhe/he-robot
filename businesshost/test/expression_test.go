@@ -5,6 +5,7 @@ import (
 	"encoding/json"
 	"gpt-robot/businesshost"
 	"gpt-robot/model"
+	"strings"
 	"testing"
 )
 
@@ -84,5 +85,32 @@ func TestStickerAnalysisAndSelectionProtocols(t *testing.T) {
 	prompt.Channel = "video-comment"
 	if _, err = generator.Generate(context.Background(), &prompt); err == nil {
 		t.Fatal("private selection allowed in public channel")
+	}
+}
+
+func TestStickerAnalysisRespectsCombinedInstructionBudget(t *testing.T) {
+	backend := &expressionBackend{text: `{"reply":"你好"}`}
+	generator := businesshost.NewGenerator(t.TempDir(), backend)
+	prompt := model.ReplyPrompt{
+		Channel:        "private-message",
+		Text:           strings.Repeat("问", 500),
+		Persona:        strings.Repeat("人", 800),
+		State:          strings.Repeat("静", 240),
+		Development:    strings.Repeat("长", 240),
+		AnalyzeSticker: true,
+		ReplyParts:     3,
+		Owner:          true,
+		AllowRecall:    true,
+		Conversation:   &model.ConversationScope{},
+	}
+	for range 6 {
+		prompt.Recent = append(prompt.Recent, strings.Repeat("聊", 120))
+	}
+	result, err := generator.Generate(context.Background(), &prompt)
+	if err != nil || result.Text != "你好" || backend.calls != 1 {
+		t.Fatal(result, err)
+	}
+	if backend.captured.Text != prompt.Text || !backend.captured.AnalyzeSticker {
+		t.Fatal("lost current message or semantic task")
 	}
 }

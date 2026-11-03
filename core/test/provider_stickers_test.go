@@ -23,6 +23,8 @@ type providerStickerGenerator struct {
 	noMatch       bool
 	selection     string
 	failSelection bool
+	unknownUsage  bool
+	overBudget    bool
 }
 
 func (g *providerStickerGenerator) Generate(_ context.Context, prompt *model.ReplyPrompt) (*model.GeneratedReply, error) {
@@ -38,6 +40,12 @@ func (g *providerStickerGenerator) Generate(_ context.Context, prompt *model.Rep
 		}
 		intent := model.StickerIntent{Suitable: !g.unsuitable, ImageOnly: g.only, Tags: tags, Scene: "闲聊"}
 		result := model.GeneratedReply{Text: "开心呀", Messages: []string{"开心呀"}, StickerIntent: &intent, Usage: &usage}
+		if g.unknownUsage {
+			result.Usage = nil
+		}
+		if g.overBudget {
+			result.Usage.Input = 10000
+		}
 		return &result, nil
 	}
 	if prompt.Conversation != nil || prompt.AllowRecall || prompt.Draft != "开心呀" || prompt.StickerIntent == nil {
@@ -266,5 +274,21 @@ func TestAllRobotInstancesShareProviderCollection(t *testing.T) {
 				t.Fatal("unexpected per-robot collection", err)
 			}
 		})
+	}
+}
+
+func TestStickerSelectionSkipsUnknownOrExhaustedBudget(t *testing.T) {
+	for _, unknown := range []bool{true, false} {
+		s, f, _ := expressionService(t)
+		writeProviderFixture(t, s, f.data)
+		generator := &providerStickerGenerator{t: t, provider: "codex", only: true, unknownUsage: unknown, overBudget: !unknown}
+		s.Generator = generator
+		f.messages = []model.PrivateMessage{privateMessage(1, "789", "123", "发个表情包")}
+		if err := s.PrivateTick(ctx); err != nil {
+			t.Fatal(err)
+		}
+		if generator.calls != 1 || f.images != 0 || f.attempts != 1 {
+			t.Fatal("optional selection exceeded known budget")
+		}
 	}
 }

@@ -64,7 +64,16 @@ func (g *Generator) Generate(ctx context.Context, input *model.ReplyPrompt) (*mo
 	}
 	instruction := replyInstructions(prompt)
 	if len(instruction)+len(body)+len("只生成一次简短回复，不使用工具。") > replyRequestMaxBytes {
-		return nil, model.Fail("CONTEXT_BUDGET", "模型请求超过业务总预算")
+		budget := replyRequestMaxBytes - len(instruction) - len("只生成一次简短回复，不使用工具。")
+		prompt, err = model.BoundReplyPromptBudget(prompt, budget)
+		if err != nil {
+			return nil, err
+		}
+		body, err = json.Marshal(prompt)
+		if err != nil {
+			return nil, err
+		}
+		instruction = replyInstructions(prompt)
 	}
 	var result *model.GeneratedReply
 	if backend, ok := g.backend.(ConversationBackend); ok && prompt.Conversation != nil {

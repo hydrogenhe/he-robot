@@ -18,6 +18,14 @@ const (
 
 // BoundReplyPrompt 在业务入口和模型边界共用预算；仅复制输入，不修改调用方对象。
 func BoundReplyPrompt(input *ReplyPrompt) (*ReplyPrompt, error) {
+	return BoundReplyPromptBudget(input, ReplyContextMaxBytes)
+}
+
+// BoundReplyPromptBudget 在总请求预算扣除业务指令后，沿用同一裁剪优先级。
+func BoundReplyPromptBudget(input *ReplyPrompt, maxBytes int) (*ReplyPrompt, error) {
+	if maxBytes <= 0 || maxBytes > ReplyContextMaxBytes {
+		return nil, Fail("CONTEXT_BUDGET", "上下文预算无效")
+	}
 	if input == nil || !Text(input.Text, 500) {
 		return nil, Fail("INPUT", "缺少消息或消息超过500字")
 	}
@@ -121,7 +129,7 @@ func BoundReplyPrompt(input *ReplyPrompt) (*ReplyPrompt, error) {
 		if err != nil {
 			return nil, err
 		}
-		if len(body) <= ReplyContextMaxBytes {
+		if len(body) <= maxBytes {
 			return result, nil
 		}
 		switch {
