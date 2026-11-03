@@ -5,6 +5,7 @@ package model
 type MaterialExperienceInput struct {
 	// ResumeProcessing 仅供本机修复已知INPUT落库失败，不重新生成或重试发送。
 	ResumeProcessing                                     bool
+	ExplorationQuestion                                  string
 	SourceURL                                            string
 	OperationID                                          string
 	Platform, SourceID, Title, Summary, Reaction, Memory string

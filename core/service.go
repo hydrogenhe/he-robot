@@ -136,6 +136,7 @@ type Service struct {
 	privateMemoryMu          sync.Mutex
 	privateMemories          map[string]*model.PrivateMemoryState
 	robotControlMu           sync.Mutex
+	companionMu              sync.Mutex
 	characterMu              sync.Mutex
 	character                model.CharacterState
 	Generator                model.ReplyGenerator

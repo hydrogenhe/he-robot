@@ -49,6 +49,16 @@ func effectiveCharacter(state *model.CharacterState, now time.Time) model.Charac
 		}
 	}
 	result.Description = fmt.Sprintf("当前情绪：%s（强度%d/100）；成长倾向：亲切%d、好奇%d、活泼%d（0–100）；已积累%d次真实经历。情绪为角色模拟状态，不是真实感受。", moodName(result.Mood), result.Intensity, result.Traits.Warmth, result.Traits.Curiosity, result.Traits.Playfulness, result.Experiences)
+	if result.Intensity > 20 {
+		switch result.Mood {
+		case "happy", "excited":
+			result.Description += "语气可轻快，但严肃话题优先认真回应。"
+		case "sad", "tired":
+			result.Description += "语气平缓，减少俏皮表情；仍认真回应，不责怪或索取陪伴。"
+		case "curious":
+			result.Description += "对真实话题保持好奇，可自然追问，不逐条机械提问。"
+		}
+	}
 	return result
 }
 func (s *Service) CharacterStatus(ctx context.Context) (*model.CharacterState, error) {
@@ -88,7 +98,19 @@ func (s *Service) applyCharacterSignal(ctx context.Context, source, channel stri
 		}
 	}
 	state := effectiveCharacter(&s.character, time.Now())
-	state.Mood = signal.Mood
+	if state.Mood == signal.Mood || state.Mood == "calm" || state.Intensity <= 20 {
+		state.Mood = signal.Mood
+		state.PendingMood, state.MoodEvidence = "", 0
+	} else {
+		if state.PendingMood != signal.Mood {
+			state.PendingMood, state.MoodEvidence = signal.Mood, 0
+		}
+		state.MoodEvidence++
+		if state.MoodEvidence >= 2 {
+			state.Mood = signal.Mood
+			state.PendingMood, state.MoodEvidence = "", 0
+		}
+	}
 	state.Intensity = max(max(0, state.Intensity-15), min(min(100, state.Intensity+15), signal.Intensity))
 	state.Experiences++
 	state.Pending.Warmth += delta.Warmth

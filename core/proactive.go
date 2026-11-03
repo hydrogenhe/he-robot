@@ -7,7 +7,10 @@ import (
 )
 
 type proactiveSendContextKey struct{}
-type proactiveSendScope struct{ Sender, Peer, Kind string }
+type proactiveSendScope struct {
+	Sender, Peer, Kind string
+	Binding            model.PrivateConfig
+}
 
 func (s *Service) proactiveSendAllowed(ctx context.Context) bool {
 	scope, _ := ctx.Value(proactiveSendContextKey{}).(*proactiveSendScope)
@@ -17,6 +20,11 @@ func (s *Service) proactiveSendAllowed(ctx context.Context) bool {
 	s.proactiveMu.Lock()
 	c := s.proactiveConfig
 	s.proactiveMu.Unlock()
+	if scope.Kind == "random" || scope.Kind == "morning" || scope.Kind == "night" {
+		if s.companionBusy(ctx, &scope.Binding) {
+			return false
+		}
+	}
 	return proactiveKindEnabled(c, scope.Kind) && c.SenderUID == scope.Sender && c.PeerUID == scope.Peer && s.robotRunning() && !proactiveQuiet(s.ProactiveNow())
 }
 
@@ -112,7 +120,10 @@ func (s *Service) ProactiveTick(ctx context.Context) error {
 	if paused || !private.Enabled || !private.AllowSend || private.SenderUID != job.SenderUID || private.PeerUID != job.PeerUID || cooldown || (active && (job.Kind == "morning" || job.Kind == "night" || job.Kind == "random")) {
 		return nil
 	}
-	scope := &proactiveSendScope{Sender: job.SenderUID, Peer: job.PeerUID, Kind: job.Kind}
+	if (job.Kind == "random" || job.Kind == "morning" || job.Kind == "night") && s.companionBusy(ctx, &private) {
+		return nil
+	}
+	scope := &proactiveSendScope{Sender: job.SenderUID, Peer: job.PeerUID, Kind: job.Kind, Binding: private}
 	ctx = context.WithValue(ctx, proactiveSendContextKey{}, scope)
 	if !s.proactiveSendAllowed(ctx) {
 		return nil
@@ -147,8 +158,28 @@ func (s *Service) ProactiveTick(ctx context.Context) error {
 		default:
 			task += "自然开一个简短话题，可以问主人在做什么、分享想念或关心；不重复催回复，不用愧疚、占有或离开惩罚要求陪伴。"
 		}
+		contextText := ""
+		if job.Kind == "random" {
+			var topicErr error
+			contextText, topicErr = s.companionTopic(ctx, &private)
+			if topicErr != nil {
+				return s.failProactiveJob(ctx, index, &job, topicErr)
+			}
+			task += contextText
+		}
 		task += "按人设表达，1–60字，不编造主人当前活动或双方未发生的经历。"
-		prompt := model.ReplyPrompt{Persona: persona, State: state.Description, Owner: true, Channel: "private-message", Text: task}
+		prompt := model.ReplyPrompt{Persona: persona, State: state.Description, Owner: true, Channel: "private-message", Text: model.Clip(task, 500)}
+		if job.Kind == "random" && private.MemoryEnabled {
+			queryText := model.Clip(contextText, 80)
+			query := model.PrivateMemoryQuery{Query: &queryText, PageSize: 2}
+			memories, queryErr := s.PrivateMemories(ctx, &query)
+			if queryErr != nil {
+				return s.failProactiveJob(ctx, index, &job, queryErr)
+			}
+			for _, memory := range memories.Items {
+				prompt.PrivateMemories = append(prompt.PrivateMemories, model.RecalledMemory{Quote: model.Clip(memory.Quote, 120)})
+			}
+		}
 		s.sanitizeReplyPrompt(ctx, &prompt)
 		bounded, err := model.BoundReplyPrompt(&prompt)
 		if err != nil {

@@ -51,6 +51,14 @@ func (s *Service) browsingTopics(ctx context.Context, c *model.BrowsingConfig) [
 			return nil
 		}
 		candidates = diaryInterestTopics(persona, nil)
+		s.companionMu.Lock()
+		exploration := model.ExplorationState{}
+		_, readErr := s.Store.Read(ctx, "data/character/exploration.json", &exploration)
+		s.companionMu.Unlock()
+		until, _ := time.Parse(time.RFC3339Nano, exploration.Until)
+		if readErr == nil && s.ProactiveNow().Before(until) && exploration.Question != "" {
+			candidates = append([]string{exploration.Question}, candidates...)
+		}
 		s.developmentMu.Lock()
 		for _, i := range s.development.Interests {
 			if ((i.Platform == "bilibili" && i.Account == c.AccountUID && i.Visibility == "public") || (i.Platform == "local" && i.Visibility == "abstract")) && (i.Preference > 0 || (i.Preference == 0 && i.Familiarity >= 3)) {

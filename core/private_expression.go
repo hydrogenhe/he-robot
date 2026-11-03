@@ -72,7 +72,7 @@ func (s *Service) prepareExpression(ctx context.Context, round *conversationRoun
 			break
 		}
 	}
-	if !mentioned && !requestedSticker.MatchString(prompt.Text) && s.ExpressionDraw(100) >= privateStickerChance {
+	if !mentioned && !requestedSticker.MatchString(prompt.Text) && s.ExpressionDraw(100) >= s.characterStickerChance(ctx) {
 		return nil
 	}
 	native := s.Bili.NativeStickers()
@@ -246,4 +246,20 @@ func validReplyBatch(ctx context.Context, input *model.PrivateSendInput) *privat
 		return nil
 	}
 	return part
+}
+
+// characterStickerChance 将持续角色状态映射到可选表情概率，不影响正常回复。
+func (s *Service) characterStickerChance(ctx context.Context) int {
+	state, err := s.CharacterStatus(ctx)
+	if err != nil || state.Intensity <= 20 {
+		return privateStickerChance
+	}
+	switch state.Mood {
+	case "sad", "tired":
+		return 5
+	case "happy", "excited":
+		return 30
+	default:
+		return privateStickerChance
+	}
 }

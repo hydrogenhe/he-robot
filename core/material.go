@@ -113,6 +113,9 @@ func (s *Service) RecordMaterialExperience(ctx context.Context, input *model.Mat
 	if err = s.queueProactive(ctx, "video", "video:"+event.ID, "刚读了《"+input.Title+"》的视频材料："+input.Reaction+"\n"+input.SourceURL, operation); err != nil {
 		return result, err
 	}
+	if err = s.recordExploration(ctx, input); err != nil {
+		return result, err
+	}
 	finish.Status = "recorded"
 	finish.Reference = event.ID
 	return result, nil

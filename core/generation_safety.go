@@ -150,6 +150,7 @@ func (s *Service) sanitizeReplyPrompt(ctx context.Context, p *model.ReplyPrompt)
 			p.SelfResult.Records[i].Text = model.RedactSensitiveText(p.SelfResult.Records[i].Text, secrets...)
 		}
 	}
+	p.CompanionContext = model.RedactSensitiveText(p.CompanionContext, secrets...)
 	p.Text = model.RedactSensitiveText(p.Text, secrets...)
 	p.Persona = model.RedactSensitiveText(p.Persona, secrets...)
 	p.State = model.RedactSensitiveText(p.State, secrets...)

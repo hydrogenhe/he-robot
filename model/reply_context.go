@@ -18,13 +18,21 @@ const (
 
 // BoundReplyPrompt 在业务入口和模型边界共用预算；仅复制输入，不修改调用方对象。
 func BoundReplyPrompt(input *ReplyPrompt) (*ReplyPrompt, error) {
+	return BoundReplyPromptToBudget(input, ReplyContextMaxBytes)
+}
+
+// BoundReplyPromptToBudget 为宿主固定指令预留空间，仍遵守统一上下文上限及裁剪顺序。
+func BoundReplyPromptToBudget(input *ReplyPrompt, budget int) (*ReplyPrompt, error) {
+	if budget < 1000 || budget > ReplyContextMaxBytes {
+		return nil, Fail("CONTEXT_BUDGET", "回复上下文预算无效")
+	}
 	if input == nil || !Text(input.Text, 500) {
 		return nil, Fail("INPUT", "缺少消息或消息超过500字")
 	}
 	if input.Channel != "private-message" && input.Channel != "video-comment" {
 		return nil, Fail("INPUT", "不支持的回复渠道")
 	}
-	if input.Channel != "private-message" && (len(input.SelfCapabilities) > 0 || input.SelfResult != nil || len(input.PrivateMemories) > 0 || len(input.Recent) > 0 || len(input.Handoff) > 0 || input.Conversation != nil || len(input.Stickers) > 0 || input.ReplyParts > 0) {
+	if input.Channel != "private-message" && (input.CompanionContext != "" || len(input.SelfCapabilities) > 0 || input.SelfResult != nil || len(input.PrivateMemories) > 0 || len(input.Recent) > 0 || len(input.Handoff) > 0 || input.Conversation != nil || len(input.Stickers) > 0 || input.ReplyParts > 0) {
 		return nil, Fail("PRIVATE_SCOPE", "公开生成不可携带私聊记忆或会话历史")
 	}
 	result := &ReplyPrompt{
@@ -47,6 +55,7 @@ func BoundReplyPrompt(input *ReplyPrompt) (*ReplyPrompt, error) {
 		result.Episodes = append(result.Episodes, item)
 	}
 	if input.Channel == "private-message" && input.Owner {
+		result.CompanionContext = Clip(input.CompanionContext, 700)
 		result.SelfToday = Clip(input.SelfToday, 10)
 		result.SelfCapabilities = append([]string{}, input.SelfCapabilities[:min(7, len(input.SelfCapabilities))]...)
 		if input.SelfResult != nil {
@@ -127,7 +136,7 @@ func BoundReplyPrompt(input *ReplyPrompt) (*ReplyPrompt, error) {
 		if err != nil {
 			return nil, err
 		}
-		if len(body) <= ReplyContextMaxBytes {
+		if len(body) <= budget {
 			return result, nil
 		}
 		switch {

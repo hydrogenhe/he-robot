@@ -96,6 +96,10 @@ func (s *Service) generateReplyWithMemories(ctx context.Context, operationID, ch
 		if s.selfQueryAuthorized(ctx, round) {
 			prompt.SelfCapabilities = []string{"diary", "memories", "experiences", "growth", "activities", "status", "write_diary"}
 			prompt.SelfToday = diaryDay(s.DiaryNow())
+			prompt.CompanionContext, err = s.companionContext(ctx, &round.config)
+			if err != nil {
+				return "", err
+			}
 		}
 		if err := s.prepareExpression(ctx, round, &prompt); err != nil {
 			return "", err
@@ -110,6 +114,7 @@ func (s *Service) generateReplyWithMemories(ctx context.Context, operationID, ch
 	if err != nil {
 		return "", err
 	}
+	cue := result.Companion
 	if result.SelfAction != nil {
 		result, err = s.completeSelfAction(ctx, operationID, round, bounded, result)
 		if err != nil {
@@ -153,6 +158,9 @@ func (s *Service) generateReplyWithMemories(ctx context.Context, operationID, ch
 		return "", model.Fail("SENSITIVE_OUTPUT", "回复含疑似凭证，已拦截，未发送")
 	}
 	if round != nil {
+		if err := s.applyCompanionCue(ctx, round, cue); err != nil {
+			return "", err
+		}
 		s.contentActionFeedback(ctx, round, result)
 		round.messages = result.Messages
 		round.stickerID = result.StickerID

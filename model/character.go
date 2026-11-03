@@ -27,12 +27,14 @@ type CharacterChange struct {
 	Traits    CharacterTraits `json:"traits"`
 }
 type CharacterState struct {
-	Description string            `json:"description"`
-	Mood        string            `json:"mood"`
-	Intensity   int               `json:"intensity"`
-	Traits      CharacterTraits   `json:"traits"`
-	UpdatedAt   string            `json:"updatedAt"`
-	Experiences int               `json:"experiences"`
-	Pending     CharacterTraits   `json:"pending"`
-	Changes     []CharacterChange `json:"changes"`
+	PendingMood  string            `json:"pendingMood,omitempty"`
+	MoodEvidence int               `json:"moodEvidence,omitempty"`
+	Description  string            `json:"description"`
+	Mood         string            `json:"mood"`
+	Intensity    int               `json:"intensity"`
+	Traits       CharacterTraits   `json:"traits"`
+	UpdatedAt    string            `json:"updatedAt"`
+	Experiences  int               `json:"experiences"`
+	Pending      CharacterTraits   `json:"pending"`
+	Changes      []CharacterChange `json:"changes"`
 }
