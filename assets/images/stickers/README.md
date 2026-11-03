@@ -2,9 +2,9 @@
 
 所有机器人共享，私聊仅按实际供应商选择单人图。双人图留给未来 Codex 与 DeepSeek 的群聊互动，当前不启用。
 
-龙娘补充目标已完成：新增30张网上现成的不同图片（上一轮10张、本轮CrossPet 20张），不含双人图。当前龙娘共34张，其中27张可发送、7张旧原图超限仅收藏。整个图库76张：私聊可用49张、群聊预留18张、超限收藏9张。
+龙娘补充目标已完成：新增30张网上现成的不同图片（上一轮10张、本轮CrossPet 20张），不含双人图。当前龙娘共34张，34张均可发送；7张高清原图已保留并另制900像素发送版。整个图库76张：私聊可用56张、群聊预留18张、鲸鱼娘超限收藏2张。
 
-- `providers/codex/`：龙娘34张（27张可发送）。
+- `providers/codex/`：龙娘34张（全部可发送）。
 - `providers/deepseek/`：鲸鱼娘24张（22张可发送）。
 - `group/dragon-whale/`：双人18张，仅群聊预留。
 - `.image`、`gallery/`和`originals/`中的同一作品只计一次。CrossPet原始WebP和发送用PNG均保留，未生成、裁切或改字。
@@ -17,7 +17,7 @@
 
 原有10张网络收藏逐张保留原始来源，权利归各自作者，未核实统一再许可；收录不表示改为 MIT 或获得商业授权。
 
-新增10张龙娘来自[蓝色大肥鱼 GPT 图库](https://xn--pssy23gqgbz2d718b.com/characters/gpt.html)，原图存档为[lmy414/ai-girl-stickers](https://github.com/lmy414/ai-girl-stickers)。逐张记录投稿署名、来源与上游许可原文；未将来源站代码许可套用到图片。所有新增图保留原字节，未生成、裁切或改字。
+新增10张龙娘来自[蓝色大肥鱼 GPT 图库](https://xn--pssy23gqgbz2d718b.com/characters/gpt.html)，原图存档为[lmy414/ai-girl-stickers](https://github.com/lmy414/ai-girl-stickers)。逐张记录投稿署名、来源与上游许可原文；未将来源站代码许可套用到图片。原图另存；7张高清龙娘图按用户要求等比缩小供发送，未生成、裁切或改字。
 
 本轮20张来自 [CrossPet / lokicorvus](https://github.com/lokicorvus/crosspet)，角色设计署名 **ZipZipPipe**。图片按 **CC BY-NC-SA 4.0** 非商业分享，完整声明见 [CROSSPET-LICENSE.md](CROSSPET-LICENSE.md)。仅作WebP到PNG格式转换，保留透明背景。
 
@@ -25,19 +25,19 @@
 
 | 表情 | 场景与状态 |
 |---|---|
-| <img src="providers/codex/gallery/01.png" alt="GPT龙娘：我有一个想法" width="130"> | **GPT龙娘：我有一个想法**<br>暂未标注<br>超2MiB，仅收藏 |
-| <img src="providers/codex/gallery/02.png" alt="GPT龙娘核爆瘫坐" width="130"> | **GPT龙娘核爆瘫坐**<br>暂未标注<br>超2MiB，仅收藏 |
+| <img src="providers/codex/gallery/01.png" alt="GPT龙娘：我有一个想法" width="130"> | **GPT龙娘：我有一个想法**<br>已补语义标注<br>已缩小，私聊可用 |
+| <img src="providers/codex/gallery/02.png" alt="GPT龙娘核爆瘫坐" width="130"> | **GPT龙娘核爆瘫坐**<br>已补语义标注<br>已缩小，私聊可用 |
 | <img src="providers/codex/gallery/03.png" alt="你这贪财的白色大肥龙：我不是大肥龙……" width="130"> | **你这贪财的白色大肥龙：我不是大肥龙……**<br>委屈、撒娇<br>私聊可用 |
 | <img src="providers/codex/gallery/04.png" alt="100% 正确，未经验证" width="130"> | **100% 正确，未经验证**<br>搞怪<br>私聊可用 |
 
-| <img src="providers/codex/gallery/gpt202609270004.png" alt="龙娘害怕：快跑" width="130"> | **龙娘害怕：快跑**<br>害怕、慌张<br>超2MiB，仅收藏 |
-| <img src="providers/codex/gallery/gpt202609270005.png" alt="龙娘惊吓：苦力怕" width="130"> | **龙娘惊吓：苦力怕**<br>害怕、惊讶<br>超2MiB，仅收藏 |
+| <img src="providers/codex/gallery/gpt202609270004.png" alt="龙娘害怕：快跑" width="130"> | **龙娘害怕：快跑**<br>害怕、慌张<br>已缩小，私聊可用 |
+| <img src="providers/codex/gallery/gpt202609270005.png" alt="龙娘惊吓：苦力怕" width="130"> | **龙娘惊吓：苦力怕**<br>害怕、惊讶<br>已缩小，私聊可用 |
 | <img src="providers/codex/gallery/gpt202610050003.png" alt="龙娘懵圈：小脑袋接管" width="130"> | **龙娘懵圈：小脑袋接管**<br>疑惑、搞怪<br>私聊可用 |
-| <img src="providers/codex/gallery/gpt202610120005.png" alt="龙娘撒娇：再聊一会儿" width="130"> | **龙娘撒娇：再聊一会儿**<br>撒娇、委屈、期待<br>超2MiB，仅收藏 |
+| <img src="providers/codex/gallery/gpt202610120005.png" alt="龙娘撒娇：再聊一会儿" width="130"> | **龙娘撒娇：再聊一会儿**<br>撒娇、委屈、期待<br>已缩小，私聊可用 |
 | <img src="providers/codex/gallery/gpt202610140002.png" alt="龙娘失望：成龙电影" width="130"> | **龙娘失望：成龙电影**<br>失望、搞怪<br>私聊可用 |
-| <img src="providers/codex/gallery/gpt202610180001.png" alt="龙娘心虚：被抓包了" width="130"> | **龙娘心虚：被抓包了**<br>心虚、慌张、搞怪<br>超2MiB，仅收藏 |
+| <img src="providers/codex/gallery/gpt202610180001.png" alt="龙娘心虚：被抓包了" width="130"> | **龙娘心虚：被抓包了**<br>心虚、慌张、搞怪<br>已缩小，私聊可用 |
 | <img src="providers/codex/gallery/gpt202610200001.jpg" alt="龙娘炸毛：智械危机梗" width="130"> | **龙娘炸毛：智械危机梗**<br>生气、傲娇、搞怪<br>私聊可用 |
-| <img src="providers/codex/gallery/gpt202610200002.png" alt="龙娘得意：限流秘籍" width="130"> | **龙娘得意：限流秘籍**<br>得意、搞怪<br>超2MiB，仅收藏 |
+| <img src="providers/codex/gallery/gpt202610200002.png" alt="龙娘得意：限流秘籍" width="130"> | **龙娘得意：限流秘籍**<br>得意、搞怪<br>已缩小，私聊可用 |
 | <img src="providers/codex/gallery/gpt202610250002.jpg" alt="龙娘委屈：越说越缩水" width="130"> | **龙娘委屈：越说越缩水**<br>委屈、搞怪<br>私聊可用 |
 | <img src="providers/codex/gallery/gpt202610260001.gif" alt="龙娘乖巧：安静等你" width="130"> | **龙娘乖巧：安静等你**<br>乖巧、期待<br>私聊可用 |
 

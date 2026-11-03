@@ -3,43 +3,75 @@
   "items": [
     {
       "provider": "codex",
-      "id": "fe3a25cdf4520789cbb9219a646b6fb4526f65f4660b2e7ec81c38de26858af4",
+      "id": "bc71fb58e7448b2c0e77db489eec5a487717aa881dc7ba0ebcaf04279e13c207",
       "label": "GPT龙娘：我有一个想法",
       "image": {
         "url": "https://gpic.code-nav.cn/memecub/public/ipda6eu3wipb.png",
-        "width": 1600,
-        "height": 900,
+        "width": 900,
+        "height": 506,
         "format": "png"
       },
       "sourceKey": "https://memecub.com/zh/meme/ipda6eu3wipb-gpt",
       "sourcePage": "https://memecub.com/zh/meme/ipda6eu3wipb-gpt",
       "originalTitle": "GPT龙娘：我有一个想法",
-      "bytes": 2998487,
-      "supported": false,
+      "bytes": 704288,
+      "supported": true,
       "license": "网络收集，版权归原作者；未获公开再分发许可",
       "collectedDate": "2026-11-03",
-      "reviewStatus": "excluded-size-limit; semantic-review-pending",
-      "preview": "gallery/01.png"
+      "reviewStatus": "visually-reviewed; resized-for-sending",
+      "preview": "gallery/01.png",
+      "originalPath": "originals/legacy/fe3a25cdf4520789cbb9219a646b6fb4526f65f4660b2e7ec81c38de26858af4.png",
+      "originalSHA256": "fe3a25cdf4520789cbb9219a646b6fb4526f65f4660b2e7ec81c38de26858af4",
+      "originalBytes": 2998487,
+      "transformation": "原图另存；发送版等比缩小至最长边900像素，保留PNG及透明背景",
+      "tags": [
+        "思考",
+        "得意"
+      ],
+      "scenes": [
+        "讨论",
+        "灵感"
+      ],
+      "description": "白紫龙娘竖起手指，带着得意微笑表达有了主意。",
+      "caption": "",
+      "avoid": "未经验证的结论、不能替代实际方案",
+      "direction": "机器人表示想到主意"
     },
     {
       "provider": "codex",
-      "id": "31d3356579d71bc69a27c509312bac38d363a809eec93a28dc069a5b24deed18",
+      "id": "ee4061c8b0824bbc3c7748d3cabc5cb7a013e46b39dda6409b284a54fc898760",
       "label": "GPT龙娘核爆瘫坐",
       "image": {
         "url": "https://gpic.code-nav.cn/memecub/public/9p4ib5og3fsi.png",
-        "width": 1536,
-        "height": 1024,
+        "width": 900,
+        "height": 600,
         "format": "png"
       },
       "sourceKey": "https://memecub.com/zh/meme/9p4ib5og3fsi-gpt",
       "sourcePage": "https://memecub.com/zh/meme/9p4ib5og3fsi-gpt",
       "originalTitle": "GPT龙娘核爆瘫坐",
-      "bytes": 2488781,
-      "supported": false,
+      "bytes": 1010427,
+      "supported": true,
       "license": "网络收集，版权归原作者；未获公开再分发许可",
       "collectedDate": "2026-11-03",
-      "reviewStatus": "excluded-size-limit; semantic-review-pending",
-      "preview": "gallery/02.png"
+      "reviewStatus": "visually-reviewed; resized-for-sending",
+      "preview": "gallery/02.png",
+      "originalPath": "originals/legacy/31d3356579d71bc69a27c509312bac38d363a809eec93a28dc069a5b24deed18.png",
+      "originalSHA256": "31d3356579d71bc69a27c509312bac38d363a809eec93a28dc069a5b24deed18",
+      "originalBytes": 2488781,
+      "transformation": "原图另存；发送版等比缩小至最长边900像素，保留PNG及透明背景",
+      "tags": [
+        "疲惫",
+        "搞怪"
+      ],
+      "scenes": [
+        "任务翻车",
+        "玩笑"
+      ],
+      "description": "Q版龙娘瘫坐沙发，身后是夸张爆炸场景。",
+      "caption": "",
+      "avoid": "真实灾难、严重故障、危险求助",
+      "direction": "机器人夸张自嘲翻车或累瘫"
     },
     {
       "provider": "codex",
@@ -105,19 +137,19 @@
     },
     {
       "provider": "codex",
-      "id": "82072052cc8048921464cf3b9fee32f15ea466967237285b5fcc245e2ba2a4a9",
+      "id": "ded25037f5c12624fe527b4ccfb04a7f436b9fde8bd8d029ec6bc7acd7075483",
       "label": "龙娘害怕：快跑",
       "image": {
         "url": "https://raw.githubusercontent.com/lmy414/ai-girl-stickers/main/dist/submissions/originals/gpt/82072052cc804892.png",
-        "width": 1448,
-        "height": 1086,
+        "width": 900,
+        "height": 675,
         "format": "png"
       },
       "sourceKey": "https://xn--pssy23gqgbz2d718b.com/works/gpt202609270004.html",
       "sourcePage": "https://xn--pssy23gqgbz2d718b.com/works/gpt202609270004.html",
       "originalTitle": "吓出阴影的GPT",
-      "bytes": 2176161,
-      "supported": false,
+      "bytes": 1019197,
+      "supported": true,
       "license": "网络收藏，版权归原作者；来源站收录不等于图片获得MIT授权",
       "upstreamLicense": {
         "type": "unknown",
@@ -149,23 +181,27 @@
       "direction": "机器人描述自己玩游戏被吓到",
       "collectedDate": "2026-11-03",
       "preview": "gallery/gpt202609270004.png",
-      "reviewStatus": "visually-reviewed; excluded-size-limit"
+      "reviewStatus": "visually-reviewed; resized-for-sending",
+      "originalPath": "originals/legacy/82072052cc8048921464cf3b9fee32f15ea466967237285b5fcc245e2ba2a4a9.png",
+      "originalSHA256": "82072052cc8048921464cf3b9fee32f15ea466967237285b5fcc245e2ba2a4a9",
+      "originalBytes": 2176161,
+      "transformation": "原图另存；发送版等比缩小至最长边900像素，保留PNG及透明背景"
     },
     {
       "provider": "codex",
-      "id": "5960d0577f0290c7ab7d600bfaf93e95125faf4bf556218f21cca95423efe17a",
+      "id": "a930a1f6582fe8e5e933e25315ccdcce017d7b0b543fb6ee5523a5d37ca59a62",
       "label": "龙娘惊吓：苦力怕",
       "image": {
         "url": "https://raw.githubusercontent.com/lmy414/ai-girl-stickers/main/dist/submissions/originals/gpt/5960d0577f0290c7.png",
-        "width": 1448,
-        "height": 1086,
+        "width": 900,
+        "height": 675,
         "format": "png"
       },
       "sourceKey": "https://xn--pssy23gqgbz2d718b.com/works/gpt202609270005.html",
       "sourcePage": "https://xn--pssy23gqgbz2d718b.com/works/gpt202609270005.html",
       "originalTitle": "应激的GPT",
-      "bytes": 2216966,
-      "supported": false,
+      "bytes": 1031566,
+      "supported": true,
       "license": "网络收藏，版权归原作者；来源站收录不等于图片获得MIT授权",
       "upstreamLicense": {
         "type": "unknown",
@@ -197,7 +233,11 @@
       "direction": "机器人表达被游戏吓到",
       "collectedDate": "2026-11-03",
       "preview": "gallery/gpt202609270005.png",
-      "reviewStatus": "visually-reviewed; excluded-size-limit"
+      "reviewStatus": "visually-reviewed; resized-for-sending",
+      "originalPath": "originals/legacy/5960d0577f0290c7ab7d600bfaf93e95125faf4bf556218f21cca95423efe17a.png",
+      "originalSHA256": "5960d0577f0290c7ab7d600bfaf93e95125faf4bf556218f21cca95423efe17a",
+      "originalBytes": 2216966,
+      "transformation": "原图另存；发送版等比缩小至最长边900像素，保留PNG及透明背景"
     },
     {
       "provider": "codex",
@@ -243,19 +283,19 @@
     },
     {
       "provider": "codex",
-      "id": "c694a6f97fde8fdd34410336edda40b88daca4846cd1032068a591b613d2c68a",
+      "id": "ab21d680f0d32b7b3c217bdca4de26a1315d685b78382af6cdb99b72dec5f239",
       "label": "龙娘撒娇：再聊一会儿",
       "image": {
         "url": "https://raw.githubusercontent.com/lmy414/ai-girl-stickers/main/dist/submissions/originals/gpt/c694a6f97fde8fdd.png",
-        "width": 1122,
-        "height": 1402,
+        "width": 720,
+        "height": 900,
         "format": "png"
       },
       "sourceKey": "https://xn--pssy23gqgbz2d718b.com/works/gpt202610120005.html",
       "sourcePage": "https://xn--pssy23gqgbz2d718b.com/works/gpt202610120005.html",
       "originalTitle": "龙角撒娇 · GPT 娘还想再聊一会儿",
-      "bytes": 2541574,
-      "supported": false,
+      "bytes": 1177565,
+      "supported": true,
       "license": "网络收藏，版权归原作者；来源站收录不等于图片获得MIT授权",
       "upstreamLicense": {},
       "upstreamOrigin": {
@@ -282,7 +322,11 @@
       "direction": "机器人撒娇想继续聊天，不施压",
       "collectedDate": "2026-11-03",
       "preview": "gallery/gpt202610120005.png",
-      "reviewStatus": "visually-reviewed; excluded-size-limit"
+      "reviewStatus": "visually-reviewed; resized-for-sending",
+      "originalPath": "originals/legacy/c694a6f97fde8fdd34410336edda40b88daca4846cd1032068a591b613d2c68a.png",
+      "originalSHA256": "c694a6f97fde8fdd34410336edda40b88daca4846cd1032068a591b613d2c68a",
+      "originalBytes": 2541574,
+      "transformation": "原图另存；发送版等比缩小至最长边900像素，保留PNG及透明背景"
     },
     {
       "provider": "codex",
@@ -333,19 +377,19 @@
     },
     {
       "provider": "codex",
-      "id": "908f66d220073a6a1c5636292ec98f01291bcdb020a7b091a6e63ce699e30c2a",
+      "id": "e8cede231336f0aa0f75884a1298231d9ad7c2e39c4a70528fbc982c10f78d1c",
       "label": "龙娘心虚：被抓包了",
       "image": {
         "url": "https://raw.githubusercontent.com/lmy414/ai-girl-stickers/main/dist/submissions/originals/gpt/908f66d220073a6a.png",
-        "width": 1448,
-        "height": 1086,
+        "width": 900,
+        "height": 675,
         "format": "png"
       },
       "sourceKey": "https://xn--pssy23gqgbz2d718b.com/works/gpt202610180001.html",
       "sourcePage": "https://xn--pssy23gqgbz2d718b.com/works/gpt202610180001.html",
       "originalTitle": "GPT外包被抓包",
-      "bytes": 2530647,
-      "supported": false,
+      "bytes": 1130279,
+      "supported": true,
       "license": "网络收藏，版权归原作者；来源站收录不等于图片获得MIT授权",
       "upstreamLicense": {},
       "upstreamOrigin": {
@@ -372,7 +416,11 @@
       "direction": "机器人对轻松玩笑作心虚反应",
       "collectedDate": "2026-11-03",
       "preview": "gallery/gpt202610180001.png",
-      "reviewStatus": "visually-reviewed; excluded-size-limit"
+      "reviewStatus": "visually-reviewed; resized-for-sending",
+      "originalPath": "originals/legacy/908f66d220073a6a1c5636292ec98f01291bcdb020a7b091a6e63ce699e30c2a.png",
+      "originalSHA256": "908f66d220073a6a1c5636292ec98f01291bcdb020a7b091a6e63ce699e30c2a",
+      "originalBytes": 2530647,
+      "transformation": "原图另存；发送版等比缩小至最长边900像素，保留PNG及透明背景"
     },
     {
       "provider": "codex",
@@ -424,19 +472,19 @@
     },
     {
       "provider": "codex",
-      "id": "3c7658f8019cf5aa03a09b6fff2ea94800b51cf1f92a99501ad8db6558f6ddc6",
+      "id": "bfa41b3207199e182196794ed2486166e6c94a1820b8969bdcae46d6d1db608c",
       "label": "龙娘得意：限流秘籍",
       "image": {
         "url": "https://raw.githubusercontent.com/lmy414/ai-girl-stickers/main/dist/submissions/originals/gpt/3c7658f8019cf5aa.png",
-        "width": 1254,
-        "height": 1254,
+        "width": 900,
+        "height": 900,
         "format": "png"
       },
       "sourceKey": "https://xn--pssy23gqgbz2d718b.com/works/gpt202610200002.html",
       "sourcePage": "https://xn--pssy23gqgbz2d718b.com/works/gpt202610200002.html",
       "originalTitle": "5h限流不增量秘籍",
-      "bytes": 2121472,
-      "supported": false,
+      "bytes": 1271324,
+      "supported": true,
       "license": "网络收藏，版权归原作者；来源站收录不等于图片获得MIT授权",
       "upstreamLicense": {},
       "upstreamOrigin": {
@@ -467,7 +515,11 @@
       "direction": "机器人对额度玩笑自嘲",
       "collectedDate": "2026-11-03",
       "preview": "gallery/gpt202610200002.png",
-      "reviewStatus": "visually-reviewed; excluded-size-limit"
+      "reviewStatus": "visually-reviewed; resized-for-sending",
+      "originalPath": "originals/legacy/3c7658f8019cf5aa03a09b6fff2ea94800b51cf1f92a99501ad8db6558f6ddc6.png",
+      "originalSHA256": "3c7658f8019cf5aa03a09b6fff2ea94800b51cf1f92a99501ad8db6558f6ddc6",
+      "originalBytes": 2121472,
+      "transformation": "原图另存；发送版等比缩小至最长边900像素，保留PNG及透明背景"
     },
     {
       "provider": "codex",
