@@ -24,3 +24,7 @@
 ## 公共表情资源（2026-11-03）
 
 `assets/images/stickers/` 为独立许可的公开表情资料，不属于本项目 MIT 代码授权。新增36张原始GIF来自 [kiriyuki.com](https://kiriyuki.com)，作者 [可以叫我云大人/雾雪](https://space.bilibili.com/103739)，仅按上游保留署名与网址的非商业分享条件提供。相关语义数据由 [Loping151/dsh-nekowhale-stickers](https://github.com/Loping151/dsh-nekowhale-stickers) 的 CC BY-NC 4.0 数据整理；未引入其运行时代码。角色设计来源与旧收藏逐张出处见[图库说明](assets/images/stickers/README.md)及 sources.json，上游声明原文随图库保留。
+
+### 蓝色大肥鱼图库：新增龙娘原图
+
+10张原图来自 https://github.com/lmy414/ai-girl-stickers ，具体详情页、投稿署名、来源和上游许可备注保存在 `assets/images/stickers/providers/codex/sources.json`。图片权利归原作者；来源站代码及文字的MIT许可不覆盖图片。本项目保留原字节，不主张原创或统一再许可。

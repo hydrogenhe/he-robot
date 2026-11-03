@@ -2,9 +2,9 @@
 
 所有机器人共享，私聊仅按实际供应商选择单人图。双人图留给未来 Codex 与 DeepSeek 的群聊互动，当前不启用。
 
-本次新增 36 张原始动态 GIF：18 张鲸鱼娘单人图、18 张龙娘与鲸鱼娘双人图。含原有素材共 46 张：私聊可用 24 张、群聊预留 18 张、原有超限收藏 4 张。相同图片的 `.image` 与 `gallery/` 文件是原字节副本，不按两张计数。
+本次新增 36 张原始动态 GIF：18 张鲸鱼娘单人图、18 张龙娘与鲸鱼娘双人图。随后新增10张网上现成龙娘图。含原有素材共56张：私聊可用29张、群聊预留18张、超限收藏9张。新增30张龙娘的目标尚未完成（本次仅新增10张，其中5张可发送）。相同图片的 `.image` 与 `gallery/` 文件是原字节副本，不按两张计数。
 
-- `providers/codex/`：龙娘单人，2 张可发送，另有 2 张超限收藏。
+- `providers/codex/`：龙娘单人，7 张可发送，另有7张超限收藏。
 - `providers/deepseek/`：鲸鱼娘单人，22 张可发送，另有 2 张超限收藏。
 - `group/dragon-whale/`：18 张双人互动，`enabled=false`，不进入私聊候选。
 - `catalog.json` 保存可用条目和语义标注，`sources.json` 保存来源、原图字节数及许可；点击下面图片即可查看或保存原图。
@@ -17,6 +17,8 @@
 
 原有10张网络收藏逐张保留原始来源，权利归各自作者，未核实统一再许可；收录不表示改为 MIT 或获得商业授权。
 
+新增10张龙娘来自[蓝色大肥鱼 GPT 图库](https://xn--pssy23gqgbz2d718b.com/characters/gpt.html)，原图存档为[lmy414/ai-girl-stickers](https://github.com/lmy414/ai-girl-stickers)。逐张记录投稿署名、来源与上游许可原文；未将来源站代码许可套用到图片。所有新增图保留原字节，未生成、裁切或改字。
+
 ## Codex · 龙娘单人
 
 | 表情 | 场景与状态 |
@@ -25,6 +27,17 @@
 | <img src="providers/codex/gallery/02.png" alt="GPT龙娘核爆瘫坐" width="130"> | **GPT龙娘核爆瘫坐**<br>暂未标注<br>超2MiB，仅收藏 |
 | <img src="providers/codex/gallery/03.png" alt="你这贪财的白色大肥龙：我不是大肥龙……" width="130"> | **你这贪财的白色大肥龙：我不是大肥龙……**<br>委屈、撒娇<br>私聊可用 |
 | <img src="providers/codex/gallery/04.png" alt="100% 正确，未经验证" width="130"> | **100% 正确，未经验证**<br>搞怪<br>私聊可用 |
+
+| <img src="providers/codex/gallery/gpt202609270004.png" alt="龙娘害怕：快跑" width="130"> | **龙娘害怕：快跑**<br>害怕、慌张<br>超2MiB，仅收藏 |
+| <img src="providers/codex/gallery/gpt202609270005.png" alt="龙娘惊吓：苦力怕" width="130"> | **龙娘惊吓：苦力怕**<br>害怕、惊讶<br>超2MiB，仅收藏 |
+| <img src="providers/codex/gallery/gpt202610050003.png" alt="龙娘懵圈：小脑袋接管" width="130"> | **龙娘懵圈：小脑袋接管**<br>疑惑、搞怪<br>私聊可用 |
+| <img src="providers/codex/gallery/gpt202610120005.png" alt="龙娘撒娇：再聊一会儿" width="130"> | **龙娘撒娇：再聊一会儿**<br>撒娇、委屈、期待<br>超2MiB，仅收藏 |
+| <img src="providers/codex/gallery/gpt202610140002.png" alt="龙娘失望：成龙电影" width="130"> | **龙娘失望：成龙电影**<br>失望、搞怪<br>私聊可用 |
+| <img src="providers/codex/gallery/gpt202610180001.png" alt="龙娘心虚：被抓包了" width="130"> | **龙娘心虚：被抓包了**<br>心虚、慌张、搞怪<br>超2MiB，仅收藏 |
+| <img src="providers/codex/gallery/gpt202610200001.jpg" alt="龙娘炸毛：智械危机梗" width="130"> | **龙娘炸毛：智械危机梗**<br>生气、傲娇、搞怪<br>私聊可用 |
+| <img src="providers/codex/gallery/gpt202610200002.png" alt="龙娘得意：限流秘籍" width="130"> | **龙娘得意：限流秘籍**<br>得意、搞怪<br>超2MiB，仅收藏 |
+| <img src="providers/codex/gallery/gpt202610250002.jpg" alt="龙娘委屈：越说越缩水" width="130"> | **龙娘委屈：越说越缩水**<br>委屈、搞怪<br>私聊可用 |
+| <img src="providers/codex/gallery/gpt202610260001.gif" alt="龙娘乖巧：安静等你" width="130"> | **龙娘乖巧：安静等你**<br>乖巧、期待<br>私聊可用 |
 
 ## DeepSeek · 鲸鱼娘单人
 

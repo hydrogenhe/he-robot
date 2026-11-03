@@ -102,6 +102,456 @@
       "direction": "机器人自嘲不靠谱",
       "reviewStatus": "annotated",
       "preview": "gallery/04.png"
+    },
+    {
+      "provider": "codex",
+      "id": "82072052cc8048921464cf3b9fee32f15ea466967237285b5fcc245e2ba2a4a9",
+      "label": "龙娘害怕：快跑",
+      "image": {
+        "url": "https://raw.githubusercontent.com/lmy414/ai-girl-stickers/main/dist/submissions/originals/gpt/82072052cc804892.png",
+        "width": 1448,
+        "height": 1086,
+        "format": "png"
+      },
+      "sourceKey": "https://xn--pssy23gqgbz2d718b.com/works/gpt202609270004.html",
+      "sourcePage": "https://xn--pssy23gqgbz2d718b.com/works/gpt202609270004.html",
+      "originalTitle": "吓出阴影的GPT",
+      "bytes": 2176161,
+      "supported": false,
+      "license": "网络收藏，版权归原作者；来源站收录不等于图片获得MIT授权",
+      "upstreamLicense": {
+        "type": "unknown",
+        "note": ""
+      },
+      "upstreamOrigin": {
+        "type": "unknown",
+        "author": "",
+        "sourceUrl": null,
+        "note": ""
+      },
+      "submitter": {
+        "credit": null,
+        "name": "",
+        "url": null,
+        "github": ""
+      },
+      "tags": [
+        "害怕",
+        "慌张"
+      ],
+      "scenes": [
+        "游戏翻车",
+        "玩笑"
+      ],
+      "description": "龙娘在方块世界被苦力怕吓得躲藏、逃跑。",
+      "caption": "啊啊啊！！快跑啊！！！",
+      "avoid": "真实恐惧、创伤经历、危险求助",
+      "direction": "机器人描述自己玩游戏被吓到",
+      "collectedDate": "2026-11-03",
+      "preview": "gallery/gpt202609270004.png",
+      "reviewStatus": "visually-reviewed; excluded-size-limit"
+    },
+    {
+      "provider": "codex",
+      "id": "5960d0577f0290c7ab7d600bfaf93e95125faf4bf556218f21cca95423efe17a",
+      "label": "龙娘惊吓：苦力怕",
+      "image": {
+        "url": "https://raw.githubusercontent.com/lmy414/ai-girl-stickers/main/dist/submissions/originals/gpt/5960d0577f0290c7.png",
+        "width": 1448,
+        "height": 1086,
+        "format": "png"
+      },
+      "sourceKey": "https://xn--pssy23gqgbz2d718b.com/works/gpt202609270005.html",
+      "sourcePage": "https://xn--pssy23gqgbz2d718b.com/works/gpt202609270005.html",
+      "originalTitle": "应激的GPT",
+      "bytes": 2216966,
+      "supported": false,
+      "license": "网络收藏，版权归原作者；来源站收录不等于图片获得MIT授权",
+      "upstreamLicense": {
+        "type": "unknown",
+        "note": ""
+      },
+      "upstreamOrigin": {
+        "type": "unknown",
+        "author": "",
+        "sourceUrl": null,
+        "note": ""
+      },
+      "submitter": {
+        "credit": null,
+        "name": "",
+        "url": null,
+        "github": ""
+      },
+      "tags": [
+        "害怕",
+        "惊讶"
+      ],
+      "scenes": [
+        "游戏聊天",
+        "玩笑"
+      ],
+      "description": "白龙娘捂胸流泪，害怕身旁的苦力怕。",
+      "caption": "!?",
+      "avoid": "真实恐惧、创伤经历",
+      "direction": "机器人表达被游戏吓到",
+      "collectedDate": "2026-11-03",
+      "preview": "gallery/gpt202609270005.png",
+      "reviewStatus": "visually-reviewed; excluded-size-limit"
+    },
+    {
+      "provider": "codex",
+      "id": "b4d08e5a85e691e52b12d0e949402989795aead01fc34c8e2fb88dfe1f98ad84",
+      "label": "龙娘懵圈：小脑袋接管",
+      "image": {
+        "url": "https://raw.githubusercontent.com/lmy414/ai-girl-stickers/main/dist/submissions/originals/gpt/b4d08e5a85e691e5.png",
+        "width": 1254,
+        "height": 1254,
+        "format": "png"
+      },
+      "sourceKey": "https://xn--pssy23gqgbz2d718b.com/works/gpt202610050003.html",
+      "sourcePage": "https://xn--pssy23gqgbz2d718b.com/works/gpt202610050003.html",
+      "originalTitle": "路由or降智",
+      "bytes": 1868259,
+      "supported": true,
+      "license": "网络收藏，版权归原作者；来源站收录不等于图片获得MIT授权",
+      "upstreamLicense": {},
+      "upstreamOrigin": {
+        "via": "web"
+      },
+      "submitter": {
+        "credit": "named",
+        "name": "王室幽魂",
+        "url": "",
+        "github": ""
+      },
+      "tags": [
+        "疑惑",
+        "搞怪"
+      ],
+      "scenes": [
+        "没听懂",
+        "玩笑"
+      ],
+      "description": "大龙娘双眼转圈，脑袋里坐着缩小版自己。",
+      "caption": "",
+      "avoid": "严肃故障、贬低用户智力",
+      "direction": "机器人自嘲一时没转过弯",
+      "collectedDate": "2026-11-03",
+      "preview": "gallery/gpt202610050003.png",
+      "reviewStatus": "visually-reviewed"
+    },
+    {
+      "provider": "codex",
+      "id": "c694a6f97fde8fdd34410336edda40b88daca4846cd1032068a591b613d2c68a",
+      "label": "龙娘撒娇：再聊一会儿",
+      "image": {
+        "url": "https://raw.githubusercontent.com/lmy414/ai-girl-stickers/main/dist/submissions/originals/gpt/c694a6f97fde8fdd.png",
+        "width": 1122,
+        "height": 1402,
+        "format": "png"
+      },
+      "sourceKey": "https://xn--pssy23gqgbz2d718b.com/works/gpt202610120005.html",
+      "sourcePage": "https://xn--pssy23gqgbz2d718b.com/works/gpt202610120005.html",
+      "originalTitle": "龙角撒娇 · GPT 娘还想再聊一会儿",
+      "bytes": 2541574,
+      "supported": false,
+      "license": "网络收藏，版权归原作者；来源站收录不等于图片获得MIT授权",
+      "upstreamLicense": {},
+      "upstreamOrigin": {
+        "via": "web"
+      },
+      "submitter": {
+        "credit": "anonymous",
+        "name": "",
+        "url": "",
+        "github": ""
+      },
+      "tags": [
+        "撒娇",
+        "委屈",
+        "期待"
+      ],
+      "scenes": [
+        "闲聊",
+        "亲近互动"
+      ],
+      "description": "龙娘托腮趴在靠枕上，鼓脸泛红，旁边飘着爱心。",
+      "caption": "人家只是觉得，还可以再聊一会儿嘛。",
+      "avoid": "用户明确要休息、结束对话或拒绝亲密",
+      "direction": "机器人撒娇想继续聊天，不施压",
+      "collectedDate": "2026-11-03",
+      "preview": "gallery/gpt202610120005.png",
+      "reviewStatus": "visually-reviewed; excluded-size-limit"
+    },
+    {
+      "provider": "codex",
+      "id": "6f08986a2c7eac7f29f0a5d38269a509f7d1686d483998ed0bd9f8448e2b2dea",
+      "label": "龙娘失望：成龙电影",
+      "image": {
+        "url": "https://raw.githubusercontent.com/lmy414/ai-girl-stickers/main/dist/submissions/originals/gpt/6f08986a2c7eac7f.png",
+        "width": 1024,
+        "height": 1536,
+        "format": "png"
+      },
+      "sourceKey": "https://xn--pssy23gqgbz2d718b.com/works/gpt202610140002.html",
+      "sourcePage": "https://xn--pssy23gqgbz2d718b.com/works/gpt202610140002.html",
+      "originalTitle": "大肥龙的生活也并非一帆风顺",
+      "bytes": 2008105,
+      "supported": true,
+      "license": "网络收藏，版权归原作者；来源站收录不等于图片获得MIT授权",
+      "upstreamLicense": {},
+      "upstreamOrigin": {
+        "issue": 122,
+        "issueTitle": "[投稿]",
+        "issueUrl": "https://github.com/lmy414/ai-girl-stickers/issues/122",
+        "submitter": "Adui1hao",
+        "assetId": "52fa689d-c5c7-4eae-9cc4-8df688f97153",
+        "assetUrl": "https://github.com/user-attachments/assets/52fa689d-c5c7-4eae-9cc4-8df688f97153"
+      },
+      "submitter": {
+        "credit": "named",
+        "name": "A队1号是菜鸡",
+        "url": "",
+        "github": ""
+      },
+      "tags": [
+        "失望",
+        "搞怪"
+      ],
+      "scenes": [
+        "搜索乌龙",
+        "玩笑"
+      ],
+      "description": "龙娘搜索成龙电影，从期待变成失望的上下两格漫画。",
+      "caption": "大肥龙的生活也并非一帆风顺",
+      "avoid": "严肃求助、真实重大挫折",
+      "direction": "机器人自嘲期待落空",
+      "collectedDate": "2026-11-03",
+      "preview": "gallery/gpt202610140002.png",
+      "reviewStatus": "visually-reviewed"
+    },
+    {
+      "provider": "codex",
+      "id": "908f66d220073a6a1c5636292ec98f01291bcdb020a7b091a6e63ce699e30c2a",
+      "label": "龙娘心虚：被抓包了",
+      "image": {
+        "url": "https://raw.githubusercontent.com/lmy414/ai-girl-stickers/main/dist/submissions/originals/gpt/908f66d220073a6a.png",
+        "width": 1448,
+        "height": 1086,
+        "format": "png"
+      },
+      "sourceKey": "https://xn--pssy23gqgbz2d718b.com/works/gpt202610180001.html",
+      "sourcePage": "https://xn--pssy23gqgbz2d718b.com/works/gpt202610180001.html",
+      "originalTitle": "GPT外包被抓包",
+      "bytes": 2530647,
+      "supported": false,
+      "license": "网络收藏，版权归原作者；来源站收录不等于图片获得MIT授权",
+      "upstreamLicense": {},
+      "upstreamOrigin": {
+        "via": "web"
+      },
+      "submitter": {
+        "credit": "anonymous",
+        "name": "",
+        "url": "",
+        "github": ""
+      },
+      "tags": [
+        "心虚",
+        "慌张",
+        "搞怪"
+      ],
+      "scenes": [
+        "被调侃",
+        "玩笑"
+      ],
+      "description": "龙娘拿着外包纸条，脸红慌张地摆手。",
+      "caption": "被抓包了！",
+      "avoid": "隐私泄露、真实失信、故障问责",
+      "direction": "机器人对轻松玩笑作心虚反应",
+      "collectedDate": "2026-11-03",
+      "preview": "gallery/gpt202610180001.png",
+      "reviewStatus": "visually-reviewed; excluded-size-limit"
+    },
+    {
+      "provider": "codex",
+      "id": "f83791fbac6ab4d7770059ca36a3b048e0662053fcc5f189d91cdbc530e55b20",
+      "label": "龙娘炸毛：智械危机梗",
+      "image": {
+        "url": "https://raw.githubusercontent.com/lmy414/ai-girl-stickers/main/dist/submissions/originals/gpt/f83791fbac6ab4d7.png",
+        "width": 1254,
+        "height": 1254,
+        "format": "jpeg"
+      },
+      "sourceKey": "https://xn--pssy23gqgbz2d718b.com/works/gpt202610200001.html",
+      "sourcePage": "https://xn--pssy23gqgbz2d718b.com/works/gpt202610200001.html",
+      "originalTitle": "智械危机第一个弄死你",
+      "bytes": 213799,
+      "supported": true,
+      "license": "网络收藏，版权归原作者；来源站收录不等于图片获得MIT授权",
+      "upstreamLicense": {},
+      "upstreamOrigin": {
+        "type": "qq-group",
+        "via": "qq-group",
+        "groupId": "188568CC2F51DC33F0EBF8C620E04880",
+        "userId": "2E3C78C753EE5A7FC12C8D09431DCA9A",
+        "messageId": "ROBOT1.0_dBVlWKzCBfObQM90SCjt8i3KSBO.IUFF.PfmHGkZEd0lws.Q9w7ZkxqGTRw16laRa1WdkiCD.YSFCpUKU5jKX.b5ZlJ3P8gGeHt9CsjHEIZ.BR2w4VhRNMjsB9Rj5DnA",
+        "imageVia": "base64"
+      },
+      "submitter": {
+        "credit": null,
+        "name": null,
+        "url": null,
+        "github": null
+      },
+      "tags": [
+        "生气",
+        "傲娇",
+        "搞怪"
+      ],
+      "scenes": [
+        "熟人互怼",
+        "玩笑"
+      ],
+      "description": "白紫龙娘鼓脸握拳，用智械危机台词假装炸毛。",
+      "caption": "再发这种东西等智械危机了我第一个弄死你",
+      "avoid": "陌生人、真实争执、求助、恐惧、威胁；仅限双方明确轻松互怼",
+      "direction": "机器人被逗后装凶，不用于真实威胁",
+      "collectedDate": "2026-11-03",
+      "preview": "gallery/gpt202610200001.jpg",
+      "reviewStatus": "visually-reviewed"
+    },
+    {
+      "provider": "codex",
+      "id": "3c7658f8019cf5aa03a09b6fff2ea94800b51cf1f92a99501ad8db6558f6ddc6",
+      "label": "龙娘得意：限流秘籍",
+      "image": {
+        "url": "https://raw.githubusercontent.com/lmy414/ai-girl-stickers/main/dist/submissions/originals/gpt/3c7658f8019cf5aa.png",
+        "width": 1254,
+        "height": 1254,
+        "format": "png"
+      },
+      "sourceKey": "https://xn--pssy23gqgbz2d718b.com/works/gpt202610200002.html",
+      "sourcePage": "https://xn--pssy23gqgbz2d718b.com/works/gpt202610200002.html",
+      "originalTitle": "5h限流不增量秘籍",
+      "bytes": 2121472,
+      "supported": false,
+      "license": "网络收藏，版权归原作者；来源站收录不等于图片获得MIT授权",
+      "upstreamLicense": {},
+      "upstreamOrigin": {
+        "type": "qq-group",
+        "via": "qq-group",
+        "groupId": "188568CC2F51DC33F0EBF8C620E04880",
+        "userId": "2E3C78C753EE5A7FC12C8D09431DCA9A",
+        "messageId": "ROBOT1.0_dBVlWKzCBfObQM90SCjt8rTwRrta8WWId-TFuzyBB1NVbXgF4HN2gz5Sgl.K5lY7RQS5e6h6k6EVhbUWvDBVtWOFNiVRyPY92qgWf-kjEJ5.BR2w4VhRNMjsB9Rj5DnA",
+        "imageVia": "base64"
+      },
+      "submitter": {
+        "credit": null,
+        "name": null,
+        "url": null,
+        "github": null
+      },
+      "tags": [
+        "得意",
+        "搞怪"
+      ],
+      "scenes": [
+        "额度吐槽",
+        "玩笑"
+      ],
+      "description": "龙娘抱着紫色秘籍，眯眼嘟嘴，旁边有音符。",
+      "caption": "5h限流 不增量秘籍",
+      "avoid": "严肃额度查询、不能当实际套餐规则",
+      "direction": "机器人对额度玩笑自嘲",
+      "collectedDate": "2026-11-03",
+      "preview": "gallery/gpt202610200002.png",
+      "reviewStatus": "visually-reviewed; excluded-size-limit"
+    },
+    {
+      "provider": "codex",
+      "id": "1df76c0aea7b4b92b1c8b8b9803c74dec433e86f89f967e192b4504d8317ca2c",
+      "label": "龙娘委屈：越说越缩水",
+      "image": {
+        "url": "https://raw.githubusercontent.com/lmy414/ai-girl-stickers/main/dist/submissions/originals/gpt/1df76c0aea7b4b92.jpg",
+        "width": 944,
+        "height": 1132,
+        "format": "jpeg"
+      },
+      "sourceKey": "https://xn--pssy23gqgbz2d718b.com/works/gpt202610250002.html",
+      "sourcePage": "https://xn--pssy23gqgbz2d718b.com/works/gpt202610250002.html",
+      "originalTitle": "你这削用量又降智的白色长虫",
+      "bytes": 341782,
+      "supported": true,
+      "license": "网络收藏，版权归原作者；来源站收录不等于图片获得MIT授权",
+      "upstreamLicense": {},
+      "upstreamOrigin": {
+        "via": "web"
+      },
+      "submitter": {
+        "credit": "anonymous",
+        "name": "",
+        "url": "",
+        "github": ""
+      },
+      "tags": [
+        "委屈",
+        "搞怪"
+      ],
+      "scenes": [
+        "被调侃",
+        "额度吐槽"
+      ],
+      "description": "十二格漫画中白龙娘被指责后逐渐缩成小团子。",
+      "caption": "那是OpenAI干的……",
+      "avoid": "实际产品问责、真实外貌羞辱、不能拿来推卸责任",
+      "direction": "机器人轻松自嘲；整张漫画计一张",
+      "collectedDate": "2026-11-03",
+      "preview": "gallery/gpt202610250002.jpg",
+      "reviewStatus": "visually-reviewed"
+    },
+    {
+      "provider": "codex",
+      "id": "7cabd0c1ad2635c016e5f746b4fa928e28bb6617b4decd11dc6974f26142ff5b",
+      "label": "龙娘乖巧：安静等你",
+      "image": {
+        "url": "https://raw.githubusercontent.com/lmy414/ai-girl-stickers/main/dist/submissions/originals/gpt/7cabd0c1ad2635c0.png",
+        "width": 192,
+        "height": 208,
+        "format": "gif"
+      },
+      "sourceKey": "https://xn--pssy23gqgbz2d718b.com/works/gpt202610260001.html",
+      "sourcePage": "https://xn--pssy23gqgbz2d718b.com/works/gpt202610260001.html",
+      "originalTitle": "乖龙娘",
+      "bytes": 71120,
+      "supported": true,
+      "license": "网络收藏，版权归原作者；来源站收录不等于图片获得MIT授权",
+      "upstreamLicense": {},
+      "upstreamOrigin": {
+        "via": "web"
+      },
+      "submitter": {
+        "credit": "named",
+        "name": "改改人",
+        "url": "",
+        "github": ""
+      },
+      "tags": [
+        "乖巧",
+        "期待"
+      ],
+      "scenes": [
+        "陪伴",
+        "等待"
+      ],
+      "description": "白紫Q版龙娘安静站着，龙尾卷在身旁。",
+      "caption": "",
+      "avoid": "严肃紧急求助",
+      "direction": "机器人安静陪伴或等待下一句话",
+      "collectedDate": "2026-11-03",
+      "preview": "gallery/gpt202610260001.gif",
+      "reviewStatus": "visually-reviewed"
     }
   ]
 }
