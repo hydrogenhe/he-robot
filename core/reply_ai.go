@@ -93,6 +93,14 @@ func (s *Service) generateReplyWithMemories(ctx context.Context, operationID, ch
 			return "", err
 		}
 		s.preparePrivateContents(round, &prompt)
+		if s.selfQueryAuthorized(ctx, round) {
+			prompt.SelfCapabilities = []string{"diary", "memories", "experiences", "growth", "activities", "status", "write_diary"}
+			prompt.SelfToday = diaryDay(s.DiaryNow())
+			prompt.CompanionContext, err = s.companionContext(ctx, &round.config)
+			if err != nil {
+				return "", err
+			}
+		}
 		if err := s.prepareExpression(ctx, round, &prompt); err != nil {
 			return "", err
 		}
@@ -106,7 +114,13 @@ func (s *Service) generateReplyWithMemories(ctx context.Context, operationID, ch
 	if err != nil {
 		return "", err
 	}
-	if result.RecallQuery != "" && bounded.AllowRecall {
+	cue := result.Companion
+	if result.SelfAction != nil {
+		result, err = s.completeSelfAction(ctx, operationID, round, bounded, result)
+		if err != nil {
+			return "", err
+		}
+	} else if result.RecallQuery != "" && bounded.AllowRecall {
 		result, err = s.completeRecall(ctx, operationID, bounded, result, experience)
 		if err != nil {
 			return "", err
@@ -144,11 +158,14 @@ func (s *Service) generateReplyWithMemories(ctx context.Context, operationID, ch
 		return "", model.Fail("SENSITIVE_OUTPUT", "回复含疑似凭证，已拦截，未发送")
 	}
 	if round != nil {
+		if err := s.applyCompanionCue(ctx, round, cue); err != nil {
+			return "", err
+		}
 		s.contentActionFeedback(ctx, round, result)
 		round.messages = result.Messages
 		round.stickerID = ""
 	}
-	if round != nil && channel == "private-message" && round.generationCalls == 1 && len(result.Actions) == 0 {
+	if round != nil && channel == "private-message" && round.generationCalls == 1 && len(round.document) == 0 && len(result.Actions) == 0 {
 		if err := s.selectReplySticker(ctx, operationID, round, bounded, result); err != nil {
 			return "", err
 		}

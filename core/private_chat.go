@@ -227,6 +227,9 @@ func (s *Service) sendPrivate(ctx context.Context, input *model.PrivateSendInput
 	if input == nil || !model.ValidID(input.RequestID) || !model.Text(input.Text, 500) {
 		return nil, model.Fail("INPUT", "私信正文1–500字，并需有效请求ID")
 	}
+	if !s.proactiveSendAllowed(ctx) {
+		return nil, model.Fail("PRIVATE_DISABLED", "主动消息处于免打扰或授权已变化")
+	}
 	part := validReplyBatch(ctx, input)
 	if (input.GroupID != "" || input.StickerID != "") && part == nil {
 		return nil, model.Fail("PRIVATE_SCOPE", "分条回复计划未经服务端核验")
@@ -255,6 +258,9 @@ func (s *Service) sendPrivate(ctx context.Context, input *model.PrivateSendInput
 		}
 	}
 	permitted := config.Enabled && config.AllowSend && !s.privateState.Paused
+	if scope, _ := ctx.Value(proactiveSendContextKey{}).(*proactiveSendScope); scope != nil {
+		permitted = permitted && config.SenderUID == scope.Sender && config.PeerUID == scope.Peer
+	}
 	if input.AutoKey != "" {
 		permitted = permitted && config.AutoReply && s.privateState.Processing == input.AutoKey && s.robotRunning()
 	}
@@ -280,7 +286,7 @@ func (s *Service) sendPrivate(ctx context.Context, input *model.PrivateSendInput
 	}
 	s.privateMu.Lock()
 	// 慢网络核验之后再次检查权限，暂停或修改开关可以阻止尚未提交的消息。
-	if s.privateConfig != config || !s.privateConfig.Enabled || !s.privateConfig.AllowSend || s.privateState.Paused || (input.AutoKey != "" && (!s.privateConfig.AutoReply || !s.robotRunning() || ctx.Err() != nil)) {
+	if ctx.Err() != nil || !s.proactiveSendAllowed(ctx) || s.privateConfig != config || !s.privateConfig.Enabled || !s.privateConfig.AllowSend || s.privateState.Paused || (input.AutoKey != "" && (!s.privateConfig.AutoReply || !s.robotRunning() || ctx.Err() != nil)) {
 		s.privateMu.Unlock()
 		return nil, model.Fail("PRIVATE_DISABLED", "私信权限已关闭，未发送")
 	}
@@ -294,7 +300,8 @@ func (s *Service) sendPrivate(ctx context.Context, input *model.PrivateSendInput
 			return nil, model.Fail("COOLDOWN", "私信发送冷却10秒")
 		}
 	}
-	out := model.PrivateOutbox{RequestID: input.RequestID, At: time.Now().UTC().Format(time.RFC3339Nano), Text: input.Text, AutoKey: input.AutoKey, Status: "sending"}
+	proactiveScope, _ := ctx.Value(proactiveSendContextKey{}).(*proactiveSendScope)
+	out := model.PrivateOutbox{Proactive: proactiveScope != nil, RequestID: input.RequestID, At: time.Now().UTC().Format(time.RFC3339Nano), Text: input.Text, AutoKey: input.AutoKey, Status: "sending"}
 	if part != nil {
 		out.GroupID = input.GroupID
 		out.Part = input.Part

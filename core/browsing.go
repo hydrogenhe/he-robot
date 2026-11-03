@@ -3,13 +3,14 @@ package core
 import (
 	"context"
 	"gpt-robot/model"
+	"log/slog"
 	"slices"
 	"strings"
 	"time"
 )
 
 func defaultBrowsing() model.BrowsingConfig {
-	return model.BrowsingConfig{Mode: "persona", Keywords: []string{}, Excluded: []string{}, IntervalSeconds: 900, DailyLimit: 5, MaxDurationMinutes: 10}
+	return model.BrowsingConfig{Mode: "persona", Keywords: []string{}, Excluded: []string{}, IntervalSeconds: 900, DailyLimit: 10, MaxDurationMinutes: 10}
 }
 func validateBrowsing(c *model.BrowsingConfig) error {
 	if c == nil || c.MaxDurationMinutes < 1 || c.MaxDurationMinutes > 180 || (c.Mode != "persona" && c.Mode != "custom") || c.IntervalSeconds < 300 || c.IntervalSeconds > 86400 || c.DailyLimit < 1 || c.DailyLimit > 50 || len(c.Keywords) > 10 || len(c.Excluded) > 10 {
@@ -50,9 +51,17 @@ func (s *Service) browsingTopics(ctx context.Context, c *model.BrowsingConfig) [
 			return nil
 		}
 		candidates = diaryInterestTopics(persona, nil)
+		s.companionMu.Lock()
+		exploration := model.ExplorationState{}
+		_, readErr := s.Store.Read(ctx, "data/character/exploration.json", &exploration)
+		s.companionMu.Unlock()
+		until, _ := time.Parse(time.RFC3339Nano, exploration.Until)
+		if readErr == nil && s.ProactiveNow().Before(until) && exploration.Question != "" {
+			candidates = append([]string{exploration.Question}, candidates...)
+		}
 		s.developmentMu.Lock()
 		for _, i := range s.development.Interests {
-			if i.Platform == "bilibili" && i.Account == c.AccountUID && i.Visibility == "public" && (i.Preference > 0 || (i.Preference == 0 && i.Familiarity >= 3)) {
+			if ((i.Platform == "bilibili" && i.Account == c.AccountUID && i.Visibility == "public") || (i.Platform == "local" && i.Visibility == "abstract")) && (i.Preference > 0 || (i.Preference == 0 && i.Familiarity >= 3)) {
 				candidates = append(candidates, i.Topic)
 			}
 		}
@@ -137,6 +146,7 @@ func (s *Service) SaveBrowsing(ctx context.Context, input *model.BrowsingConfig)
 	if err != nil {
 		return nil, err
 	}
+	s.cancelVideoRead()
 	s.wakeRobot()
 	return s.BrowsingOverview(ctx)
 }
@@ -166,14 +176,17 @@ func (s *Service) autoBrowsingTarget(d *model.Draft) bool {
 func (s *Service) BrowsingTick(ctx context.Context) error { return s.browsingTick(ctx, false) }
 func (s *Service) BrowseNow(ctx context.Context) error    { return s.browsingTick(ctx, true) }
 func (s *Service) browsingTick(ctx context.Context, manual bool) error {
-	if !s.autoRunMu.TryLock() {
-		return model.Fail("BUSY", "机器人正在处理其他互动")
+	if !s.videoRunMu.TryLock() {
+		return model.Fail("BUSY", "已有视频读取任务")
 	}
-	defer s.autoRunMu.Unlock()
-	run, cancel := s.beginAutoRun(ctx)
-	defer s.endAutoRun(cancel)
+	defer s.videoRunMu.Unlock()
+	run, cancel := context.WithCancel(ctx)
+	s.robotMu.Lock()
+	s.videoCancel = cancel
+	s.robotMu.Unlock()
+	defer s.finishVideoRead(cancel)
 	ctx = run
-	ctx, timeout := context.WithTimeout(ctx, 60*time.Second)
+	ctx, timeout := context.WithTimeout(ctx, 8*time.Minute)
 	defer timeout()
 	if !s.robotRunning() {
 		return nil
@@ -185,6 +198,14 @@ func (s *Service) browsingTick(ctx context.Context, manual bool) error {
 	if !c.Enabled || state.Paused || (!manual && untilRun(state.NextAt) > 0) {
 		s.browsingMu.Unlock()
 		return nil
+	}
+	s.proactiveMu.Lock()
+	fullVideo := s.proactiveConfig.Enabled && s.proactiveConfig.VideoReflections
+	videoLimit := s.proactiveConfig.VideoDailyLimit
+	s.proactiveMu.Unlock()
+
+	if fullVideo {
+		c.DailyLimit = min(c.DailyLimit, videoLimit)
 	}
 	day := diaryDay(time.Now())
 	if state.Day != day {
@@ -213,20 +234,29 @@ func (s *Service) browsingTick(ctx context.Context, manual bool) error {
 	}
 	s.browsingState = state
 	s.browsingMu.Unlock()
-	operation := model.OperationStart{Platform: "bilibili", Action: "browsing-read", Source: "automation"}
+	s.proactiveMu.Lock()
+	fullRead := s.proactiveConfig.Enabled && s.proactiveConfig.VideoReflections
+	s.proactiveMu.Unlock()
+	action := "browsing-read"
+	if fullRead {
+		action = "material-understood"
+	}
+	operation := model.OperationStart{Platform: "bilibili", Action: action, Source: "automation"}
 	id, startErr := s.StartOperation(ctx, &operation)
 	if startErr != nil {
 		return startErr
 	}
 	usage := model.UsageReport{OperationID: id, Usage: model.TokenUsage{Provider: "local", Model: "none", RequestID: id, Input: 0, Output: 0}}
-	if err := s.reportUsage(ctx, &usage, "local_rule"); err != nil {
-		return err
+	if !fullRead {
+		if err := s.reportUsage(ctx, &usage, "local_rule"); err != nil {
+			return err
+		}
 	}
 	previousEvent := ""
 	if len(state.Records) > 0 {
 		previousEvent = state.Records[len(state.Records)-1].EventID
 	}
-	err := s.readInterestVideo(ctx, &c, &state, keyword)
+	err := s.readInterestVideo(ctx, &c, &state, keyword, id)
 	finish := model.OperationFinish{Status: "skipped", Account: c.AccountUID}
 	if len(state.Records) > 0 && state.Records[len(state.Records)-1].EventID != previousEvent {
 		finish.Status = "succeeded"
@@ -236,8 +266,13 @@ func (s *Service) browsingTick(ctx context.Context, manual bool) error {
 		finish.Status = "failed"
 		finish.ErrorCode = OperationErrorCode(err)
 	}
-	if finishErr := s.FinishOperation(context.WithoutCancel(ctx), id, &finish); finishErr != nil {
-		return finishErr
+	s.operationsMu.Lock()
+	pending := s.operations[id].Status == "running"
+	s.operationsMu.Unlock()
+	if pending {
+		if finishErr := s.FinishOperation(context.WithoutCancel(ctx), id, &finish); finishErr != nil {
+			return finishErr
+		}
 	}
 	s.browsingMu.Lock()
 	defer s.browsingMu.Unlock()
@@ -254,7 +289,7 @@ func (s *Service) browsingTick(ctx context.Context, manual bool) error {
 	}
 	return err
 }
-func (s *Service) readInterestVideo(ctx context.Context, c *model.BrowsingConfig, state *model.BrowsingState, keyword string) error {
+func (s *Service) readInterestVideo(ctx context.Context, c *model.BrowsingConfig, state *model.BrowsingState, keyword, operation string) error {
 	discovery, ok := s.Bili.(model.VideoDiscovery)
 	if !ok {
 		return model.Fail("UNAVAILABLE", "当前平台没有视频发现适配器")
@@ -273,6 +308,18 @@ func (s *Service) readInterestVideo(ctx context.Context, c *model.BrowsingConfig
 	for _, candidate := range rows {
 		if !model.ValidBV(candidate.BVID) || candidate.DurationSeconds <= 0 || candidate.DurationSeconds > c.MaxDurationMinutes*60 {
 			continue
+		}
+		s.proactiveMu.Lock()
+		fullRead := s.proactiveConfig.Enabled && s.proactiveConfig.VideoReflections
+		s.proactiveMu.Unlock()
+		if fullRead && s.Store.Database != nil {
+			seenMaterial, lookupErr := s.Store.Database.HasMaterial(ctx, "bilibili", "bilibili:"+candidate.BVID)
+			if lookupErr != nil {
+				return lookupErr
+			}
+			if seenMaterial {
+				continue
+			}
 		}
 		seen := false
 		for _, old := range state.Records {
@@ -311,6 +358,12 @@ func (s *Service) readInterestVideo(ctx context.Context, c *model.BrowsingConfig
 		if excluded {
 			continue
 		}
+		s.proactiveMu.Lock()
+		understand := s.proactiveConfig.Enabled && s.proactiveConfig.VideoReflections
+		s.proactiveMu.Unlock()
+		if understand {
+			return s.readUnderstoodVideo(ctx, c, state, &video, keyword, operation)
+		}
 		page, err := s.Bili.Comments(ctx, video.Aid, 1, "0")
 		if err != nil {
 			return err
@@ -342,3 +395,31 @@ func (s *Service) readInterestVideo(ctx context.Context, c *model.BrowsingConfig
 	}
 	return nil
 }
+
+func (s *Service) finishVideoRead(cancel context.CancelFunc) {
+	cancel()
+	s.robotMu.Lock()
+	s.videoCancel = nil
+	s.robotMu.Unlock()
+}
+func (s *Service) cancelVideoRead() {
+	s.robotMu.Lock()
+	if s.videoCancel != nil {
+		s.videoCancel()
+	}
+	s.robotMu.Unlock()
+}
+func (s *Service) startBrowsingWorker(ctx context.Context) {
+	if !s.browsingWorkerMu.TryLock() {
+		return
+	}
+	go s.runBrowsingWorker(ctx)
+}
+func (s *Service) runBrowsingWorker(ctx context.Context) {
+	defer s.finishBrowsingWorker()
+	if err := s.BrowsingTick(ctx); err != nil && ctx.Err() == nil {
+		slog.Warn("兴趣浏览任务停止", "code", OperationErrorCode(err))
+	}
+}
+func (s *Service) finishBrowsingWorker() { s.browsingWorkerMu.Unlock(); s.wakeRobot() }
+func (s *Service) waitBrowsingWorker()   { s.browsingWorkerMu.Lock(); s.browsingWorkerMu.Unlock() }

@@ -67,8 +67,35 @@ for line in sys.stdin:
 	if err != nil || !strings.Contains(string(imageRaw), "data:image/png;base64,") || strings.Contains(string(imageRaw), imagePath) {
 		t.Fatal("image attachment missing or path leaked", err)
 	}
-	if _, err := backend.GenerateImages(context.Background(), "", nil, []string{imagePath, imagePath, imagePath, imagePath, imagePath, imagePath, imagePath}); err == nil {
+	// 4分37秒按每20秒一张共14帧，全部附图只触发一次协议替身生成。
+	videoPaths := make([]string, 14)
+	for i := range videoPaths {
+		videoPaths[i] = imagePath
+	}
+	if _, err := backend.GenerateImages(context.Background(), "只分析附图", nil, videoPaths); err != nil {
+		t.Fatal(err)
+	}
+	imageRaw, err = os.ReadFile(capture)
+	if err != nil || strings.Count(string(imageRaw), "data:image/png;base64,") != 14 || !strings.Contains(string(imageRaw), `"turnCount": 1`) {
+		t.Fatal("video frames dropped or extra generation", err)
+	}
+	if _, err := backend.GenerateImages(context.Background(), "", nil, make([]string, 541)); err == nil {
 		t.Fatal("unbounded image input")
+	}
+	// 单图合法但合计超过32MB时，在创建模型会话前拒绝。
+	largePath := filepath.Join(root, "large-frame.png")
+	largeImage := make([]byte, 1024*1024)
+	imageData, _ := os.ReadFile(imagePath)
+	copy(largeImage, imageData)
+	if err := os.WriteFile(largePath, largeImage, 0600); err != nil {
+		t.Fatal(err)
+	}
+	oversizePaths := make([]string, 33)
+	for i := range oversizePaths {
+		oversizePaths[i] = largePath
+	}
+	if _, err := backend.GenerateImages(context.Background(), "", nil, oversizePaths); err == nil {
+		t.Fatal("unbounded image bytes")
 	}
 	generator := businesshost.NewGenerator(root)
 	reply, err := generator.Generate(context.Background(), &input)

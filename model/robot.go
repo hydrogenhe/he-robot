@@ -46,6 +46,7 @@ type PrivateSendInput struct {
 	AutoKey   string
 }
 type PrivateOutbox struct {
+	Proactive  bool   `json:"proactive,omitempty"`
 	GroupHash  string `json:"groupHash,omitempty"`
 	StickerID  string `json:"stickerId,omitempty"`
 	GroupID    string `json:"groupId,omitempty"`

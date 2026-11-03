@@ -22,7 +22,7 @@ func (s *Service) selectReplySticker(ctx context.Context, operationID string, ro
 	if s.modelRouter.Config().Provider != round.stickerProvider {
 		return model.Fail("MODEL_CHANGED", "生成期间供应商已变化")
 	}
-	if s.ExpressionDraw(100) >= privateStickerChance && !requestedSticker.MatchString(prompt.Text) {
+	if s.ExpressionDraw(100) >= s.characterStickerChance(ctx) && !requestedSticker.MatchString(prompt.Text) {
 		return nil
 	}
 	only := intent.ImageOnly && s.ExpressionDraw(2) == 0

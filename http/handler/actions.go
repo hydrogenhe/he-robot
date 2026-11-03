@@ -28,6 +28,8 @@ func (h *Actions) execute(ctx context.Context, name string, raw json.RawMessage,
 		}
 	}
 	switch name {
+	case "proactive-status", "proactive-config":
+		return h.proactiveAction(ctx, name, raw)
 	case "conversation-status", "conversation-config":
 		return h.conversationAction(ctx, name, raw)
 	case "browsing-status", "browsing-config", "browsing-read":

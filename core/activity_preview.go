@@ -67,7 +67,7 @@ func (s *Service) OperationPreviews(ctx context.Context, items []model.Operation
 			preview.Title = "与 UID " + d.TargetUser + " 的评论互动"
 			preview.Text = d.Text
 		}
-		if (op.Action == "private-auto-reply" || op.Action == "private-send" || op.Action == "private-sticker-learn") && op.Account == account && account != "" && peer != "" {
+		if (op.Action == "private-auto-reply" || op.Action == "private-send" || op.Action == "private-sticker-learn" || strings.HasPrefix(op.Action, "proactive-")) && op.Account == account && account != "" && peer != "" {
 			if out, ok := private[op.Reference]; ok {
 				preview.Title = "回复主人 · UID " + peer
 				preview.Text = out.Text

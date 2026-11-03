@@ -88,6 +88,17 @@ func (s *Service) SaveDiaryConfig(ctx context.Context, input *model.DiarySetting
 
 // GenerateDiary 只写当天角色回顾，先保存生成占位防止并发、重启或自动任务重复调用模型。
 func (s *Service) GenerateDiary(ctx context.Context, input *model.DiaryGenerateInput) (*model.DiaryEntry, error) {
+	if !s.autoRunMu.TryLock() {
+		return nil, model.Fail("BUSY", "机器人正在处理互动，请稍后写日记")
+	}
+	defer s.autoRunMu.Unlock()
+	runCtx, cancel := s.beginAutoRun(ctx)
+	defer s.endAutoRun(cancel)
+	return s.generateDiary(runCtx, input)
+}
+
+// generateDiary 复用日记业务，调用方已持有互动串行锁及可取消运行上下文。
+func (s *Service) generateDiary(ctx context.Context, input *model.DiaryGenerateInput) (*model.DiaryEntry, error) {
 	if input == nil {
 		return nil, model.Fail("INPUT", "缺少日记生成参数")
 	}
@@ -105,13 +116,6 @@ func (s *Service) GenerateDiary(ctx context.Context, input *model.DiaryGenerateI
 			return nil, model.Fail("DIARY_DISABLED", "自动日记未开启")
 		}
 	}
-	if !s.autoRunMu.TryLock() {
-		return nil, model.Fail("BUSY", "机器人正在处理互动，请稍后写日记")
-	}
-	defer s.autoRunMu.Unlock()
-	runCtx, cancel := s.beginAutoRun(ctx)
-	defer s.endAutoRun(cancel)
-	ctx = runCtx
 	if !s.robotRunning() {
 		return nil, model.Fail("ROBOT_PAUSED", "请先启动或恢复机器人")
 	}
@@ -147,6 +151,9 @@ func (s *Service) GenerateDiary(ctx context.Context, input *model.DiaryGenerateI
 		return entry, nil
 	}
 	source := "web"
+	if input.DirectReply {
+		source = "local"
+	}
 	if input.Automatic {
 		source = "automation"
 	}
@@ -229,6 +236,11 @@ func (s *Service) GenerateDiary(ctx context.Context, input *model.DiaryGenerateI
 	}
 	if err := s.FinishOperation(persist, id, &finish); err != nil {
 		return entry, err
+	}
+	if runErr == nil && entry.Status == "completed" && !input.DirectReply {
+		if notifyErr := s.queueProactive(ctx, "diary", "diary:"+entry.OperationID, "《"+entry.Title+"》\n"+entry.Body, entry.OperationID); notifyErr != nil {
+			return entry, notifyErr
+		}
 	}
 	return entry, runErr
 }

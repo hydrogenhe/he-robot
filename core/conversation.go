@@ -12,6 +12,7 @@ import (
 
 type conversationRoundKey struct{}
 type conversationRound struct {
+	document         []string
 	generationCalls  int
 	stickerProvider  string
 	providerStickers map[string]model.LearnedSticker

@@ -124,6 +124,9 @@ func (s *Service) ControlRobot(ctx context.Context, input *model.RobotControlInp
 		return nil, err
 	}
 	s.robot = state
+	if !state.Enabled && s.videoCancel != nil {
+		s.videoCancel()
+	}
 	if !state.Enabled && s.robotCancel != nil {
 		s.robotCancel()
 	}
@@ -181,6 +184,7 @@ func (s *Service) wakeRobot() {
 
 // RunAutomation 单个后台调度器按各渠道到期时间检查；无新输入不调用模型。
 func (s *Service) RunAutomation(ctx context.Context) {
+	defer s.waitBrowsingWorker()
 	defer s.modelRouter.CloseConversations()
 	pushCtx, cancelPush := context.WithCancel(ctx)
 	pushDone := make(chan struct{})
@@ -262,9 +266,7 @@ func (s *Service) RunAutomation(ctx context.Context) {
 			if browseEnabled {
 				due := untilRun(browseNext)
 				if due <= 0 {
-					if err := s.BrowsingTick(runCtx); err != nil && runCtx.Err() == nil {
-						slog.Warn("兴趣浏览任务停止", "code", OperationErrorCode(err))
-					}
+					s.startBrowsingWorker(runCtx)
 					due = time.Duration(browseInterval) * time.Second
 				}
 				wait = min(wait, due)
@@ -283,6 +285,10 @@ func (s *Service) RunAutomation(ctx context.Context) {
 				wait = min(wait, due)
 			}
 			wait = min(wait, s.diaryWait(runCtx, s.DiaryNow()))
+			if err := s.ProactiveTick(runCtx); err != nil && runCtx.Err() == nil {
+				slog.Warn("主动任务停止", "code", OperationErrorCode(err))
+			}
+			wait = min(wait, s.proactiveWait())
 		}
 		if wait < time.Second {
 			wait = time.Second
