@@ -14,7 +14,10 @@ bin/
 # Local project handoff, personal character assets and acceptance records.
 /ai指南.md
 /AGENTS.md
-/assets/
+/assets/*
+!/assets/images/
+/assets/images/*
+!/assets/images/stickers/
 /prototypes/
 /docs/*
 !/docs/openapi.yaml

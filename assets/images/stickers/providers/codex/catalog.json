@@ -1,0 +1,63 @@
+{
+  "provider": "codex",
+  "items": [
+    {
+      "provider": "codex",
+      "id": "a2092d5e8f4fcb5ca0bacf335b13b62e83cdcf3fb69cac57a7d18c6fffde7019",
+      "label": "龙娘委屈：我不是大肥龙",
+      "image": {
+        "url": "https://gpic.code-nav.cn/memecub/public/mgu336ffsezz.png",
+        "width": 1254,
+        "height": 1254,
+        "format": "png"
+      },
+      "sourceKey": "https://memecub.com/zh/meme/mgu336ffsezz",
+      "sourcePage": "https://memecub.com/zh/meme/mgu336ffsezz",
+      "originalTitle": "你这贪财的白色大肥龙：我不是大肥龙……",
+      "bytes": 2055305,
+      "supported": true,
+      "license": "网络收集，版权归原作者；未获公开再分发许可",
+      "tags": [
+        "委屈",
+        "撒娇"
+      ],
+      "scenes": [
+        "被调侃",
+        "玩笑"
+      ],
+      "description": "白发紫角龙娘泪眼汪汪跪坐，面前空碗，被手指指着。",
+      "caption": "我不是大肥龙……",
+      "avoid": "真实外貌羞辱、悲伤求助、争执；不能拿来讥讽用户",
+      "direction": "机器人被打趣后替自己委屈",
+      "collectedDate": "2026-11-03"
+    },
+    {
+      "provider": "codex",
+      "id": "3a469c390d4b9bcde5581ff7ee74794c48a151b13156d52e76a2fb1a10739e64",
+      "label": "龙娘搞怪：正确但未经验证",
+      "image": {
+        "url": "https://gpic.code-nav.cn/memecub/public/he9n38shg4dh.png",
+        "width": 1254,
+        "height": 1254,
+        "format": "png"
+      },
+      "sourceKey": "https://memecub.com/zh/meme/he9n38shg4dh-100",
+      "sourcePage": "https://memecub.com/zh/meme/he9n38shg4dh-100",
+      "originalTitle": "100% 正确，未经验证",
+      "bytes": 1973108,
+      "supported": true,
+      "license": "网络收集，版权归原作者；未获公开再分发许可",
+      "tags": [
+        "搞怪"
+      ],
+      "scenes": [
+        "玩笑"
+      ],
+      "description": "白紫龙娘呆眼流口水，举着自相矛盾的牌子。",
+      "caption": "100%正确，未经验证",
+      "avoid": "事实核验、技术结论、严肃求助；不能当可靠性承诺",
+      "direction": "机器人自嘲不靠谱",
+      "collectedDate": "2026-11-03"
+    }
+  ]
+}

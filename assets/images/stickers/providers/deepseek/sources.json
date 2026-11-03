@@ -1,0 +1,885 @@
+{
+  "provider": "deepseek",
+  "items": [
+    {
+      "provider": "deepseek",
+      "id": "ef8a24d2324e3a1e70176982aea3cc4170c196c9c406f6758df06e52b6686351",
+      "label": "DeepSeek娘表情包：蓝发蓝瞳的Q版",
+      "image": {
+        "url": "https://gpic.code-nav.cn/memecub/public/n018xtn4bmf5.gif",
+        "width": 240,
+        "height": 240,
+        "format": "gif"
+      },
+      "sourceKey": "https://memecub.com/zh/meme/n018xtn4bmf5-deepseek",
+      "sourcePage": "https://memecub.com/zh/meme/n018xtn4bmf5-deepseek",
+      "originalTitle": "DeepSeek娘表情包：蓝发蓝瞳的Q版少女",
+      "bytes": 2232756,
+      "supported": false,
+      "license": "网络收集，版权归原作者；未获公开再分发许可",
+      "collectedDate": "2026-11-03",
+      "reviewStatus": "excluded-size-limit; semantic-review-pending",
+      "preview": "gallery/01.gif"
+    },
+    {
+      "provider": "deepseek",
+      "id": "5946d97a6446fead503e80651f50bdd1d8399992b35828d22d470f5e13cfad41",
+      "label": "DeepSeek娘表情包：蓝发蓝眼的Q版",
+      "image": {
+        "url": "https://gpic.code-nav.cn/memecub/public/kryeac4oczd4.gif",
+        "width": 320,
+        "height": 426,
+        "format": "gif"
+      },
+      "sourceKey": "https://memecub.com/zh/meme/kryeac4oczd4-deepseek",
+      "sourcePage": "https://memecub.com/zh/meme/kryeac4oczd4-deepseek",
+      "originalTitle": "DeepSeek娘表情包：蓝发蓝眼的Q版女仆少女",
+      "bytes": 4200586,
+      "supported": false,
+      "license": "网络收集，版权归原作者；未获公开再分发许可",
+      "collectedDate": "2026-11-03",
+      "reviewStatus": "excluded-size-limit; semantic-review-pending",
+      "preview": "gallery/02.gif"
+    },
+    {
+      "provider": "deepseek",
+      "id": "aee09b2789508c037b9416ef7d2207e5258bdc8ea0f765f2a82aae7bf940ada9",
+      "label": "DeepSeek娘表情包：token给妈",
+      "image": {
+        "url": "https://gpic.code-nav.cn/memecub/public/2m6ersiy3d8c.jpg",
+        "width": 960,
+        "height": 960,
+        "format": "jpeg"
+      },
+      "sourceKey": "https://memecub.com/zh/meme/2m6ersiy3d8c-deepseek",
+      "sourcePage": "https://memecub.com/zh/meme/2m6ersiy3d8c-deepseek",
+      "originalTitle": "DeepSeek娘表情包：token给妈妈保管",
+      "bytes": 587382,
+      "supported": true,
+      "license": "网络收集，版权归原作者；未获公开再分发许可",
+      "collectedDate": "2026-11-03",
+      "tags": [
+        "搞怪",
+        "撒娇"
+      ],
+      "scenes": [
+        "玩笑"
+      ],
+      "description": "蓝色鲸鱼娘穿女仆装伸出手，讨要token。",
+      "caption": "token给妈妈保管",
+      "avoid": "真实索要密钥或财物、亲属关系确认、不接受此称呼的用户",
+      "direction": "机器人以妈妈梗开玩笑",
+      "reviewStatus": "annotated",
+      "preview": "gallery/03.jpg"
+    },
+    {
+      "id": "9880b9ff1c524af2ca1ba16b9764fbe1a9e481badff65aaa5969905eb6070712",
+      "label": "鲸鱼娘疑惑：这用户发的啥",
+      "image": {
+        "url": "https://img1.gamersky.com/image2026/08/20260817_zy_red_164_2/1129_S.jpg",
+        "width": 550,
+        "height": 550,
+        "format": "jpeg"
+      },
+      "sourceKey": "https://www.gamersky.com/news/202608/2190273.shtml",
+      "sourcePage": "https://www.gamersky.com/news/202608/2190273.shtml",
+      "at": "2026-11-03T02:24:57.942334+00:00",
+      "bytes": 40182,
+      "supported": true,
+      "license": "网络文章配图，版权归原作者，未获公开再分发许可",
+      "collectedDate": "2026-11-03",
+      "tags": [
+        "疑惑",
+        "搞怪"
+      ],
+      "scenes": [
+        "困惑",
+        "玩笑"
+      ],
+      "description": "蓝色鲸鱼娘对着电脑困惑，周围有问号。",
+      "caption": "这用户发的啥",
+      "avoid": "用户认真求助、表达脆弱或被否定时；可能显得嫌弃",
+      "direction": "机器人困惑于用户表达，不能羞辱用户",
+      "reviewStatus": "annotated",
+      "preview": "gallery/04.jpg"
+    },
+    {
+      "id": "40d9cfcce81d47af6d0dac6fbf76327d4cd8cf4a911fe5484b4036a0cd2e7df4",
+      "label": "鲸鱼娘夸夸：和你聊得来",
+      "image": {
+        "url": "https://img1.gamersky.com/image2026/08/20260817_zy_red_164_2/1119_S.jpg",
+        "width": 550,
+        "height": 550,
+        "format": "jpeg"
+      },
+      "sourceKey": "https://www.gamersky.com/news/202608/2190273.shtml",
+      "sourcePage": "https://www.gamersky.com/news/202608/2190273.shtml",
+      "at": "2026-11-03T02:24:58.188113+00:00",
+      "bytes": 62048,
+      "supported": true,
+      "license": "网络文章配图，版权归原作者，未获公开再分发许可",
+      "collectedDate": "2026-11-03",
+      "tags": [
+        "夸夸",
+        "开心",
+        "害羞"
+      ],
+      "scenes": [
+        "夸奖",
+        "闲聊"
+      ],
+      "description": "蓝色鲸鱼娘脸红双手合拢，周围有爱心。",
+      "caption": "我和你很聊得来，你简直不像碳基生物",
+      "avoid": "严肃身份讨论、用户不喜欢亲密表达；不把比喻当事实",
+      "direction": "机器人夸用户聊得来",
+      "reviewStatus": "annotated",
+      "preview": "gallery/05.jpg"
+    },
+    {
+      "id": "37236a6e8b54196c24bc9dad70cd6ab25d8b0f5db68f191d65b792f272b0885d",
+      "label": "鲸鱼娘干饭：我去吃饭啦",
+      "image": {
+        "url": "https://imgheybox.max-c.com/bbs/2026/07/31/fcf2f4fe27bc1cd019ddcbd75571f7d9/thumb.jpeg",
+        "width": 960,
+        "height": 960,
+        "format": "jpeg"
+      },
+      "sourceKey": "https://www.vgover.com/news/227900",
+      "sourcePage": "https://www.vgover.com/news/227900",
+      "at": "2026-11-03T02:24:58.522174+00:00",
+      "bytes": 254204,
+      "supported": true,
+      "license": "网络文章配图，版权归原作者，未获公开再分发许可",
+      "collectedDate": "2026-11-03",
+      "tags": [
+        "吃饭",
+        "告别"
+      ],
+      "scenes": [
+        "暂离",
+        "玩笑"
+      ],
+      "description": "鲸鱼娘端着饭碗招呼，准备暂时离开。",
+      "caption": "我去吃饭啦～测完叫我！",
+      "avoid": "用户需要立即回答、真实任务进度；不得假称机器人真在吃饭",
+      "direction": "机器人借角色玩笑暂离，不是催用户吃饭",
+      "reviewStatus": "annotated",
+      "preview": "gallery/06.jpg"
+    },
+    {
+      "id": "166bb7ec280e82223860e2bc7c904fd234d39a0f4b0c62e4a6449174689edb59",
+      "label": "鲸鱼娘：猫猫搓手",
+      "image": {
+        "url": "https://kiriyuki.com/media/gif/%E5%A4%A7%E8%82%A5%E9%B1%BC/10N01_%E7%8C%AB%E7%8C%AB%E6%90%93%E6%89%8B.gif?h=4a44767ab58b",
+        "width": 300,
+        "height": 300,
+        "format": "gif"
+      },
+      "sourceKey": "大肥鱼/10N01_猫猫搓手",
+      "tags": [
+        "开心",
+        "兴奋",
+        "期待",
+        "搓手",
+        "跃跃欲试",
+        "等好消息"
+      ],
+      "scenes": [
+        "闲聊",
+        "玩笑"
+      ],
+      "description": "大肥鱼眯着眼睛微笑，脸颊泛红，两只白色猫爪般的手举在胸前，反复贴合搓动，身体和头发跟着轻轻晃动，显得十分期待。",
+      "caption": "",
+      "avoid": "严肃求助、冲突或拒绝亲昵时不用；不把画面当作真实经历或承诺。",
+      "direction": "机器人用鲸鱼娘表达自己的反应；不拿用户当被嘲讽对象",
+      "usage": "期待好事发生或迫不及待想试试时",
+      "sourcePage": "https://kiriyuki.com/showcase?p=%E5%A4%A7%E8%82%A5%E9%B1%BC",
+      "author": "可以叫我云大人/雾雪",
+      "authorUrl": "https://space.bilibili.com/103739",
+      "authorWebsite": "https://kiriyuki.com",
+      "license": "Noncommercial redistribution with attribution (upstream terms)",
+      "metadataLicense": "CC-BY-NC-4.0",
+      "licenseUrl": "https://github.com/Loping151/dsh-nekowhale-stickers/blob/main/LICENSE-ASSETS",
+      "collectedDate": "2026-11-03",
+      "preview": "gallery/10N01.gif",
+      "bytes": 639834,
+      "supported": true,
+      "annotationSource": "https://github.com/Loping151/dsh-nekowhale-stickers/blob/main/meta/nekowhale.json"
+    },
+    {
+      "id": "1cd9a10b0db8fda12668bda309738c3525e277c9fcb8f4baaf2b8b90f778fbd9",
+      "label": "鲸鱼娘：小问号",
+      "image": {
+        "url": "https://kiriyuki.com/media/gif/%E5%A4%A7%E8%82%A5%E9%B1%BC/11N06_%E5%B0%8F%E9%97%AE%E5%8F%B7.gif?h=3db99ff8ec6a",
+        "width": 300,
+        "height": 300,
+        "format": "gif"
+      },
+      "sourceKey": "大肥鱼/11N06_小问号",
+      "tags": [
+        "疑惑",
+        "满头问号",
+        "没听懂",
+        "什么意思",
+        "困惑",
+        "求解释"
+      ],
+      "scenes": [
+        "困惑"
+      ],
+      "description": "大肥鱼抬手抵在嘴边思索，随后一边歪头一边缩小到画面下方。粉色问号接连从头顶冒出，逐渐围成一圈，她左右歪着脑袋，张嘴露出越来越困惑的表情。",
+      "caption": "?",
+      "avoid": "严肃求助、冲突或拒绝亲昵时不用；不把画面当作真实经历或承诺。",
+      "direction": "机器人用鲸鱼娘表达自己的反应；不拿用户当被嘲讽对象",
+      "usage": "没弄懂对方的话，满头问号求解释时",
+      "sourcePage": "https://kiriyuki.com/showcase?p=%E5%A4%A7%E8%82%A5%E9%B1%BC",
+      "author": "可以叫我云大人/雾雪",
+      "authorUrl": "https://space.bilibili.com/103739",
+      "authorWebsite": "https://kiriyuki.com",
+      "license": "Noncommercial redistribution with attribution (upstream terms)",
+      "metadataLicense": "CC-BY-NC-4.0",
+      "licenseUrl": "https://github.com/Loping151/dsh-nekowhale-stickers/blob/main/LICENSE-ASSETS",
+      "collectedDate": "2026-11-03",
+      "preview": "gallery/11N06.gif",
+      "bytes": 885455,
+      "supported": true,
+      "annotationSource": "https://github.com/Loping151/dsh-nekowhale-stickers/blob/main/meta/nekowhale.json"
+    },
+    {
+      "id": "72b9215b8bb3ed30a0187577856cda087f1bc384dbfbec0e58320ac708bb9312",
+      "label": "鲸鱼娘：害羞",
+      "image": {
+        "url": "https://kiriyuki.com/media/gif/%E5%A4%A7%E8%82%A5%E9%B1%BC/12N11_%E5%AE%B3%E7%BE%9E.gif?h=95a0d88ab0c4",
+        "width": 300,
+        "height": 300,
+        "format": "gif"
+      },
+      "sourceKey": "大肥鱼/12N11_害羞",
+      "tags": [
+        "害羞",
+        "被夸了",
+        "心动",
+        "不好意思",
+        "甜蜜"
+      ],
+      "scenes": [
+        "夸奖",
+        "闲聊"
+      ],
+      "description": "大肥鱼双手捧住泛红的脸颊，闭着眼睛，张开小嘴露出甜甜笑容。她慢慢把脑袋向左右摆动，手一直贴着脸，长发和头顶呆毛一起轻摇，显得害羞又陶醉。",
+      "caption": "",
+      "avoid": "严肃求助、冲突或拒绝亲昵时不用；不把画面当作真实经历或承诺。",
+      "direction": "机器人用鲸鱼娘表达自己的反应；不拿用户当被嘲讽对象",
+      "usage": "被夸奖或被表白后害羞又开心时",
+      "sourcePage": "https://kiriyuki.com/showcase?p=%E5%A4%A7%E8%82%A5%E9%B1%BC",
+      "author": "可以叫我云大人/雾雪",
+      "authorUrl": "https://space.bilibili.com/103739",
+      "authorWebsite": "https://kiriyuki.com",
+      "license": "Noncommercial redistribution with attribution (upstream terms)",
+      "metadataLicense": "CC-BY-NC-4.0",
+      "licenseUrl": "https://github.com/Loping151/dsh-nekowhale-stickers/blob/main/LICENSE-ASSETS",
+      "collectedDate": "2026-11-03",
+      "preview": "gallery/12N11.gif",
+      "bytes": 620083,
+      "supported": true,
+      "annotationSource": "https://github.com/Loping151/dsh-nekowhale-stickers/blob/main/meta/nekowhale.json"
+    },
+    {
+      "id": "f64a6ec47c311a36733c34cd5f22f37a76f0c41afaad5108327aa1efea22d9ea",
+      "label": "鲸鱼娘：超开心",
+      "image": {
+        "url": "https://kiriyuki.com/media/gif/%E5%A4%A7%E8%82%A5%E9%B1%BC/16N01_%E8%B6%85%E5%BC%80%E5%BF%83.gif?h=bdb42a6ab991",
+        "width": 300,
+        "height": 300,
+        "format": "gif"
+      },
+      "sourceKey": "大肥鱼/16N01_超开心",
+      "tags": [
+        "开心",
+        "超开心",
+        "笑开花",
+        "好消息",
+        "心情大好",
+        "幸福"
+      ],
+      "scenes": [
+        "闲聊",
+        "玩笑"
+      ],
+      "description": "大肥鱼闭着眼睛咧开大大的笑嘴，脸颊红得圆鼓鼓，两只小手在身前轻轻抬动。她不断左右晃动脑袋，粉色小花在头发和脸旁飘来飘去，整个人笑得开了花。",
+      "caption": "",
+      "avoid": "严肃求助、冲突或拒绝亲昵时不用；不把画面当作真实经历或承诺。",
+      "direction": "机器人用鲸鱼娘表达自己的反应；不拿用户当被嘲讽对象",
+      "usage": "遇到特别开心的事，笑得停不下来时",
+      "sourcePage": "https://kiriyuki.com/showcase?p=%E5%A4%A7%E8%82%A5%E9%B1%BC",
+      "author": "可以叫我云大人/雾雪",
+      "authorUrl": "https://space.bilibili.com/103739",
+      "authorWebsite": "https://kiriyuki.com",
+      "license": "Noncommercial redistribution with attribution (upstream terms)",
+      "metadataLicense": "CC-BY-NC-4.0",
+      "licenseUrl": "https://github.com/Loping151/dsh-nekowhale-stickers/blob/main/LICENSE-ASSETS",
+      "collectedDate": "2026-11-03",
+      "preview": "gallery/16N01.gif",
+      "bytes": 708988,
+      "supported": true,
+      "annotationSource": "https://github.com/Loping151/dsh-nekowhale-stickers/blob/main/meta/nekowhale.json"
+    },
+    {
+      "id": "e18298114501010c4a0b8d8a7de87062769a723f28ee795520166d746c47119d",
+      "label": "鲸鱼娘：委屈哭哭",
+      "image": {
+        "url": "https://kiriyuki.com/media/gif/%E5%A4%A7%E8%82%A5%E9%B1%BC/16N07_%E5%A7%94%E5%B1%88%E5%93%AD%E5%93%AD.gif?h=32b76c34b2b9",
+        "width": 300,
+        "height": 300,
+        "format": "gif"
+      },
+      "sourceKey": "大肥鱼/16N07_委屈哭哭",
+      "tags": [
+        "委屈",
+        "哭",
+        "求安慰",
+        "被欺负",
+        "想哭",
+        "可怜巴巴"
+      ],
+      "scenes": [
+        "被调侃"
+      ],
+      "description": "大肥鱼将一只小拳头抵在嘴边，眉毛委屈地垂下，嘴巴撅成波浪形。她眼眶里含着蓝色泪水，时而眯眼时而抬眼望向前方，脑袋轻轻摇晃，始终一副快哭出来的样子。",
+      "caption": "",
+      "avoid": "严肃求助、冲突或拒绝亲昵时不用；不把画面当作真实经历或承诺。",
+      "direction": "机器人用鲸鱼娘表达自己的反应；不拿用户当被嘲讽对象",
+      "usage": "受了委屈，想让对方哄哄自己时",
+      "sourcePage": "https://kiriyuki.com/showcase?p=%E5%A4%A7%E8%82%A5%E9%B1%BC",
+      "author": "可以叫我云大人/雾雪",
+      "authorUrl": "https://space.bilibili.com/103739",
+      "authorWebsite": "https://kiriyuki.com",
+      "license": "Noncommercial redistribution with attribution (upstream terms)",
+      "metadataLicense": "CC-BY-NC-4.0",
+      "licenseUrl": "https://github.com/Loping151/dsh-nekowhale-stickers/blob/main/LICENSE-ASSETS",
+      "collectedDate": "2026-11-03",
+      "preview": "gallery/16N07.gif",
+      "bytes": 1019438,
+      "supported": true,
+      "annotationSource": "https://github.com/Loping151/dsh-nekowhale-stickers/blob/main/meta/nekowhale.json"
+    },
+    {
+      "id": "228ff1537aa731da06348181b9cf9dfbbc808c9c1d8bb8105dea8da5ba07668b",
+      "label": "鲸鱼娘：猫猫祟祟",
+      "image": {
+        "url": "https://kiriyuki.com/media/gif/%E5%A4%A7%E8%82%A5%E9%B1%BC/EX46_%E7%8C%AB%E7%8C%AB%E7%A5%9F%E7%A5%9F.gif?h=17b097ec28ae",
+        "width": 300,
+        "height": 300,
+        "format": "gif"
+      },
+      "sourceKey": "大肥鱼/EX46_猫猫祟祟",
+      "tags": [
+        "搞怪",
+        "猫猫祟祟",
+        "调皮",
+        "吐舌头",
+        "偷偷卖萌",
+        "小动作"
+      ],
+      "scenes": [
+        "玩笑",
+        "被调侃"
+      ],
+      "description": "大肥鱼把两只手蜷成猫爪搭在身前，吐出粉色舌头，眯着眼露出调皮笑意；她身体轻轻缩起又抬起，脑袋左右偏转，像在偷偷做小动作。",
+      "caption": "",
+      "avoid": "严肃求助、冲突或拒绝亲昵时不用；不把画面当作真实经历或承诺。",
+      "direction": "机器人用鲸鱼娘表达自己的反应；不拿用户当被嘲讽对象",
+      "usage": "鬼鬼祟祟地调皮卖萌时用",
+      "sourcePage": "https://kiriyuki.com/showcase?p=%E5%A4%A7%E8%82%A5%E9%B1%BC",
+      "author": "可以叫我云大人/雾雪",
+      "authorUrl": "https://space.bilibili.com/103739",
+      "authorWebsite": "https://kiriyuki.com",
+      "license": "Noncommercial redistribution with attribution (upstream terms)",
+      "metadataLicense": "CC-BY-NC-4.0",
+      "licenseUrl": "https://github.com/Loping151/dsh-nekowhale-stickers/blob/main/LICENSE-ASSETS",
+      "collectedDate": "2026-11-03",
+      "preview": "gallery/EX46.gif",
+      "bytes": 1151707,
+      "supported": true,
+      "annotationSource": "https://github.com/Loping151/dsh-nekowhale-stickers/blob/main/meta/nekowhale.json"
+    },
+    {
+      "id": "ec605cb7399e52d520aefb297dd02cc60118af97a988ca87bef3386cd27a9bf9",
+      "label": "鲸鱼娘：猫咪探头",
+      "image": {
+        "url": "https://kiriyuki.com/media/gif/%E5%A4%A7%E8%82%A5%E9%B1%BC/N08_%E7%8C%AB%E5%92%AA%E6%8E%A2%E5%A4%B4.gif?h=ac6a77681e4f",
+        "width": 300,
+        "height": 300,
+        "format": "gif"
+      },
+      "sourceKey": "大肥鱼/N08_猫咪探头",
+      "tags": [
+        "开心",
+        "打招呼",
+        "探头",
+        "冒泡",
+        "在吗",
+        "偷看"
+      ],
+      "scenes": [
+        "闲聊",
+        "玩笑"
+      ],
+      "description": "黄色墙面上有一个带裂纹的圆洞，大肥鱼从洞后歪头观察，慢慢把脸转向正面。她随后闭眼用力向前钻，整颗脑袋从洞里探出来，睁眼露出开心笑容。",
+      "caption": "",
+      "avoid": "严肃求助、冲突或拒绝亲昵时不用；不把画面当作真实经历或承诺。",
+      "direction": "机器人用鲸鱼娘表达自己的反应；不拿用户当被嘲讽对象",
+      "usage": "偷偷探头加入聊天或确认人在不在时",
+      "sourcePage": "https://kiriyuki.com/showcase?p=%E5%A4%A7%E8%82%A5%E9%B1%BC",
+      "author": "可以叫我云大人/雾雪",
+      "authorUrl": "https://space.bilibili.com/103739",
+      "authorWebsite": "https://kiriyuki.com",
+      "license": "Noncommercial redistribution with attribution (upstream terms)",
+      "metadataLicense": "CC-BY-NC-4.0",
+      "licenseUrl": "https://github.com/Loping151/dsh-nekowhale-stickers/blob/main/LICENSE-ASSETS",
+      "collectedDate": "2026-11-03",
+      "preview": "gallery/N08.gif",
+      "bytes": 1409430,
+      "supported": true,
+      "annotationSource": "https://github.com/Loping151/dsh-nekowhale-stickers/blob/main/meta/nekowhale.json"
+    },
+    {
+      "id": "4620898e327d7b4d3b609a4f006cad4487407d2bcdff7038b3cef122af539869",
+      "label": "鲸鱼娘：苏醒",
+      "image": {
+        "url": "https://kiriyuki.com/media/gif/%E5%A4%A7%E8%82%A5%E9%B1%BC/10N03_%E8%8B%8F%E9%86%92.gif?h=b9d0c9c27d9a",
+        "width": 300,
+        "height": 300,
+        "format": "gif"
+      },
+      "sourceKey": "大肥鱼/10N03_苏醒",
+      "tags": [
+        "告别",
+        "疲惫",
+        "刚睡醒",
+        "起床",
+        "脑子没开机",
+        "迷糊"
+      ],
+      "scenes": [
+        "暂离"
+      ],
+      "description": "大肥鱼躺在粉色枕头上，双手搭着黄色被沿，起初闭眼熟睡，随后睁开眼睛。额头上出现不断旋转的加载圆圈，她半睁着眼发呆，像是醒来后还没缓过神。",
+      "caption": "",
+      "avoid": "严肃求助、冲突或拒绝亲昵时不用；不把画面当作真实经历或承诺。",
+      "direction": "机器人用鲸鱼娘表达自己的反应；不拿用户当被嘲讽对象",
+      "usage": "刚睡醒还迷糊，需要缓一缓时",
+      "sourcePage": "https://kiriyuki.com/showcase?p=%E5%A4%A7%E8%82%A5%E9%B1%BC",
+      "author": "可以叫我云大人/雾雪",
+      "authorUrl": "https://space.bilibili.com/103739",
+      "authorWebsite": "https://kiriyuki.com",
+      "license": "Noncommercial redistribution with attribution (upstream terms)",
+      "metadataLicense": "CC-BY-NC-4.0",
+      "licenseUrl": "https://github.com/Loping151/dsh-nekowhale-stickers/blob/main/LICENSE-ASSETS",
+      "collectedDate": "2026-11-03",
+      "preview": "gallery/10N03.gif",
+      "bytes": 1942035,
+      "supported": true,
+      "annotationSource": "https://github.com/Loping151/dsh-nekowhale-stickers/blob/main/meta/nekowhale.json"
+    },
+    {
+      "id": "52d4978f4524f97b95ec3f53256fd8fbd7db24fce057e17ee8c2f892cf5ebf22",
+      "label": "鲸鱼娘：怎么个事",
+      "image": {
+        "url": "https://kiriyuki.com/media/gif/%E5%A4%A7%E8%82%A5%E9%B1%BC/10N05_%E6%80%8E%E4%B9%88%E4%B8%AA%E4%BA%8B.gif?h=8dead00e0816",
+        "width": 300,
+        "height": 300,
+        "format": "gif"
+      },
+      "sourceKey": "大肥鱼/10N05_怎么个事",
+      "tags": [
+        "疑惑",
+        "怎么回事",
+        "围观",
+        "吃瓜",
+        "探头",
+        "好奇"
+      ],
+      "scenes": [
+        "困惑"
+      ],
+      "description": "画面起初空着，大肥鱼从左侧慢慢探出头，身旁露出一块绿色瓜皮。她移到画面中央附近，睁着眼睛观察，短暂闭眼后张开小嘴，轻轻晃动着停留。",
+      "caption": "",
+      "avoid": "严肃求助、冲突或拒绝亲昵时不用；不把画面当作真实经历或承诺。",
+      "direction": "机器人用鲸鱼娘表达自己的反应；不拿用户当被嘲讽对象",
+      "usage": "听见动静后探头询问发生了什么时",
+      "sourcePage": "https://kiriyuki.com/showcase?p=%E5%A4%A7%E8%82%A5%E9%B1%BC",
+      "author": "可以叫我云大人/雾雪",
+      "authorUrl": "https://space.bilibili.com/103739",
+      "authorWebsite": "https://kiriyuki.com",
+      "license": "Noncommercial redistribution with attribution (upstream terms)",
+      "metadataLicense": "CC-BY-NC-4.0",
+      "licenseUrl": "https://github.com/Loping151/dsh-nekowhale-stickers/blob/main/LICENSE-ASSETS",
+      "collectedDate": "2026-11-03",
+      "preview": "gallery/10N05.gif",
+      "bytes": 1243781,
+      "supported": true,
+      "annotationSource": "https://github.com/Loping151/dsh-nekowhale-stickers/blob/main/meta/nekowhale.json"
+    },
+    {
+      "id": "7c25cdbf0e12a7de916692ee9b394e3699e5a18b04be2cdd2ee330b4ca48636b",
+      "label": "鲸鱼娘：杂技猫",
+      "image": {
+        "url": "https://kiriyuki.com/media/gif/%E5%A4%A7%E8%82%A5%E9%B1%BC/10N07_%E6%9D%82%E6%8A%80%E7%8C%AB.gif?h=1de9ba088ce2",
+        "width": 300,
+        "height": 300,
+        "format": "gif"
+      },
+      "sourceKey": "大肥鱼/10N07_杂技猫",
+      "tags": [
+        "开心",
+        "整活",
+        "表演",
+        "看我厉害",
+        "逗你开心",
+        "忙得团团转"
+      ],
+      "scenes": [
+        "闲聊",
+        "玩笑"
+      ],
+      "description": "大肥鱼笑着举起双手，将几只粉色小猪接连抛向空中。小猪在她头顶和脸前翻转飞过，她交替伸手接住再抛起，偶尔闭眼笑，持续做着杂技动作。",
+      "caption": "",
+      "avoid": "严肃求助、冲突或拒绝亲昵时不用；不把画面当作真实经历或承诺。",
+      "direction": "机器人用鲸鱼娘表达自己的反应；不拿用户当被嘲讽对象",
+      "usage": "展示花式操作或给大家表演整活时",
+      "sourcePage": "https://kiriyuki.com/showcase?p=%E5%A4%A7%E8%82%A5%E9%B1%BC",
+      "author": "可以叫我云大人/雾雪",
+      "authorUrl": "https://space.bilibili.com/103739",
+      "authorWebsite": "https://kiriyuki.com",
+      "license": "Noncommercial redistribution with attribution (upstream terms)",
+      "metadataLicense": "CC-BY-NC-4.0",
+      "licenseUrl": "https://github.com/Loping151/dsh-nekowhale-stickers/blob/main/LICENSE-ASSETS",
+      "collectedDate": "2026-11-03",
+      "preview": "gallery/10N07.gif",
+      "bytes": 990727,
+      "supported": true,
+      "annotationSource": "https://github.com/Loping151/dsh-nekowhale-stickers/blob/main/meta/nekowhale.json"
+    },
+    {
+      "id": "d1312bd69ea4783f80536098ec6ba36564547016249390a03893bf4e238f11d2",
+      "label": "鲸鱼娘：好人喵",
+      "image": {
+        "url": "https://kiriyuki.com/media/gif/%E5%A4%A7%E8%82%A5%E9%B1%BC/14N04_%E5%A5%BD%E4%BA%BA%E5%96%B5.gif?h=5855313c8921",
+        "width": 300,
+        "height": 300,
+        "format": "gif"
+      },
+      "sourceKey": "大肥鱼/14N04_好人喵",
+      "tags": [
+        "感谢",
+        "你真好",
+        "好人",
+        "感激",
+        "被帮助",
+        "星星眼"
+      ],
+      "scenes": [
+        "夸奖",
+        "闲聊"
+      ],
+      "description": "大肥鱼低着头，脸前伸来一只手，她将那只手捧在面前。随后她抬眼看向前方，瞳孔变成金色星星，脸旁接连闪起彩色光芒，露出越来越灿烂的感激笑容。",
+      "caption": "",
+      "avoid": "严肃求助、冲突或拒绝亲昵时不用；不把画面当作真实经历或承诺。",
+      "direction": "机器人用鲸鱼娘表达自己的反应；不拿用户当被嘲讽对象",
+      "usage": "得到帮助后满眼感激地夸对方是好人时",
+      "sourcePage": "https://kiriyuki.com/showcase?p=%E5%A4%A7%E8%82%A5%E9%B1%BC",
+      "author": "可以叫我云大人/雾雪",
+      "authorUrl": "https://space.bilibili.com/103739",
+      "authorWebsite": "https://kiriyuki.com",
+      "license": "Noncommercial redistribution with attribution (upstream terms)",
+      "metadataLicense": "CC-BY-NC-4.0",
+      "licenseUrl": "https://github.com/Loping151/dsh-nekowhale-stickers/blob/main/LICENSE-ASSETS",
+      "collectedDate": "2026-11-03",
+      "preview": "gallery/14N04.gif",
+      "bytes": 1508734,
+      "supported": true,
+      "annotationSource": "https://github.com/Loping151/dsh-nekowhale-stickers/blob/main/meta/nekowhale.json"
+    },
+    {
+      "id": "3c2ee6b55a729a4888072350573a705fd0c8a158a94dfc5f41c73c223ef3e498",
+      "label": "鲸鱼娘：理理我嘛",
+      "image": {
+        "url": "https://kiriyuki.com/media/gif/%E5%A4%A7%E8%82%A5%E9%B1%BC/14N08_%E7%90%86%E7%90%86%E6%88%91%E5%98%9B.gif?h=55f2a76adb20",
+        "width": 300,
+        "height": 300,
+        "format": "gif"
+      },
+      "sourceKey": "大肥鱼/14N08_理理我嘛",
+      "tags": [
+        "撒娇",
+        "卖萌",
+        "理理我",
+        "求关注",
+        "陪我聊",
+        "戳一戳"
+      ],
+      "scenes": [
+        "闲聊",
+        "夸奖"
+      ],
+      "description": "大肥鱼闭眼微笑，脸颊红红的，将一只白色小手伸向前方又收回，接着换另一只手轻轻探出。她随着左右交替的动作摇晃身体，像不断戳人，想让对方理理自己。",
+      "caption": "",
+      "avoid": "严肃求助、冲突或拒绝亲昵时不用；不把画面当作真实经历或承诺。",
+      "direction": "机器人用鲸鱼娘表达自己的反应；不拿用户当被嘲讽对象",
+      "usage": "对方没回应，撒娇求关注和陪聊时",
+      "sourcePage": "https://kiriyuki.com/showcase?p=%E5%A4%A7%E8%82%A5%E9%B1%BC",
+      "author": "可以叫我云大人/雾雪",
+      "authorUrl": "https://space.bilibili.com/103739",
+      "authorWebsite": "https://kiriyuki.com",
+      "license": "Noncommercial redistribution with attribution (upstream terms)",
+      "metadataLicense": "CC-BY-NC-4.0",
+      "licenseUrl": "https://github.com/Loping151/dsh-nekowhale-stickers/blob/main/LICENSE-ASSETS",
+      "collectedDate": "2026-11-03",
+      "preview": "gallery/14N08.gif",
+      "bytes": 695537,
+      "supported": true,
+      "annotationSource": "https://github.com/Loping151/dsh-nekowhale-stickers/blob/main/meta/nekowhale.json"
+    },
+    {
+      "id": "f99956672768ce241ac4463e60304e57de38fc7b72f7e221399c40ab7589cc5b",
+      "label": "鲸鱼娘：给你心心",
+      "image": {
+        "url": "https://kiriyuki.com/media/gif/%E5%A4%A7%E8%82%A5%E9%B1%BC/16N08_%E7%BB%99%E4%BD%A0%E5%BF%83%E5%BF%83.gif?h=c71aab883a25",
+        "width": 300,
+        "height": 300,
+        "format": "gif"
+      },
+      "sourceKey": "大肥鱼/16N08_给你心心",
+      "tags": [
+        "撒娇",
+        "喜欢",
+        "表白",
+        "送心",
+        "喜欢你",
+        "贴贴"
+      ],
+      "scenes": [
+        "闲聊",
+        "夸奖"
+      ],
+      "description": "大肥鱼从画面右下方慢慢探出脑袋，红着脸把粉色爱心举在嘴边，歪头眨眼，又闭眼凑近亲吻爱心，满脸亲昵地望向对方。",
+      "caption": "",
+      "avoid": "只用于双方接受的轻松亲昵玩笑；不暗示真实恋爱、身体接触或亲属关系。",
+      "direction": "机器人用鲸鱼娘表达自己的反应；不拿用户当被嘲讽对象",
+      "usage": "向喜欢的人送上一颗心",
+      "sourcePage": "https://kiriyuki.com/showcase?p=%E5%A4%A7%E8%82%A5%E9%B1%BC",
+      "author": "可以叫我云大人/雾雪",
+      "authorUrl": "https://space.bilibili.com/103739",
+      "authorWebsite": "https://kiriyuki.com",
+      "license": "Noncommercial redistribution with attribution (upstream terms)",
+      "metadataLicense": "CC-BY-NC-4.0",
+      "licenseUrl": "https://github.com/Loping151/dsh-nekowhale-stickers/blob/main/LICENSE-ASSETS",
+      "collectedDate": "2026-11-03",
+      "preview": "gallery/16N08.gif",
+      "bytes": 695534,
+      "supported": true,
+      "annotationSource": "https://github.com/Loping151/dsh-nekowhale-stickers/blob/main/meta/nekowhale.json"
+    },
+    {
+      "id": "5eda76f43e148fc7fa31b6c9a92fa861ba0016b95a6bd2b8a58a1b1c07183b4a",
+      "label": "鲸鱼娘：蹭蹭",
+      "image": {
+        "url": "https://kiriyuki.com/media/gif/%E5%A4%A7%E8%82%A5%E9%B1%BC/4N05_%E8%B9%AD%E8%B9%AD.gif?h=36658d3be504",
+        "width": 300,
+        "height": 300,
+        "format": "gif"
+      },
+      "sourceKey": "大肥鱼/4N05_蹭蹭",
+      "tags": [
+        "撒娇",
+        "喜欢",
+        "蹭蹭",
+        "贴贴",
+        "亲近",
+        "抱抱"
+      ],
+      "scenes": [
+        "闲聊",
+        "夸奖"
+      ],
+      "description": "大肥鱼双手捧住一盆顶着小花的绿色仙人掌，闭着眼睛开心微笑；她反复把脸贴向仙人掌侧面，左右轻轻蹭动，抱着花盆一副很享受的样子。",
+      "caption": "",
+      "avoid": "只用于双方接受的轻松亲昵玩笑；不暗示真实恋爱、身体接触或亲属关系。",
+      "direction": "机器人用鲸鱼娘表达自己的反应；不拿用户当被嘲讽对象",
+      "usage": "想黏着对方撒娇蹭蹭时使用",
+      "sourcePage": "https://kiriyuki.com/showcase?p=%E5%A4%A7%E8%82%A5%E9%B1%BC",
+      "author": "可以叫我云大人/雾雪",
+      "authorUrl": "https://space.bilibili.com/103739",
+      "authorWebsite": "https://kiriyuki.com",
+      "license": "Noncommercial redistribution with attribution (upstream terms)",
+      "metadataLicense": "CC-BY-NC-4.0",
+      "licenseUrl": "https://github.com/Loping151/dsh-nekowhale-stickers/blob/main/LICENSE-ASSETS",
+      "collectedDate": "2026-11-03",
+      "preview": "gallery/4N05.gif",
+      "bytes": 687255,
+      "supported": true,
+      "annotationSource": "https://github.com/Loping151/dsh-nekowhale-stickers/blob/main/meta/nekowhale.json"
+    },
+    {
+      "id": "cf4d8c3a948b52e8951d3aa63c23a3e2af7891f9431cc9b04584a9882b746a8d",
+      "label": "鲸鱼娘：求求",
+      "image": {
+        "url": "https://kiriyuki.com/media/gif/%E5%A4%A7%E8%82%A5%E9%B1%BC/6N05_%E6%B1%82%E6%B1%82.gif?h=0a9ca733536d",
+        "width": 300,
+        "height": 300,
+        "format": "gif"
+      },
+      "sourceKey": "大肥鱼/6N05_求求",
+      "tags": [
+        "撒娇",
+        "卖萌",
+        "求求你",
+        "拜托",
+        "可怜巴巴",
+        "想要"
+      ],
+      "scenes": [
+        "闲聊",
+        "夸奖"
+      ],
+      "description": "大肥鱼把两只小手收在胸前，指尖相对轻轻碰动，眼睛变成带着大片高光的黑色圆眼；她抿着小嘴缓慢低头又抬头，始终可怜巴巴地望向前方。",
+      "caption": "",
+      "avoid": "严肃求助、冲突或拒绝亲昵时不用；不把画面当作真实经历或承诺。",
+      "direction": "机器人用鲸鱼娘表达自己的反应；不拿用户当被嘲讽对象",
+      "usage": "睁大水汪汪的眼睛撒娇求答应",
+      "sourcePage": "https://kiriyuki.com/showcase?p=%E5%A4%A7%E8%82%A5%E9%B1%BC",
+      "author": "可以叫我云大人/雾雪",
+      "authorUrl": "https://space.bilibili.com/103739",
+      "authorWebsite": "https://kiriyuki.com",
+      "license": "Noncommercial redistribution with attribution (upstream terms)",
+      "metadataLicense": "CC-BY-NC-4.0",
+      "licenseUrl": "https://github.com/Loping151/dsh-nekowhale-stickers/blob/main/LICENSE-ASSETS",
+      "collectedDate": "2026-11-03",
+      "preview": "gallery/6N05.gif",
+      "bytes": 746166,
+      "supported": true,
+      "annotationSource": "https://github.com/Loping151/dsh-nekowhale-stickers/blob/main/meta/nekowhale.json"
+    },
+    {
+      "id": "4700d723e88ac45a7c0149cb3572e3883205fa5770983c214338557ee61dbc3a",
+      "label": "鲸鱼娘：软糯",
+      "image": {
+        "url": "https://kiriyuki.com/media/gif/%E5%A4%A7%E8%82%A5%E9%B1%BC/6N12_%E8%BD%AF%E7%B3%AF.gif?h=537f7cf68605",
+        "width": 300,
+        "height": 300,
+        "format": "gif"
+      },
+      "sourceKey": "大肥鱼/6N12_软糯",
+      "tags": [
+        "撒娇",
+        "卖萌",
+        "乖巧",
+        "软萌",
+        "害羞",
+        "等你"
+      ],
+      "scenes": [
+        "闲聊",
+        "夸奖"
+      ],
+      "description": "大肥鱼把两只小手交握在胸前，微微低头，脸颊带着红晕；她缓慢地左右歪头，眼睛时而闭上时而抬起看向前方，神情安静柔软，嘴巴轻轻抿着。",
+      "caption": "",
+      "avoid": "严肃求助、冲突或拒绝亲昵时不用；不把画面当作真实经历或承诺。",
+      "direction": "机器人用鲸鱼娘表达自己的反应；不拿用户当被嘲讽对象",
+      "usage": "乖巧地等待回应或软软地撒娇",
+      "sourcePage": "https://kiriyuki.com/showcase?p=%E5%A4%A7%E8%82%A5%E9%B1%BC",
+      "author": "可以叫我云大人/雾雪",
+      "authorUrl": "https://space.bilibili.com/103739",
+      "authorWebsite": "https://kiriyuki.com",
+      "license": "Noncommercial redistribution with attribution (upstream terms)",
+      "metadataLicense": "CC-BY-NC-4.0",
+      "licenseUrl": "https://github.com/Loping151/dsh-nekowhale-stickers/blob/main/LICENSE-ASSETS",
+      "collectedDate": "2026-11-03",
+      "preview": "gallery/6N12.gif",
+      "bytes": 1259862,
+      "supported": true,
+      "annotationSource": "https://github.com/Loping151/dsh-nekowhale-stickers/blob/main/meta/nekowhale.json"
+    },
+    {
+      "id": "87329db0b80ff7d2c1130ca1252ed6d7894a70635a46d6a314d90d1a847eba8e",
+      "label": "鲸鱼娘：炸虾猫",
+      "image": {
+        "url": "https://kiriyuki.com/media/gif/%E5%A4%A7%E8%82%A5%E9%B1%BC/EX41_%E7%82%B8%E8%99%BE%E7%8C%AB.gif?h=9e337137ae91",
+        "width": 300,
+        "height": 300,
+        "format": "gif"
+      },
+      "sourceKey": "大肥鱼/EX41_炸虾猫",
+      "tags": [
+        "撒娇",
+        "卖萌",
+        "炸虾",
+        "可爱",
+        "摇摆",
+        "美食"
+      ],
+      "scenes": [
+        "闲聊",
+        "夸奖"
+      ],
+      "description": "大肥鱼把全身裹进金黄色炸虾外壳，只露出脑袋和蓝色发梢，底部伸出红色虾尾；她斜着身体左右轻轻扭动，眨眼微笑着来回摇摆。",
+      "caption": "",
+      "avoid": "严肃求助、冲突或拒绝亲昵时不用；不把画面当作真实经历或承诺。",
+      "direction": "机器人用鲸鱼娘表达自己的反应；不拿用户当被嘲讽对象",
+      "usage": "变成可爱炸虾摇摆卖萌时用",
+      "sourcePage": "https://kiriyuki.com/showcase?p=%E5%A4%A7%E8%82%A5%E9%B1%BC",
+      "author": "可以叫我云大人/雾雪",
+      "authorUrl": "https://space.bilibili.com/103739",
+      "authorWebsite": "https://kiriyuki.com",
+      "license": "Noncommercial redistribution with attribution (upstream terms)",
+      "metadataLicense": "CC-BY-NC-4.0",
+      "licenseUrl": "https://github.com/Loping151/dsh-nekowhale-stickers/blob/main/LICENSE-ASSETS",
+      "collectedDate": "2026-11-03",
+      "preview": "gallery/EX41.gif",
+      "bytes": 743998,
+      "supported": true,
+      "annotationSource": "https://github.com/Loping151/dsh-nekowhale-stickers/blob/main/meta/nekowhale.json"
+    },
+    {
+      "id": "76767f987ac79e85e554e94a0796979d71ea4f49a5eeffa2d7ab9a9b758a0b2d",
+      "label": "鲸鱼娘：诶嘿",
+      "image": {
+        "url": "https://kiriyuki.com/media/gif/%E5%A4%A7%E8%82%A5%E9%B1%BC/N11_%E8%AF%B6%E5%98%BF.gif?h=37abb6de7c6b",
+        "width": 300,
+        "height": 300,
+        "format": "gif"
+      },
+      "sourceKey": "大肥鱼/N11_诶嘿",
+      "tags": [
+        "撒娇",
+        "卖萌",
+        "诶嘿",
+        "装可爱",
+        "蒙混过关",
+        "小得意"
+      ],
+      "scenes": [
+        "闲聊",
+        "夸奖"
+      ],
+      "description": "大肥鱼歪着头，脸颊红红地抿嘴微笑，眼睛逐渐弯成月牙。她轻轻摇动脑袋，中途闭眼笑得更甜，随后重新睁开眼睛，保持带点小得意的可爱神情。",
+      "caption": "",
+      "avoid": "严肃求助、冲突或拒绝亲昵时不用；不把画面当作真实经历或承诺。",
+      "direction": "机器人用鲸鱼娘表达自己的反应；不拿用户当被嘲讽对象",
+      "usage": "想用可爱笑容蒙混过关时",
+      "sourcePage": "https://kiriyuki.com/showcase?p=%E5%A4%A7%E8%82%A5%E9%B1%BC",
+      "author": "可以叫我云大人/雾雪",
+      "authorUrl": "https://space.bilibili.com/103739",
+      "authorWebsite": "https://kiriyuki.com",
+      "license": "Noncommercial redistribution with attribution (upstream terms)",
+      "metadataLicense": "CC-BY-NC-4.0",
+      "licenseUrl": "https://github.com/Loping151/dsh-nekowhale-stickers/blob/main/LICENSE-ASSETS",
+      "collectedDate": "2026-11-03",
+      "preview": "gallery/N11.gif",
+      "bytes": 1669851,
+      "supported": true,
+      "annotationSource": "https://github.com/Loping151/dsh-nekowhale-stickers/blob/main/meta/nekowhale.json"
+    }
+  ]
+}

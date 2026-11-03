@@ -14,7 +14,7 @@ import (
 const privateReplyMaxParts = 3
 
 // privateStickerChance 非严肃话题可提供表情候选的随机百分比。
-const privateStickerChance = 18
+const privateStickerChance = 20
 
 // privatePartDelayMin 分条之间最短等待，单位毫秒；平台限速仍独立生效。
 const privatePartDelayMin = 600

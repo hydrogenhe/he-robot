@@ -19,3 +19,8 @@
 2026-10-31私信推送：新增github.com/gorilla/websocket v1.5.3（BSD-2-Clause）及google.golang.org/protobuf v1.36.11（BSD-3-Clause），版本/校验和见go.mod/go.sum，分发遵循其LICENSE。协议资料参考[laplace-live/comet](https://github.com/laplace-live/comet)公布的网页广播路径、字段号及认证/订阅流程；该仓库AGPL-3.0，本项目未复制、移植或捆绑其客户端代码，以标准Protobuf库独立实现Go协议适配。B站广播仍是非官方Web接口，协议可变，不代表平台公开SDK承诺。
 
 2026-11-02记忆存储采用 modernc.org/sqlite v1.38.2（BSD-3-Clause，已核对模块 LICENSE），将 SQLite 编译入 Go 程序，无需用户安装数据库服务。传递依赖及校验值见 go.mod/go.sum；分发时保留对应 LICENSE/NOTICE。
+
+
+## 公共表情资源（2026-11-03）
+
+`assets/images/stickers/` 为独立许可的公开表情资料，不属于本项目 MIT 代码授权。新增36张原始GIF来自 [kiriyuki.com](https://kiriyuki.com)，作者 [可以叫我云大人/雾雪](https://space.bilibili.com/103739)，仅按上游保留署名与网址的非商业分享条件提供。相关语义数据由 [Loping151/dsh-nekowhale-stickers](https://github.com/Loping151/dsh-nekowhale-stickers) 的 CC BY-NC 4.0 数据整理；未引入其运行时代码。角色设计来源与旧收藏逐张出处见[图库说明](assets/images/stickers/README.md)及 sources.json，上游声明原文随图库保留。

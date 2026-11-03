@@ -183,6 +183,19 @@ func TestStickerModesAndFallback(t *testing.T) {
 		{name: "image-only", only: true, calls: 2, images: 1},
 		{name: "text-and-image", calls: 2, texts: 1, images: 1},
 		{name: "random-text", draw: 99, calls: 1, texts: 1},
+		{
+			name:   "twenty-percent-last-hit",
+			draw:   19,
+			calls:  2,
+			texts:  1,
+			images: 1,
+		},
+		{
+			name:  "twenty-percent-first-miss",
+			draw:  20,
+			calls: 1,
+			texts: 1,
+		},
 		{name: "unsuitable", unsuitable: true, calls: 1, texts: 1},
 		{name: "no-candidate", noMatch: true, calls: 1, texts: 1},
 		{name: "invalid-id", only: true, selection: "invented", calls: 2, texts: 1},
@@ -290,5 +303,31 @@ func TestStickerSelectionSkipsUnknownOrExhaustedBudget(t *testing.T) {
 		if generator.calls != 1 || f.images != 0 || f.attempts != 1 {
 			t.Fatal("optional selection exceeded known budget")
 		}
+	}
+}
+
+func TestGroupCollectionIsNotUsedForPrivateReplies(t *testing.T) {
+	s, f, _ := expressionService(t)
+	writeProviderFixture(t, s, f.data)
+	source := filepath.Join(s.Store.Root, "assets/images/stickers/providers/codex")
+	target := filepath.Join(s.Store.Root, "assets/images/stickers/group/dragon-whale")
+	if err := os.MkdirAll(filepath.Dir(target), 0700); err != nil {
+		t.Fatal(err)
+	}
+	if err := os.Rename(source, target); err != nil {
+		t.Fatal(err)
+	}
+	generator := &providerStickerGenerator{
+		t:        t,
+		provider: "codex",
+		only:     true,
+	}
+	s.Generator = generator
+	f.messages = []model.PrivateMessage{privateMessage(1, "789", "123", "发个表情包")}
+	if err := s.PrivateTick(ctx); err != nil {
+		t.Fatal(err)
+	}
+	if generator.calls != 1 || f.images != 0 || f.attempts != 1 {
+		t.Fatal("group-only collection leaked into private response")
 	}
 }

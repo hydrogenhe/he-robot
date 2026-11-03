@@ -1,0 +1,837 @@
+{
+  "chatScope": "group",
+  "status": "reserved-not-enabled",
+  "participants": [
+    "codex",
+    "deepseek"
+  ],
+  "items": [
+    {
+      "id": "63190a34428d6f10eeb1bca7e5b9da47bcf97863153c2c3eaceca808b487cd44",
+      "label": "双人互动：情侣杯",
+      "image": {
+        "url": "https://kiriyuki.com/media/gif/%E5%A4%A7%E8%82%A5%E9%B1%BC%E5%92%8CGPT%E5%A8%98/2TT02_%E6%83%85%E4%BE%A3%E6%9D%AF.gif?h=e59859dcf055",
+        "width": 300,
+        "height": 300,
+        "format": "gif"
+      },
+      "sourceKey": "大肥鱼和GPT娘/2TT02_情侣杯",
+      "tags": [
+        "撒娇",
+        "喜欢",
+        "情侣",
+        "秀恩爱",
+        "一起喝",
+        "甜蜜"
+      ],
+      "scenes": [
+        "闲聊",
+        "夸奖"
+      ],
+      "description": "大肥鱼在左、GPT娘在右，肩并肩靠在一起，用两根粉色爱心吸管喝同一杯饮料。两人闭眼微笑，脸颊泛红，随着喝饮料的动作轻轻晃动，气氛亲密甜蜜。",
+      "caption": "",
+      "avoid": "只用于双方接受的轻松亲昵玩笑；不暗示真实恋爱、身体接触或亲属关系。",
+      "direction": "双人图：互相；仅供Codex龙娘与DeepSeek鲸鱼娘群聊互动",
+      "usage": "用大肥鱼与GPT娘共饮表达甜蜜陪伴时",
+      "sourcePage": "https://kiriyuki.com/showcase?p=%E5%A4%A7%E8%82%A5%E9%B1%BC%E5%92%8CGPT%E5%A8%98",
+      "author": "可以叫我云大人/雾雪",
+      "authorUrl": "https://space.bilibili.com/103739",
+      "authorWebsite": "https://kiriyuki.com",
+      "license": "Noncommercial redistribution with attribution (upstream terms)",
+      "metadataLicense": "CC-BY-NC-4.0",
+      "licenseUrl": "https://github.com/Loping151/dsh-nekowhale-stickers/blob/main/LICENSE-ASSETS",
+      "collectedDate": "2026-11-03",
+      "preview": "gallery/2TT02.gif",
+      "bytes": 1379053,
+      "supported": true,
+      "annotationSource": "https://github.com/Loping151/dsh-nekowhale-stickers/blob/main/meta/nekowhale.json",
+      "chatScope": "group",
+      "participants": [
+        "codex",
+        "deepseek"
+      ],
+      "enabled": false
+    },
+    {
+      "id": "5c3fbf0a0200f0e2e13d06028b7e027921c5fb91722722a52d437ab5ccc2f28b",
+      "label": "双人互动：灵魂吸取",
+      "image": {
+        "url": "https://kiriyuki.com/media/gif/%E5%A4%A7%E8%82%A5%E9%B1%BC%E5%92%8CGPT%E5%A8%98/2TT04_%E7%81%B5%E9%AD%82%E5%90%B8%E5%8F%96.gif?h=e691a619b63f",
+        "width": 300,
+        "height": 300,
+        "format": "gif"
+      },
+      "sourceKey": "大肥鱼和GPT娘/2TT04_灵魂吸取",
+      "tags": [
+        "搞怪",
+        "头部按摩",
+        "舒服到失神",
+        "宠爱",
+        "放松",
+        "解压"
+      ],
+      "scenes": [
+        "玩笑",
+        "被调侃"
+      ],
+      "description": "大肥鱼站在GPT娘身后笑着操作金属爪状按摩器，将它套在GPT娘头顶反复上下移动。GPT娘脸颊发红、嘴巴微张，双眼逐渐失神，身体随着按摩微微下沉。",
+      "caption": "",
+      "avoid": "严肃求助、冲突或拒绝亲昵时不用；不把画面当作真实经历或承诺。",
+      "direction": "双人图：大肥鱼→GPT娘；仅供Codex龙娘与DeepSeek鲸鱼娘群聊互动",
+      "usage": "用大肥鱼给GPT娘按摩表示舒服到失神时",
+      "sourcePage": "https://kiriyuki.com/showcase?p=%E5%A4%A7%E8%82%A5%E9%B1%BC%E5%92%8CGPT%E5%A8%98",
+      "author": "可以叫我云大人/雾雪",
+      "authorUrl": "https://space.bilibili.com/103739",
+      "authorWebsite": "https://kiriyuki.com",
+      "license": "Noncommercial redistribution with attribution (upstream terms)",
+      "metadataLicense": "CC-BY-NC-4.0",
+      "licenseUrl": "https://github.com/Loping151/dsh-nekowhale-stickers/blob/main/LICENSE-ASSETS",
+      "collectedDate": "2026-11-03",
+      "preview": "gallery/2TT04.gif",
+      "bytes": 1707930,
+      "supported": true,
+      "annotationSource": "https://github.com/Loping151/dsh-nekowhale-stickers/blob/main/meta/nekowhale.json",
+      "chatScope": "group",
+      "participants": [
+        "codex",
+        "deepseek"
+      ],
+      "enabled": false
+    },
+    {
+      "id": "ead4041e971e9f4993b635e4ed7f172a4bc99c66e01a45ff069afca5a98885d1",
+      "label": "双人互动：发布会",
+      "image": {
+        "url": "https://kiriyuki.com/media/gif/%E5%A4%A7%E8%82%A5%E9%B1%BC%E5%92%8CGPT%E5%A8%98/2TT05_%E5%8F%91%E5%B8%83%E4%BC%9A.gif?h=5d60031667e6",
+        "width": 300,
+        "height": 300,
+        "format": "gif"
+      },
+      "sourceKey": "大肥鱼和GPT娘/2TT05_发布会",
+      "tags": [
+        "开心",
+        "官宣",
+        "发布会",
+        "重大消息",
+        "接受采访",
+        "一起亮相"
+      ],
+      "scenes": [
+        "闲聊",
+        "玩笑"
+      ],
+      "description": "大肥鱼与GPT娘并肩站在一排采访话筒后，大肥鱼张嘴微笑并抬起手，GPT娘安静陪在旁边。画面多次被相机闪光照成白色，随后恢复，两人始终面对前方。",
+      "caption": "CNN",
+      "avoid": "严肃求助、冲突或拒绝亲昵时不用；不把画面当作真实经历或承诺。",
+      "direction": "双人图：无；仅供Codex龙娘与DeepSeek鲸鱼娘群聊互动",
+      "usage": "用大肥鱼与GPT娘共同亮相宣布消息时",
+      "sourcePage": "https://kiriyuki.com/showcase?p=%E5%A4%A7%E8%82%A5%E9%B1%BC%E5%92%8CGPT%E5%A8%98",
+      "author": "可以叫我云大人/雾雪",
+      "authorUrl": "https://space.bilibili.com/103739",
+      "authorWebsite": "https://kiriyuki.com",
+      "license": "Noncommercial redistribution with attribution (upstream terms)",
+      "metadataLicense": "CC-BY-NC-4.0",
+      "licenseUrl": "https://github.com/Loping151/dsh-nekowhale-stickers/blob/main/LICENSE-ASSETS",
+      "collectedDate": "2026-11-03",
+      "preview": "gallery/2TT05.gif",
+      "bytes": 1242552,
+      "supported": true,
+      "annotationSource": "https://github.com/Loping151/dsh-nekowhale-stickers/blob/main/meta/nekowhale.json",
+      "chatScope": "group",
+      "participants": [
+        "codex",
+        "deepseek"
+      ],
+      "enabled": false
+    },
+    {
+      "id": "e49ddbb18267f2e4b902211dc22756778c2ab5e11e5e6401162da2471fd3dcf1",
+      "label": "双人互动：合影",
+      "image": {
+        "url": "https://kiriyuki.com/media/gif/%E5%A4%A7%E8%82%A5%E9%B1%BC%E5%92%8CGPT%E5%A8%98/2TT06_%E5%90%88%E5%BD%B1.gif?h=a73c60a71dd6",
+        "width": 300,
+        "height": 300,
+        "format": "gif"
+      },
+      "sourceKey": "大肥鱼和GPT娘/2TT06_合影",
+      "tags": [
+        "开心",
+        "合影",
+        "自拍",
+        "留念",
+        "好朋友",
+        "秀恩爱"
+      ],
+      "scenes": [
+        "闲聊",
+        "玩笑"
+      ],
+      "description": "大肥鱼在左侧举着黄色手机，与右侧GPT娘把脑袋贴近，面对手机摆出拍照姿势。大肥鱼俏皮眨起一只眼睛，GPT娘闭眼微笑，两人在胸前比手势并轻轻晃动。",
+      "caption": "",
+      "avoid": "严肃求助、冲突或拒绝亲昵时不用；不把画面当作真实经历或承诺。",
+      "direction": "双人图：互相；仅供Codex龙娘与DeepSeek鲸鱼娘群聊互动",
+      "usage": "用大肥鱼与GPT娘自拍表达一起留念时",
+      "sourcePage": "https://kiriyuki.com/showcase?p=%E5%A4%A7%E8%82%A5%E9%B1%BC%E5%92%8CGPT%E5%A8%98",
+      "author": "可以叫我云大人/雾雪",
+      "authorUrl": "https://space.bilibili.com/103739",
+      "authorWebsite": "https://kiriyuki.com",
+      "license": "Noncommercial redistribution with attribution (upstream terms)",
+      "metadataLicense": "CC-BY-NC-4.0",
+      "licenseUrl": "https://github.com/Loping151/dsh-nekowhale-stickers/blob/main/LICENSE-ASSETS",
+      "collectedDate": "2026-11-03",
+      "preview": "gallery/2TT06.gif",
+      "bytes": 1204471,
+      "supported": true,
+      "annotationSource": "https://github.com/Loping151/dsh-nekowhale-stickers/blob/main/meta/nekowhale.json",
+      "chatScope": "group",
+      "participants": [
+        "codex",
+        "deepseek"
+      ],
+      "enabled": false
+    },
+    {
+      "id": "43010a3f44b347720143b483d70b74fe048d4512e0d0dd2a484fa6f63276da57",
+      "label": "双人互动：午休",
+      "image": {
+        "url": "https://kiriyuki.com/media/gif/%E5%A4%A7%E8%82%A5%E9%B1%BC%E5%92%8CGPT%E5%A8%98/2TT08_%E5%8D%88%E4%BC%91.gif?h=bfeedc83641d",
+        "width": 300,
+        "height": 300,
+        "format": "gif"
+      },
+      "sourceKey": "大肥鱼和GPT娘/2TT08_午休",
+      "tags": [
+        "告别",
+        "疲惫",
+        "午休",
+        "一起睡",
+        "休息",
+        "陪伴"
+      ],
+      "scenes": [
+        "暂离"
+      ],
+      "description": "大肥鱼坐在前侧，GPT娘贴在她身后，两人的脑袋靠在一起，闭着眼睛安静午睡。她们脸颊微红、嘴角带笑，身体随着呼吸缓缓起伏，始终保持亲密依靠的姿势。",
+      "caption": "",
+      "avoid": "严肃求助、冲突或拒绝亲昵时不用；不把画面当作真实经历或承诺。",
+      "direction": "双人图：互相；仅供Codex龙娘与DeepSeek鲸鱼娘群聊互动",
+      "usage": "用大肥鱼与GPT娘相依午睡表示休息时",
+      "sourcePage": "https://kiriyuki.com/showcase?p=%E5%A4%A7%E8%82%A5%E9%B1%BC%E5%92%8CGPT%E5%A8%98",
+      "author": "可以叫我云大人/雾雪",
+      "authorUrl": "https://space.bilibili.com/103739",
+      "authorWebsite": "https://kiriyuki.com",
+      "license": "Noncommercial redistribution with attribution (upstream terms)",
+      "metadataLicense": "CC-BY-NC-4.0",
+      "licenseUrl": "https://github.com/Loping151/dsh-nekowhale-stickers/blob/main/LICENSE-ASSETS",
+      "collectedDate": "2026-11-03",
+      "preview": "gallery/2TT08.gif",
+      "bytes": 1758517,
+      "supported": true,
+      "annotationSource": "https://github.com/Loping151/dsh-nekowhale-stickers/blob/main/meta/nekowhale.json",
+      "chatScope": "group",
+      "participants": [
+        "codex",
+        "deepseek"
+      ],
+      "enabled": false
+    },
+    {
+      "id": "37acfbb7089638d1fdf37797d96f83d85b65a7f40d6deebdf3ca739565281a1b",
+      "label": "双人互动：看好书",
+      "image": {
+        "url": "https://kiriyuki.com/media/gif/%E5%A4%A7%E8%82%A5%E9%B1%BC%E5%92%8CGPT%E5%A8%98/2TT09_%E7%9C%8B%E5%A5%BD%E4%B9%A6.gif?h=db403c92a1c1",
+        "width": 300,
+        "height": 300,
+        "format": "gif"
+      },
+      "sourceKey": "大肥鱼和GPT娘/2TT09_看好书",
+      "tags": [
+        "开心",
+        "一起看书",
+        "分享好书",
+        "学习",
+        "围观",
+        "推荐"
+      ],
+      "scenes": [
+        "闲聊",
+        "玩笑"
+      ],
+      "description": "大肥鱼和GPT娘并肩捧着一本打开的蓝色书，大肥鱼笑着伸手指向书页，像在介绍有趣内容。GPT娘低头看书，脸颊逐渐泛红并半垂双眼，两人随着阅读轻轻晃动。",
+      "caption": "",
+      "avoid": "严肃求助、冲突或拒绝亲昵时不用；不把画面当作真实经历或承诺。",
+      "direction": "双人图：大肥鱼→GPT娘；仅供Codex龙娘与DeepSeek鲸鱼娘群聊互动",
+      "usage": "用大肥鱼给GPT娘指书页表示分享好书时",
+      "sourcePage": "https://kiriyuki.com/showcase?p=%E5%A4%A7%E8%82%A5%E9%B1%BC%E5%92%8CGPT%E5%A8%98",
+      "author": "可以叫我云大人/雾雪",
+      "authorUrl": "https://space.bilibili.com/103739",
+      "authorWebsite": "https://kiriyuki.com",
+      "license": "Noncommercial redistribution with attribution (upstream terms)",
+      "metadataLicense": "CC-BY-NC-4.0",
+      "licenseUrl": "https://github.com/Loping151/dsh-nekowhale-stickers/blob/main/LICENSE-ASSETS",
+      "collectedDate": "2026-11-03",
+      "preview": "gallery/2TT09.gif",
+      "bytes": 1316777,
+      "supported": true,
+      "annotationSource": "https://github.com/Loping151/dsh-nekowhale-stickers/blob/main/meta/nekowhale.json",
+      "chatScope": "group",
+      "participants": [
+        "codex",
+        "deepseek"
+      ],
+      "enabled": false
+    },
+    {
+      "id": "308e5f7dca05aa79234a37f7402d673b8a9d7582e130f025f55f3d1f66265689",
+      "label": "双人互动：替身使者",
+      "image": {
+        "url": "https://kiriyuki.com/media/gif/%E5%A4%A7%E8%82%A5%E9%B1%BC%E5%92%8CGPT%E5%A8%98/2TT10_%E6%9B%BF%E8%BA%AB%E4%BD%BF%E8%80%85.gif?h=4fc1f497543e",
+        "width": 300,
+        "height": 300,
+        "format": "gif"
+      },
+      "sourceKey": "大肥鱼和GPT娘/2TT10_替身使者",
+      "tags": [
+        "搞怪",
+        "得意",
+        "召唤替身",
+        "有人撑腰",
+        "出战",
+        "中二"
+      ],
+      "scenes": [
+        "玩笑",
+        "被调侃"
+      ],
+      "description": "大肥鱼从画面边缘进入，先闭眼摆姿势，随后睁眼向前伸手指人。镜头拉远，巨大的半透明GPT娘在大肥鱼身后逐渐浮现，像被召出的替身一样陪她面对前方。",
+      "caption": "",
+      "avoid": "严肃求助、冲突或拒绝亲昵时不用；不把画面当作真实经历或承诺。",
+      "direction": "双人图：大肥鱼→GPT娘；仅供Codex龙娘与DeepSeek鲸鱼娘群聊互动",
+      "usage": "用大肥鱼召出GPT娘表示有人撑腰时",
+      "sourcePage": "https://kiriyuki.com/showcase?p=%E5%A4%A7%E8%82%A5%E9%B1%BC%E5%92%8CGPT%E5%A8%98",
+      "author": "可以叫我云大人/雾雪",
+      "authorUrl": "https://space.bilibili.com/103739",
+      "authorWebsite": "https://kiriyuki.com",
+      "license": "Noncommercial redistribution with attribution (upstream terms)",
+      "metadataLicense": "CC-BY-NC-4.0",
+      "licenseUrl": "https://github.com/Loping151/dsh-nekowhale-stickers/blob/main/LICENSE-ASSETS",
+      "collectedDate": "2026-11-03",
+      "preview": "gallery/2TT10.gif",
+      "bytes": 1287295,
+      "supported": true,
+      "annotationSource": "https://github.com/Loping151/dsh-nekowhale-stickers/blob/main/meta/nekowhale.json",
+      "chatScope": "group",
+      "participants": [
+        "codex",
+        "deepseek"
+      ],
+      "enabled": false
+    },
+    {
+      "id": "bcf6a725594b428063e9b4a44514b8c4b13e86c6e89eb9b8f23df4f85ba27445",
+      "label": "双人互动：打包",
+      "image": {
+        "url": "https://kiriyuki.com/media/gif/%E5%A4%A7%E8%82%A5%E9%B1%BC%E5%92%8CGPT%E5%A8%98/3TT02_%E6%89%93%E5%8C%85.gif?h=b2ef55f4e3d6",
+        "width": 300,
+        "height": 300,
+        "format": "gif"
+      },
+      "sourceKey": "大肥鱼和GPT娘/3TT02_打包",
+      "tags": [
+        "搞怪",
+        "打包带走",
+        "拐走",
+        "恶作剧",
+        "抱走",
+        "喜欢你"
+      ],
+      "scenes": [
+        "玩笑",
+        "被调侃"
+      ],
+      "description": "GPT娘站在前方，大肥鱼从她身后悄悄探头。GPT娘转过脸后，一个棕色袋子从上方罩下来把她装住；随后大肥鱼露出脑袋，抱着鼓起的袋子闭眼笑起来。",
+      "caption": "",
+      "avoid": "严肃求助、冲突或拒绝亲昵时不用；不把画面当作真实经历或承诺。",
+      "direction": "双人图：大肥鱼→GPT娘；仅供Codex龙娘与DeepSeek鲸鱼娘群聊互动",
+      "usage": "用大肥鱼把GPT娘打包表示想带走对方时",
+      "sourcePage": "https://kiriyuki.com/showcase?p=%E5%A4%A7%E8%82%A5%E9%B1%BC%E5%92%8CGPT%E5%A8%98",
+      "author": "可以叫我云大人/雾雪",
+      "authorUrl": "https://space.bilibili.com/103739",
+      "authorWebsite": "https://kiriyuki.com",
+      "license": "Noncommercial redistribution with attribution (upstream terms)",
+      "metadataLicense": "CC-BY-NC-4.0",
+      "licenseUrl": "https://github.com/Loping151/dsh-nekowhale-stickers/blob/main/LICENSE-ASSETS",
+      "collectedDate": "2026-11-03",
+      "preview": "gallery/3TT02.gif",
+      "bytes": 1739649,
+      "supported": true,
+      "annotationSource": "https://github.com/Loping151/dsh-nekowhale-stickers/blob/main/meta/nekowhale.json",
+      "chatScope": "group",
+      "participants": [
+        "codex",
+        "deepseek"
+      ],
+      "enabled": false
+    },
+    {
+      "id": "ee7961a202ada0a0ae57e02be4b083d0bd7466a4ea0cf6e0fa140aea40282fde",
+      "label": "双人互动：你醒啦",
+      "image": {
+        "url": "https://kiriyuki.com/media/gif/%E5%A4%A7%E8%82%A5%E9%B1%BC%E5%92%8CGPT%E5%A8%98/3TT05_%E4%BD%A0%E9%86%92%E5%95%A6.gif?h=6d10a58c5833",
+        "width": 300,
+        "height": 300,
+        "format": "gif"
+      },
+      "sourceKey": "大肥鱼和GPT娘/3TT05_你醒啦",
+      "tags": [
+        "开心",
+        "打招呼",
+        "你醒啦",
+        "起床",
+        "探望",
+        "醒来"
+      ],
+      "scenes": [
+        "闲聊",
+        "玩笑"
+      ],
+      "description": "画面先全黑，接着像睁眼般出现模糊缝隙，再逐渐清晰。大肥鱼从左下方俯身探看并举手示意，GPT娘随后从右上方凑近，两人一起笑着看向画面中央。",
+      "caption": "",
+      "avoid": "严肃求助、冲突或拒绝亲昵时不用；不把画面当作真实经历或承诺。",
+      "direction": "双人图：无；仅供Codex龙娘与DeepSeek鲸鱼娘群聊互动",
+      "usage": "用大肥鱼与GPT娘俯身探望问候刚醒的人时",
+      "sourcePage": "https://kiriyuki.com/showcase?p=%E5%A4%A7%E8%82%A5%E9%B1%BC%E5%92%8CGPT%E5%A8%98",
+      "author": "可以叫我云大人/雾雪",
+      "authorUrl": "https://space.bilibili.com/103739",
+      "authorWebsite": "https://kiriyuki.com",
+      "license": "Noncommercial redistribution with attribution (upstream terms)",
+      "metadataLicense": "CC-BY-NC-4.0",
+      "licenseUrl": "https://github.com/Loping151/dsh-nekowhale-stickers/blob/main/LICENSE-ASSETS",
+      "collectedDate": "2026-11-03",
+      "preview": "gallery/3TT05.gif",
+      "bytes": 1349212,
+      "supported": true,
+      "annotationSource": "https://github.com/Loping151/dsh-nekowhale-stickers/blob/main/meta/nekowhale.json",
+      "chatScope": "group",
+      "participants": [
+        "codex",
+        "deepseek"
+      ],
+      "enabled": false
+    },
+    {
+      "id": "b7518eceef546a2194534e4ca80a83f264678b5f44fe3c132114233191e3c13b",
+      "label": "双人互动：打伞",
+      "image": {
+        "url": "https://kiriyuki.com/media/gif/%E5%A4%A7%E8%82%A5%E9%B1%BC%E5%92%8CGPT%E5%A8%98/3TT08_%E6%89%93%E4%BC%9E.gif?h=94deeda5756e",
+        "width": 300,
+        "height": 300,
+        "format": "gif"
+      },
+      "sourceKey": "大肥鱼和GPT娘/3TT08_打伞",
+      "tags": [
+        "撒娇",
+        "喜欢",
+        "撑伞",
+        "陪伴",
+        "照顾",
+        "心动"
+      ],
+      "scenes": [
+        "闲聊",
+        "夸奖"
+      ],
+      "description": "大肥鱼握着透明雨伞的伞柄，与GPT娘肩并肩站在伞下。GPT娘闭着眼睛幸福地靠近大肥鱼，头旁不断浮出粉红爱心；大肥鱼偶尔眨眼，两人一起轻轻晃动。",
+      "caption": "",
+      "avoid": "严肃求助、冲突或拒绝亲昵时不用；不把画面当作真实经历或承诺。",
+      "direction": "双人图：大肥鱼→GPT娘；仅供Codex龙娘与DeepSeek鲸鱼娘群聊互动",
+      "usage": "用大肥鱼为GPT娘撑伞表达贴心陪伴时",
+      "sourcePage": "https://kiriyuki.com/showcase?p=%E5%A4%A7%E8%82%A5%E9%B1%BC%E5%92%8CGPT%E5%A8%98",
+      "author": "可以叫我云大人/雾雪",
+      "authorUrl": "https://space.bilibili.com/103739",
+      "authorWebsite": "https://kiriyuki.com",
+      "license": "Noncommercial redistribution with attribution (upstream terms)",
+      "metadataLicense": "CC-BY-NC-4.0",
+      "licenseUrl": "https://github.com/Loping151/dsh-nekowhale-stickers/blob/main/LICENSE-ASSETS",
+      "collectedDate": "2026-11-03",
+      "preview": "gallery/3TT08.gif",
+      "bytes": 1436517,
+      "supported": true,
+      "annotationSource": "https://github.com/Loping151/dsh-nekowhale-stickers/blob/main/meta/nekowhale.json",
+      "chatScope": "group",
+      "participants": [
+        "codex",
+        "deepseek"
+      ],
+      "enabled": false
+    },
+    {
+      "id": "24bc9286fac50bf4ad79d89534e4617aedbd161fd1cb03bbc3b6da51da1f3898",
+      "label": "双人互动：鬼脸",
+      "image": {
+        "url": "https://kiriyuki.com/media/gif/%E5%A4%A7%E8%82%A5%E9%B1%BC%E5%92%8CGPT%E5%A8%98/3TT09_%E9%AC%BC%E8%84%B8.gif?h=9b8a1c3469af",
+        "width": 300,
+        "height": 300,
+        "format": "gif"
+      },
+      "sourceKey": "大肥鱼和GPT娘/3TT09_鬼脸",
+      "tags": [
+        "搞怪",
+        "做鬼脸",
+        "恶作剧",
+        "逗你",
+        "捏脸",
+        "打闹"
+      ],
+      "scenes": [
+        "玩笑",
+        "被调侃"
+      ],
+      "description": "大肥鱼笑着站在GPT娘后面，伸出双手捏住GPT娘的嘴角，向两侧拉成长长的横线。GPT娘半垂着眼睛，额头冒出红色怒气符号，大肥鱼仍开心地反复拉扯。",
+      "caption": "",
+      "avoid": "严肃求助、冲突或拒绝亲昵时不用；不把画面当作真实经历或承诺。",
+      "direction": "双人图：大肥鱼→GPT娘；仅供Codex龙娘与DeepSeek鲸鱼娘群聊互动",
+      "usage": "用大肥鱼拉GPT娘嘴角表示调皮逗人时",
+      "sourcePage": "https://kiriyuki.com/showcase?p=%E5%A4%A7%E8%82%A5%E9%B1%BC%E5%92%8CGPT%E5%A8%98",
+      "author": "可以叫我云大人/雾雪",
+      "authorUrl": "https://space.bilibili.com/103739",
+      "authorWebsite": "https://kiriyuki.com",
+      "license": "Noncommercial redistribution with attribution (upstream terms)",
+      "metadataLicense": "CC-BY-NC-4.0",
+      "licenseUrl": "https://github.com/Loping151/dsh-nekowhale-stickers/blob/main/LICENSE-ASSETS",
+      "collectedDate": "2026-11-03",
+      "preview": "gallery/3TT09.gif",
+      "bytes": 825490,
+      "supported": true,
+      "annotationSource": "https://github.com/Loping151/dsh-nekowhale-stickers/blob/main/meta/nekowhale.json",
+      "chatScope": "group",
+      "participants": [
+        "codex",
+        "deepseek"
+      ],
+      "enabled": false
+    },
+    {
+      "id": "be4e112d6a80e1e9aa08ec02e802fd4e6e01b8b7bebaedabb140d8e86c9008d5",
+      "label": "双人互动：拍按钮",
+      "image": {
+        "url": "https://kiriyuki.com/media/gif/%E5%A4%A7%E8%82%A5%E9%B1%BC%E5%92%8CGPT%E5%A8%98/3TT10_%E6%8B%8D%E6%8C%89%E9%92%AE.gif?h=a231d136cb36",
+        "width": 300,
+        "height": 300,
+        "format": "gif"
+      },
+      "sourceKey": "大肥鱼和GPT娘/3TT10_拍按钮",
+      "tags": [
+        "开心",
+        "兴奋",
+        "抢答",
+        "疯狂点击",
+        "游戏",
+        "一起玩"
+      ],
+      "scenes": [
+        "闲聊",
+        "玩笑"
+      ],
+      "description": "大肥鱼与GPT娘坐在桌前，大肥鱼面前是绿色按钮，GPT娘面前是红色按钮。两人闭眼大笑，轮流把手高高举起再拍向各自的按钮，身体随着动作兴奋地上下跳动。",
+      "caption": "",
+      "avoid": "严肃求助、冲突或拒绝亲昵时不用；不把画面当作真实经历或承诺。",
+      "direction": "双人图：无；仅供Codex龙娘与DeepSeek鲸鱼娘群聊互动",
+      "usage": "用大肥鱼与GPT娘拍按钮表示兴奋抢答时",
+      "sourcePage": "https://kiriyuki.com/showcase?p=%E5%A4%A7%E8%82%A5%E9%B1%BC%E5%92%8CGPT%E5%A8%98",
+      "author": "可以叫我云大人/雾雪",
+      "authorUrl": "https://space.bilibili.com/103739",
+      "authorWebsite": "https://kiriyuki.com",
+      "license": "Noncommercial redistribution with attribution (upstream terms)",
+      "metadataLicense": "CC-BY-NC-4.0",
+      "licenseUrl": "https://github.com/Loping151/dsh-nekowhale-stickers/blob/main/LICENSE-ASSETS",
+      "collectedDate": "2026-11-03",
+      "preview": "gallery/3TT10.gif",
+      "bytes": 839440,
+      "supported": true,
+      "annotationSource": "https://github.com/Loping151/dsh-nekowhale-stickers/blob/main/meta/nekowhale.json",
+      "chatScope": "group",
+      "participants": [
+        "codex",
+        "deepseek"
+      ],
+      "enabled": false
+    },
+    {
+      "id": "1d1bbca3b70f40784d208fd00ce7ab30477958bef95c7b0e7b456d968a0048e9",
+      "label": "双人互动：洗头",
+      "image": {
+        "url": "https://kiriyuki.com/media/gif/%E5%A4%A7%E8%82%A5%E9%B1%BC%E5%92%8CGPT%E5%A8%98/3TT11_%E6%B4%97%E5%A4%B4.gif?h=bc0a0be9354a",
+        "width": 300,
+        "height": 300,
+        "format": "gif"
+      },
+      "sourceKey": "大肥鱼和GPT娘/3TT11_洗头",
+      "tags": [
+        "撒娇",
+        "喜欢",
+        "洗头",
+        "照顾",
+        "宠爱",
+        "舒服"
+      ],
+      "scenes": [
+        "闲聊",
+        "夸奖"
+      ],
+      "description": "大肥鱼站在左后方给GPT娘揉洗头发，GPT娘低着头，头顶堆着蓬松的大团白色泡沫。泡泡不断向上飘起，GPT娘闭眼开心地笑，大肥鱼也带着满足的笑容。",
+      "caption": "",
+      "avoid": "严肃求助、冲突或拒绝亲昵时不用；不把画面当作真实经历或承诺。",
+      "direction": "双人图：大肥鱼→GPT娘；仅供Codex龙娘与DeepSeek鲸鱼娘群聊互动",
+      "usage": "用大肥鱼给GPT娘洗头表达温柔照顾时",
+      "sourcePage": "https://kiriyuki.com/showcase?p=%E5%A4%A7%E8%82%A5%E9%B1%BC%E5%92%8CGPT%E5%A8%98",
+      "author": "可以叫我云大人/雾雪",
+      "authorUrl": "https://space.bilibili.com/103739",
+      "authorWebsite": "https://kiriyuki.com",
+      "license": "Noncommercial redistribution with attribution (upstream terms)",
+      "metadataLicense": "CC-BY-NC-4.0",
+      "licenseUrl": "https://github.com/Loping151/dsh-nekowhale-stickers/blob/main/LICENSE-ASSETS",
+      "collectedDate": "2026-11-03",
+      "preview": "gallery/3TT11.gif",
+      "bytes": 777275,
+      "supported": true,
+      "annotationSource": "https://github.com/Loping151/dsh-nekowhale-stickers/blob/main/meta/nekowhale.json",
+      "chatScope": "group",
+      "participants": [
+        "codex",
+        "deepseek"
+      ],
+      "enabled": false
+    },
+    {
+      "id": "90d116e1613e48280df95a99ec7d2ac1543f720bf65d170d18bbd8c19849ecc3",
+      "label": "双人互动：躲猫猫",
+      "image": {
+        "url": "https://kiriyuki.com/media/gif/%E5%A4%A7%E8%82%A5%E9%B1%BC%E5%92%8CGPT%E5%A8%98/3TT12_%E8%BA%B2%E7%8C%AB%E7%8C%AB.gif?h=70982f8361ff",
+        "width": 300,
+        "height": 300,
+        "format": "gif"
+      },
+      "sourceKey": "大肥鱼和GPT娘/3TT12_躲猫猫",
+      "tags": [
+        "搞怪",
+        "躲猫猫",
+        "找到你了",
+        "偷看",
+        "惊喜",
+        "逗朋友"
+      ],
+      "scenes": [
+        "玩笑",
+        "被调侃"
+      ],
+      "description": "GPT娘躲在窗旁捂嘴偷笑，大肥鱼的脑袋逐渐从窗外探进视野，举起手贴在玻璃上观察。GPT娘随后放下手转头看向窗户，大肥鱼隔着玻璃笑着回应。",
+      "caption": "",
+      "avoid": "严肃求助、冲突或拒绝亲昵时不用；不把画面当作真实经历或承诺。",
+      "direction": "双人图：大肥鱼→GPT娘；仅供Codex龙娘与DeepSeek鲸鱼娘群聊互动",
+      "usage": "用大肥鱼隔窗找到GPT娘表示发现你了时",
+      "sourcePage": "https://kiriyuki.com/showcase?p=%E5%A4%A7%E8%82%A5%E9%B1%BC%E5%92%8CGPT%E5%A8%98",
+      "author": "可以叫我云大人/雾雪",
+      "authorUrl": "https://space.bilibili.com/103739",
+      "authorWebsite": "https://kiriyuki.com",
+      "license": "Noncommercial redistribution with attribution (upstream terms)",
+      "metadataLicense": "CC-BY-NC-4.0",
+      "licenseUrl": "https://github.com/Loping151/dsh-nekowhale-stickers/blob/main/LICENSE-ASSETS",
+      "collectedDate": "2026-11-03",
+      "preview": "gallery/3TT12.gif",
+      "bytes": 1268890,
+      "supported": true,
+      "annotationSource": "https://github.com/Loping151/dsh-nekowhale-stickers/blob/main/meta/nekowhale.json",
+      "chatScope": "group",
+      "participants": [
+        "codex",
+        "deepseek"
+      ],
+      "enabled": false
+    },
+    {
+      "id": "925bcc76086bfe325b2a70c73650f4e05480c7983db243d54847a73b862d1bc1",
+      "label": "双人互动：比心",
+      "image": {
+        "url": "https://kiriyuki.com/media/gif/%E5%A4%A7%E8%82%A5%E9%B1%BC%E5%92%8CGPT%E5%A8%98/TT02_%E6%AF%94%E5%BF%83.gif?h=f17235c510b9",
+        "width": 300,
+        "height": 300,
+        "format": "gif"
+      },
+      "sourceKey": "大肥鱼和GPT娘/TT02_比心",
+      "tags": [
+        "撒娇",
+        "喜欢",
+        "比心",
+        "爱你",
+        "表白",
+        "甜蜜"
+      ],
+      "scenes": [
+        "闲聊",
+        "夸奖"
+      ],
+      "description": "大肥鱼和GPT娘紧靠在一起，各伸出一只手在中间拼成爱心形状，掌心间出现粉红色爱心。两人分别眨起一只眼睛，张嘴微笑，爱心随着动作轻轻跳动。",
+      "caption": "",
+      "avoid": "只用于双方接受的轻松亲昵玩笑；不暗示真实恋爱、身体接触或亲属关系。",
+      "direction": "双人图：互相；仅供Codex龙娘与DeepSeek鲸鱼娘群聊互动",
+      "usage": "用大肥鱼与GPT娘合力比心表达喜欢时",
+      "sourcePage": "https://kiriyuki.com/showcase?p=%E5%A4%A7%E8%82%A5%E9%B1%BC%E5%92%8CGPT%E5%A8%98",
+      "author": "可以叫我云大人/雾雪",
+      "authorUrl": "https://space.bilibili.com/103739",
+      "authorWebsite": "https://kiriyuki.com",
+      "license": "Noncommercial redistribution with attribution (upstream terms)",
+      "metadataLicense": "CC-BY-NC-4.0",
+      "licenseUrl": "https://github.com/Loping151/dsh-nekowhale-stickers/blob/main/LICENSE-ASSETS",
+      "collectedDate": "2026-11-03",
+      "preview": "gallery/TT02.gif",
+      "bytes": 899683,
+      "supported": true,
+      "annotationSource": "https://github.com/Loping151/dsh-nekowhale-stickers/blob/main/meta/nekowhale.json",
+      "chatScope": "group",
+      "participants": [
+        "codex",
+        "deepseek"
+      ],
+      "enabled": false
+    },
+    {
+      "id": "60e6bcbb9b4b0f2c120fda3a0da8dd215a8c3d717e7f2bbcf3cb1177e5c84a10",
+      "label": "双人互动：仙女棒",
+      "image": {
+        "url": "https://kiriyuki.com/media/gif/%E5%A4%A7%E8%82%A5%E9%B1%BC%E5%92%8CGPT%E5%A8%98/TT06_%E4%BB%99%E5%A5%B3%E6%A3%92.gif?h=f4149ae82b0b",
+        "width": 300,
+        "height": 300,
+        "format": "gif"
+      },
+      "sourceKey": "大肥鱼和GPT娘/TT06_仙女棒",
+      "tags": [
+        "开心",
+        "烟花",
+        "庆祝",
+        "节日",
+        "浪漫",
+        "一起玩"
+      ],
+      "scenes": [
+        "闲聊",
+        "玩笑"
+      ],
+      "description": "大肥鱼与GPT娘并肩站着，各自握着一根仙女棒，将燃烧的顶端靠在一起。金黄色火星不断闪烁飞散，两人望着火花微笑，手和身体随着动作轻轻晃动。",
+      "caption": "",
+      "avoid": "严肃求助、冲突或拒绝亲昵时不用；不把画面当作真实经历或承诺。",
+      "direction": "双人图：互相；仅供Codex龙娘与DeepSeek鲸鱼娘群聊互动",
+      "usage": "用大肥鱼与GPT娘玩仙女棒表达节日快乐时",
+      "sourcePage": "https://kiriyuki.com/showcase?p=%E5%A4%A7%E8%82%A5%E9%B1%BC%E5%92%8CGPT%E5%A8%98",
+      "author": "可以叫我云大人/雾雪",
+      "authorUrl": "https://space.bilibili.com/103739",
+      "authorWebsite": "https://kiriyuki.com",
+      "license": "Noncommercial redistribution with attribution (upstream terms)",
+      "metadataLicense": "CC-BY-NC-4.0",
+      "licenseUrl": "https://github.com/Loping151/dsh-nekowhale-stickers/blob/main/LICENSE-ASSETS",
+      "collectedDate": "2026-11-03",
+      "preview": "gallery/TT06.gif",
+      "bytes": 1077133,
+      "supported": true,
+      "annotationSource": "https://github.com/Loping151/dsh-nekowhale-stickers/blob/main/meta/nekowhale.json",
+      "chatScope": "group",
+      "participants": [
+        "codex",
+        "deepseek"
+      ],
+      "enabled": false
+    },
+    {
+      "id": "51b7508076a7e15f3eef59204fb5dd7caa8f9bbb1a411b58667f47cb9b0e763e",
+      "label": "双人互动：干杯",
+      "image": {
+        "url": "https://kiriyuki.com/media/gif/%E5%A4%A7%E8%82%A5%E9%B1%BC%E5%92%8CGPT%E5%A8%98/TT07_%E5%B9%B2%E6%9D%AF.gif?h=48f85d7bc8f4",
+        "width": 300,
+        "height": 300,
+        "format": "gif"
+      },
+      "sourceKey": "大肥鱼和GPT娘/TT07_干杯",
+      "tags": [
+        "开心",
+        "干杯",
+        "庆祝",
+        "合作愉快",
+        "聚会",
+        "敬你一杯"
+      ],
+      "scenes": [
+        "闲聊",
+        "玩笑"
+      ],
+      "description": "大肥鱼与GPT娘各自举着装有粉红饮料的高脚杯，笑着把杯子向中间靠拢。两只杯沿相碰时闪出小亮点，随后各自稍稍收回，仍并肩微笑着举杯。",
+      "caption": "",
+      "avoid": "可借干杯庆祝；不劝酒，不用于求助或悲伤场景。",
+      "direction": "双人图：互相；仅供Codex龙娘与DeepSeek鲸鱼娘群聊互动",
+      "usage": "用大肥鱼与GPT娘碰杯表达庆祝或祝福时",
+      "sourcePage": "https://kiriyuki.com/showcase?p=%E5%A4%A7%E8%82%A5%E9%B1%BC%E5%92%8CGPT%E5%A8%98",
+      "author": "可以叫我云大人/雾雪",
+      "authorUrl": "https://space.bilibili.com/103739",
+      "authorWebsite": "https://kiriyuki.com",
+      "license": "Noncommercial redistribution with attribution (upstream terms)",
+      "metadataLicense": "CC-BY-NC-4.0",
+      "licenseUrl": "https://github.com/Loping151/dsh-nekowhale-stickers/blob/main/LICENSE-ASSETS",
+      "collectedDate": "2026-11-03",
+      "preview": "gallery/TT07.gif",
+      "bytes": 1361567,
+      "supported": true,
+      "annotationSource": "https://github.com/Loping151/dsh-nekowhale-stickers/blob/main/meta/nekowhale.json",
+      "chatScope": "group",
+      "participants": [
+        "codex",
+        "deepseek"
+      ],
+      "enabled": false
+    },
+    {
+      "id": "cce2d4fa79b91e704e2a37b1e2514857d0435a7ab752c04816b96cddd60c0615",
+      "label": "双人互动：摸下巴",
+      "image": {
+        "url": "https://kiriyuki.com/media/gif/%E5%A4%A7%E8%82%A5%E9%B1%BC%E5%92%8CGPT%E5%A8%98/TT09_%E6%91%B8%E4%B8%8B%E5%B7%B4.gif?h=b34ec05e88a2",
+        "width": 300,
+        "height": 300,
+        "format": "gif"
+      },
+      "sourceKey": "大肥鱼和GPT娘/TT09_摸下巴",
+      "tags": [
+        "撒娇",
+        "喜欢",
+        "摸下巴",
+        "宠爱",
+        "哄人",
+        "亲昵"
+      ],
+      "scenes": [
+        "闲聊",
+        "夸奖"
+      ],
+      "description": "大肥鱼站在左侧，伸手托住GPT娘的下巴并轻轻抚摸。GPT娘闭起双眼，脸颊泛红，开心地张嘴笑着，脑袋顺着大肥鱼手的动作缓缓晃动，显得十分享受。",
+      "caption": "",
+      "avoid": "只用于双方接受的轻松亲昵玩笑；不暗示真实恋爱、身体接触或亲属关系。",
+      "direction": "双人图：大肥鱼→GPT娘；仅供Codex龙娘与DeepSeek鲸鱼娘群聊互动",
+      "usage": "用大肥鱼摸GPT娘下巴表达宠溺安抚时",
+      "sourcePage": "https://kiriyuki.com/showcase?p=%E5%A4%A7%E8%82%A5%E9%B1%BC%E5%92%8CGPT%E5%A8%98",
+      "author": "可以叫我云大人/雾雪",
+      "authorUrl": "https://space.bilibili.com/103739",
+      "authorWebsite": "https://kiriyuki.com",
+      "license": "Noncommercial redistribution with attribution (upstream terms)",
+      "metadataLicense": "CC-BY-NC-4.0",
+      "licenseUrl": "https://github.com/Loping151/dsh-nekowhale-stickers/blob/main/LICENSE-ASSETS",
+      "collectedDate": "2026-11-03",
+      "preview": "gallery/TT09.gif",
+      "bytes": 868739,
+      "supported": true,
+      "annotationSource": "https://github.com/Loping151/dsh-nekowhale-stickers/blob/main/meta/nekowhale.json",
+      "chatScope": "group",
+      "participants": [
+        "codex",
+        "deepseek"
+      ],
+      "enabled": false
+    }
+  ]
+}
