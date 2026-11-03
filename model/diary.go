@@ -21,6 +21,9 @@ type DiarySettings struct {
 	Testing        *bool
 }
 type DiaryGenerateInput struct {
+	// DirectReply 仅内部主人主动请求使用，正文随本次回复交付，不再排主动通知。
+	DirectReply bool
+
 	Retry     bool
 	Automatic bool
 }

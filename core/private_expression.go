@@ -68,6 +68,19 @@ type privateReplyBatch struct {
 
 func (s *Service) privateReplyParts(ctx context.Context, round *conversationRound, text string) ([]privateReplyPart, error) {
 	parts := []privateReplyPart{}
+	if len(round.document) > 0 {
+		if !s.selfQueryAuthorized(ctx, round) || len(round.document) > privateReplyMaxParts {
+			return nil, model.Fail("PRIVATE_SCOPE", "日记交付范围已变化")
+		}
+		for _, text := range round.document {
+			if !model.Text(text, 450) || model.ContainsSensitiveText(text, s.generationSecrets(ctx)...) {
+				return nil, model.Fail("SENSITIVE_OUTPUT", "日记内容超限或含敏感信息")
+			}
+			part := privateReplyPart{Text: text}
+			parts = append(parts, part)
+		}
+		return parts, nil
+	}
 	for _, message := range round.messages {
 		parts = append(parts, privateReplyPart{Text: message})
 	}
@@ -161,4 +174,20 @@ func validReplyBatch(ctx context.Context, input *model.PrivateSendInput) *privat
 		return nil
 	}
 	return part
+}
+
+// characterStickerChance 将持续角色状态映射到可选表情概率，不影响正常回复。
+func (s *Service) characterStickerChance(ctx context.Context) int {
+	state, err := s.CharacterStatus(ctx)
+	if err != nil || state.Intensity <= 20 {
+		return privateStickerChance
+	}
+	switch state.Mood {
+	case "sad", "tired":
+		return 5
+	case "happy", "excited":
+		return 30
+	default:
+		return privateStickerChance
+	}
 }

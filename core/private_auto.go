@@ -3,6 +3,7 @@ package core
 import (
 	"context"
 	"gpt-robot/model"
+	"strings"
 	"time"
 )
 
@@ -103,9 +104,14 @@ func (s *Service) privateTick(ctx context.Context, config *model.PrivateConfig) 
 		return err
 	}
 	var selected *model.PrivateMessage
+	parts := []string{}
+	var firstAt int64
 	for _, message := range page.Messages {
 		if message.Seq <= s.privateState.Cursor {
 			continue
+		}
+		if selected != nil && (len(parts) >= 3 || message.Timestamp-firstAt > 8 || len([]rune(strings.Join(parts, "\n")+"\n"+message.Text)) > 500) {
+			break
 		}
 		s.privateState.Cursor = message.Seq
 		if message.Image != nil && message.Text == "" {
@@ -115,8 +121,12 @@ func (s *Service) privateTick(ctx context.Context, config *model.PrivateConfig) 
 			continue
 		}
 		copyMessage := message
+		if len(parts) == 0 {
+			firstAt = message.Timestamp
+		}
+		parts = append(parts, message.Text)
+		copyMessage.Text = strings.Join(parts, "\n")
 		selected = &copyMessage
-		break
 	}
 	if selected == nil {
 		err := s.savePrivate(ctx)

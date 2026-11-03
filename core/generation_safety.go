@@ -144,6 +144,13 @@ func (s *Service) generationSecrets(ctx context.Context) []string {
 }
 func (s *Service) sanitizeReplyPrompt(ctx context.Context, p *model.ReplyPrompt) {
 	secrets := s.generationSecrets(ctx)
+	if p.SelfResult != nil {
+		for i := range p.SelfResult.Records {
+			p.SelfResult.Records[i].Title = model.RedactSensitiveText(p.SelfResult.Records[i].Title, secrets...)
+			p.SelfResult.Records[i].Text = model.RedactSensitiveText(p.SelfResult.Records[i].Text, secrets...)
+		}
+	}
+	p.CompanionContext = model.RedactSensitiveText(p.CompanionContext, secrets...)
 	p.Text = model.RedactSensitiveText(p.Text, secrets...)
 	p.Persona = model.RedactSensitiveText(p.Persona, secrets...)
 	p.State = model.RedactSensitiveText(p.State, secrets...)

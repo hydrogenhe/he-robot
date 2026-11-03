@@ -51,13 +51,15 @@ paths:
         diary-status返回本机角色日记最近30天和自动/测试模式；diary-config保存enabled和可选testing。日记仅本地认证网页可访问，MCP及公共记忆不开放。
         diary-generate仅写北京时间当天日记，retry=true才允许重试失败/中断；同日成功默认复用，无经历默认零模型，testing=true开放空素材和手动重复生成，自动任务仍每天最多一次。
         自动日记在北京时间23点执行，服从机器人总开关；素材最多12段且业务JSON最多6000字节，主人私信仅使用互动计数不读取原文，真实Token按独立local/diary-generate业务操作记录。
+        robots-list/create/start/stop/delete/restore仅认证网页可用，MCP拒绝。X-Robot-ID请求头选择管理对象（缺省001）；每个编号对应独立数据根目录、模型、平台凭证和运行状态。create要求name(1–40字)，分配新编号且默认停止，不复制现有角色资料；start/stop要求id；delete要求id及逐字匹配的confirmId且必须先切换到有效的其他机器人，先停止再设置deletedAt，保留所有资料，禁止启动/访问已删除对象；restore要求id，清除删除标记且保持停止。管理响应items逐项仅含id/name/createdAt/deletedAt/status，不暴露路径或凭证。软删除记录持久保留，编号不复用，不提供硬删除入口。切换不隐式启停其他对象。
+        proactive-status/config仅认证网页可用，MCP拒绝；配置必须明确enabled、videoReflections、diaryDelivery、greetings、randomMin/randomMax(0–5且min<=max)、videoDailyLimit(1–10)。绑定收件人从既有私信配置取得，不能通过请求指定UID；00:00–09:00(Asia/Shanghai)免打扰，早安09–10、晚安21–23，过期问候不补发。日记正文仅在成功写入后排队并按版本防重，长文分段保持完整；发送仍受绑定账号、私信权限、暂停、冷却与结果未知不重试约束。首次默认关闭，启用不修改私信/平台开关。返回config、pending/failed/sent计数和quiet/timezone，不返回凭证或其他会话内容；operations.notificationStatus可为queued/partial/sent/failed/unknown，更新原视频或日记活动而不另拆重复历史。
         qr 生成登录二维码图像；poll 检查最近二维码；account 验证登录。
         import-session 验证本人提供的 Cookie，expectedUid 不匹配则拒绝。原文不记录、不返回。
         comments 读取指定页；draft/dynamic-draft 准备草稿；send 真实发送，cancel 取消待审，recheck 回查已有平台 ID。
         context/search/note 分别返回角色资料、检索记录、保存带来源的主观记录。
         context人设最多800字，最多5条记忆正文各160字及8条经历摘要；search最多3条笔记和3条经历，笔记正文160字、经历摘要200字，省略原始事件Data；来源ID仍返回，完整记录保留在本地。
         operations 按需增量采集本机Codex计量，查询跨平台业务流水和Token汇总；不请求模型或平台，不记录查询自身。
-        browsing-status/config/read仅限认证网页，MCP拒绝。config需enabled、mode(persona/custom)、keywords、excluded(各最多10个，每个1–20字)、intervalSeconds(300–86400)、dailyLimit(1–50)、maxDurationMinutes(1–180，缺省10)。搜索候选及详情均校验时长，超过上限或时长未知跳过，等于上限可读。首次默认关闭；persona使用明确人设及当前账号公开正向/熟悉兴趣，未形成兴趣时从日常科普/自然生活轻量探索，不写成固定爱好；custom使用关键词，无可用主题时拒绝启用。每日按北京时间最多dailyLimit次检查（失败/无结果也计），每次最多读取1条未读视频标题/简介/评论，不读取画面、音轨或字幕，不调用模型。启用只绑定当前核验账号，不开启回复或修改平台权限；关闭/改偏好使旧浏览来源不能继续授权发送。read只读当前已开启浏览范围，用户手动请求可提前检查，但不绕过日限额。
+        browsing-status/config/read仅限认证网页，MCP拒绝。config需enabled、mode(persona/custom)、keywords、excluded(各最多10个，每个1–20字)、intervalSeconds(300–86400)、dailyLimit(1–50)、maxDurationMinutes(1–180，缺省10)。搜索候选及详情均校验时长，超过上限或时长未知跳过，等于上限可读。首次默认关闭；persona使用明确人设及当前账号公开正向/熟悉兴趣，未形成兴趣时从日常科普/自然生活轻量探索，不写成固定爱好；custom使用关键词，无可用主题时拒绝启用。每日按北京时间最多dailyLimit次检查（失败/无结果也计），每次最多读取1条未读视频；未开启主动视频感想时仅读取标题/简介/评论且不调用模型。开启proactive视频感想后使用已安装的本地视频/OCR适配、每20秒一图及当前所选Codex进行一次角色理解，形成来源/记忆/成长并排队通知；不自动安装依赖或切换模型，环境缺失时停止而不冒充看过；每日限额取浏览设置与主动视频上限较小值。启用只绑定当前核验账号，不开启回复或修改平台权限；关闭/改偏好使旧浏览来源不能继续授权发送。read只读当前已开启浏览范围，用户手动请求可提前检查，但不绕过日限额。
         auto-config的source=browsing表示跟随最近24小时当前版本浏览记录（最多20视频）的新评论，不要求手动BV列表；只有显式开启浏览、回复及平台发送权限，且账号、来源版本、目标和额度复核全部通过时可发送。未传source保留旧指定视频协议兼容，新网页不再填写BV。保存浏览偏好不恢复评论/私信暂停。每人每天与陌生人每日总上限可分别设置，新默认5/30，旧已保存值保留。
         operations认证网页响应items增加activityTitle/activityText，按本地当前账号及关联来源即时组装摘要（含私聊时仍仅认证网页），不持久化到通用流水、context/search或公共记忆。缺失来源不编造内容；展示方式切换不触发生成或发送。
         generation-safety-status/config仅限认证网页，MCP拒绝。config需完整ownerDailyCalls(0–10000)、otherDailyCalls(1–1000)、ownerDailyTokens(0–100000000)、otherDailyTokens(1000–10000000)。主人0关闭该项限制；按北京时间每日分开计数，保存不重置当日用量。status返回config、day及owner/other各calls/tokens/unknown/pending；calls在生成前持久占额，失败/空回复/未知均计数；tokens为回执已知输入+输出，非金额，达到后阻止后续调用，单次可能越线，未知不冒充零。不增加模型调用。
@@ -89,7 +91,7 @@ paths:
         私信回复最多带入3条各160字相关用户陈述，附来源日期；公开生成入口拒绝privateMemories，公共记忆/经历/角色/用量输出不含私聊正文。
         private-refresh只读取绑定大号会话，private-send只向该大号发送，requestId按正文幂等；未知结果不可重发。
         评论和私信均先过滤、去重和冷却检查，合格新消息由隔离AI短会话生成；没有新输入不调用模型，失败不回退固定话术。
-        私信首次建立基线不回复历史；仅新文字私信、总开关和渠道开关均启用时自动回复。正文只留私信目录，不进入公共记忆/事件/用量账本。
+        私信首次建立基线不回复历史；仅新文字私信、总开关和渠道开关均启用时自动回复。正文只留私信目录，不进入公共记忆/事件/用量账本。发件记录proactive布尔值区分主动联系与手动发送/对来信的自动回复。00–09免打扰只限制主动通知，主人来信仍回复，后台视频读取与记忆不暂停；视频在独立工作任务执行，停止或软删除会取消该任务。
         usage-report 接收真实模型调用方的用量，不是模型可调用工具；无用量不等于零。
         业务操作返回X-Operation-ID响应头，成功JSON额外带operationId。
         回查结果包含 platformState、rootPlatformState（若平台提供）和 visibilityCheckedAt，并保留发送回执platformMessage。
@@ -98,12 +100,16 @@ paths:
         发送默认禁用，必须通过权限和状态检查。无头浏览器或其他同用户权限程序不属于此 API 能隔离的对象。
       security: [{ browserSession: [], csrf: [] }]
       parameters:
+        - in: header
+          name: X-Robot-ID
+          description: 当前管理的机器人编号，仅认证网页使用；不改变MCP的001范围。
+          schema: { type: string, pattern: "^[0-9]{3,6}$", default: "001" }
         - in: path
           name: action
           required: true
           schema:
             type: string
-            enum: [overview, persona, permissions, qr, poll, account, import-session, comments, draft, dynamic-draft, send, cancel, recheck, context, search, note, operations, usage-report, auto-config, auto-status, auto-preview, auto-scan, robot-status, robot-control, private-status, private-config, private-refresh, private-send, character-status, development-status, shutdown, private-memories, private-memory-forget, private-resume, diary-status, diary-config, diary-generate, model-status, model-config, model-connect, model-list, browsing-status, browsing-config, browsing-read, generation-safety-status, generation-safety-config, conversation-status, conversation-config]
+            enum: [robots-list, robots-create, robots-start, robots-stop, robots-delete, robots-restore, proactive-status, proactive-config, overview, persona, permissions, qr, poll, account, import-session, comments, draft, dynamic-draft, send, cancel, recheck, context, search, note, operations, usage-report, auto-config, auto-status, auto-preview, auto-scan, robot-status, robot-control, private-status, private-config, private-refresh, private-send, character-status, development-status, shutdown, private-memories, private-memory-forget, private-resume, diary-status, diary-config, diary-generate, model-status, model-config, model-connect, model-list, browsing-status, browsing-config, browsing-read, generation-safety-status, generation-safety-config, conversation-status, conversation-config]
       requestBody:
         required: true
         content:

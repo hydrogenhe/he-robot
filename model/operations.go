@@ -2,21 +2,22 @@ package model
 
 // Operation 是跨平台业务流水，不保存请求正文或凭证。
 type Operation struct {
-	ID          string            `json:"id"`
-	At          string            `json:"at"`
-	Platform    string            `json:"platform"`
-	Account     string            `json:"account"`
-	Action      string            `json:"action"`
-	Source      string            `json:"source"`
-	Status      string            `json:"status"`
-	DurationMS  int64             `json:"durationMs"`
-	Timings     *OperationTimings `json:"timings,omitempty"`
-	Reference   string            `json:"reference,omitempty"`
-	ErrorCode   string            `json:"errorCode,omitempty"`
-	UsageOwner  string            `json:"usageOwner,omitempty"`
-	UsageThread string            `json:"usageThread,omitempty"`
-	UsageTurn   string            `json:"usageTurn,omitempty"`
-	Usage       []TokenUsage      `json:"usage"`
+	NotificationStatus string            `json:"notificationStatus,omitempty"`
+	ID                 string            `json:"id"`
+	At                 string            `json:"at"`
+	Platform           string            `json:"platform"`
+	Account            string            `json:"account"`
+	Action             string            `json:"action"`
+	Source             string            `json:"source"`
+	Status             string            `json:"status"`
+	DurationMS         int64             `json:"durationMs"`
+	Timings            *OperationTimings `json:"timings,omitempty"`
+	Reference          string            `json:"reference,omitempty"`
+	ErrorCode          string            `json:"errorCode,omitempty"`
+	UsageOwner         string            `json:"usageOwner,omitempty"`
+	UsageThread        string            `json:"usageThread,omitempty"`
+	UsageTurn          string            `json:"usageTurn,omitempty"`
+	Usage              []TokenUsage      `json:"usage"`
 }
 
 // OperationTimings 保存私信回复各阶段的实测毫秒数；nil表示该阶段未执行。

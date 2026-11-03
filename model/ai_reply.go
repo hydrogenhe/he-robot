@@ -21,6 +21,12 @@ type RecalledEpisode struct {
 	SourceID   string `json:"source"`
 }
 type ReplyPrompt struct {
+	CompanionContext string `json:"companionContext,omitempty"`
+
+	SelfCapabilities []string         `json:"selfCapabilities,omitempty"`
+	SelfToday        string           `json:"selfToday,omitempty"`
+	SelfResult       *SelfQueryResult `json:"selfResult,omitempty"`
+
 	AnalyzeSticker bool              `json:"analyzeSticker,omitempty"`
 	SelectSticker  bool              `json:"selectSticker,omitempty"`
 	Draft          string            `json:"draft,omitempty"`
@@ -47,6 +53,8 @@ type ReplyPrompt struct {
 	Recent             []string               `json:"recent,omitempty"`
 }
 type GeneratedReply struct {
+	Companion     *CompanionCue
+	SelfAction    *SelfAction
 	StickerIntent *StickerIntent
 	RecallQuery   string
 	Actions       []ContentAction

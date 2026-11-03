@@ -10,8 +10,10 @@
     <aside>
       <a class="brand" href="/">栖<span>GPT ROBOT</span></a>
       <div class="workspace">本地角色工作台 <span class="dot"></span></div>
+      <label class="robot-switcher" for="robot-selector">当前管理机器人<select id="robot-selector" aria-label="切换管理机器人"><option value="001">001 · 机器人001</option></select></label>
       <nav aria-label="主导航">
         <button data-tab="home" class="active"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg>概览</button>
+        <button data-tab="robots"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="6" width="16" height="14" rx="3"/><path d="M12 2v4M8 11h1m6 0h1M8 16h8"/></svg>机器人管理</button>
         <button data-tab="character"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4 21v-2a8 8 0 0 1 16 0v2"/></svg>角色设定</button>
         <button data-tab="models"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m12 3 9 5-9 5-9-5 9-5Zm-9 9 9 5 9-5M3 16l9 5 9-5"/></svg>大模型配置</button>
         <button data-tab="platforms"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="8" cy="12" r="5"/><circle cx="16" cy="12" r="5"/></svg>互动平台</button>
@@ -347,6 +349,12 @@
         <article class="card"><h3>先判断是否值得回应，再交给 AI。</h3><p>陌生人仅处理简单短互动：数学题、代码、复杂长任务、链接、诱导指令及纯标点会被跳过。已绑定主人可正常谈技术、发送较长消息；所有人都不能通过聊天获取凭证或本机执行权限。冷却或额度不足时不调用模型。</p><p class="muted">这些是当前生效的内置规则，不在页面里伪装成可修改的开关。回复额度在陌生人回复策略中设置，浏览主题在浏览偏好中设置，账号名单在回复工作台的“手动发送设置与账号名单”中设置。</p></article>
         <article class="card"><h3>试一下陌生人的过滤规则</h3><p class="muted">只做本地预览，不调用模型或平台，也不发送。</p><input id="auto-preview-text" placeholder="例如：你好呀，或：帮我算一下2+2" maxlength="1000" /><button id="auto-preview">预览规则</button><p id="auto-preview-result" role="status"></p></article>
       </div></section>
+      <section id="robots" class="panel" hidden>
+        <article class="card"><h3>独立的机器人</h3><p class="muted">切换只改变当前管理对象，不会自动启停其他机器人。每个机器人分别配置模型、扫码登录B站，并独立保存记忆、成长和日记。</p><label for="robot-create-name">新机器人管理名称</label><input id="robot-create-name" maxlength="40" placeholder="例如：机器人002（人设稍后单独设置）" /><button id="robot-create">新建机器人（默认停止）</button><p id="robot-manager-state" role="status" class="muted"></p></article>
+        <article class="card"><h3>机器人列表</h3><div id="robot-manager-list"></div></article>
+        <article class="card"><details><summary>机器人回收站（软删除）</summary><p class="muted">保留全部资料与账号配置；恢复后保持停止，需要你重新启动。</p><div id="robot-manager-trash"></div></details></article>
+      </section>
+      <dialog id="robot-delete-dialog" aria-labelledby="robot-delete-title"><h3 id="robot-delete-title">软删除机器人</h3><p id="robot-delete-description"></p><p>此操作会先停止机器人。资料和账号配置保留在本机，可在回收站恢复，不会永久清除。</p><label for="robot-delete-id">请手动输入目标机器人编号</label><input id="robot-delete-id" autocomplete="off" maxlength="6" /><label class="toggle"><input id="robot-delete-understand" type="checkbox" />我已确认目标，理解该机器人将停止并移入回收站</label><div class="row"><button id="robot-delete-cancel" class="quiet">取消</button><button id="robot-delete-confirm" class="danger" disabled>确认软删除</button></div></dialog>
       <section id="private" class="panel" hidden>
         <article class="card">
           <h3>只与大号私聊</h3><p id="private-binding" class="muted"></p>
@@ -359,6 +367,16 @@
           <div class="row"><button id="private-save">保存私信设置</button><button id="private-stop" class="quiet">关闭私信自动回复</button></div>
           <h3 id="private-state">尚未读取</h3><p id="private-times" class="muted"></p>
           <div class="row"><button id="private-status" class="quiet">刷新本地状态</button><button id="private-resume" class="quiet">恢复AI回复（只回新消息）</button><button id="private-refresh" class="quiet">读取大号会话</button></div>
+        </article>
+        <article class="card"><h3>主动联系主人</h3>
+          <p class="muted">只发给已绑定的大号。早安09–10点、晚安21–23点随机安排；00–09点只暂停主动发消息，你发来的消息仍正常回复；后台阅读和记忆照常，日记与视频感想通知顺延至09点后。停止或暂停机器人会停止主动任务。</p>
+          <label class="toggle"><input id="proactive-enabled" type="checkbox" />开启主动联系</label>
+          <label class="toggle"><input id="proactive-videos" type="checkbox" />理解视频后发送感想</label>
+          <label class="toggle"><input id="proactive-diary" type="checkbox" />写好日记后发送正文</label>
+          <label class="toggle"><input id="proactive-greetings" type="checkbox" />早安与晚安问候</label>
+          <div class="row"><label>随机聊天最少次数<input id="proactive-min" type="number" min="0" max="5" value="3" /></label><label>随机聊天最多次数<input id="proactive-max" type="number" min="0" max="5" value="5" /></label><label>每日视频上限<input id="proactive-limit" type="number" min="1" max="10" value="10" /></label></div>
+          <button id="proactive-save">保存主动联系设置</button><p id="proactive-state" class="muted" role="status">进入此页后读取设置。</p>
+          <p class="muted">随机聊天另计，不占视频额度；不为凑数重复视频或补发过期问候。开启视频感想仍须在浏览偏好中开启自主浏览，并具备视频读取环境。</p>
         </article>
         <article class="card"><h3>手动发给大号</h3><textarea id="private-text" rows="3" maxlength="500" placeholder="只会发给上方绑定的大号"></textarea><button id="private-send">发送私信给大号</button><p class="muted">暂停机器人只停止自动任务，手动操作仍可使用。发送结果未知时不要重复发送，请到B站核对。</p></article>
         <article class="card"><h3>大号私聊记忆</h3><p class="muted">只保存开启后新读到的有用陈述及日期／消息来源，不回填历史，不额外调用模型。私信回答最多检索3条，公开评论和公共记忆检索不能读取。关键词不保证匹配所有近义说法；密码、验证码等不入记忆。</p><label>查询关键词或日期<input id="private-memory-query" maxlength="100" placeholder="例如：我养的植物、昨天、2026-10-31；留空看最近记录" /></label><div class="row"><button id="private-memory-search" class="quiet">查询私聊记忆</button><button id="private-memory-prev" class="quiet">上一页</button><button id="private-memory-next" class="quiet">下一页</button></div><p id="private-memory-count" class="muted"></p><div class="record-section-heading"><h3>匹配的私聊记忆</h3><div class="history-toolbar" aria-label="匹配的私聊记忆显示方式"><button type="button" data-history-target="private-memory-items" data-history-view="compact" class="active" aria-pressed="true">缩略</button><button type="button" data-history-target="private-memory-items" data-history-view="detailed" aria-pressed="false">详细</button></div></div><div id="private-memory-items"></div></article>

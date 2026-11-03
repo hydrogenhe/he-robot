@@ -127,6 +127,7 @@ func (h *Workbench) Action(w http.ResponseWriter, r *http.Request) {
 	}
 	var operationID string
 	ctx := context.WithValue(r.Context(), operationTraceKey{}, &operationID)
+	ctx = context.WithValue(ctx, selectedRobotKey{}, r.Header.Get("X-Robot-ID"))
 	value, err := h.actions.Execute(ctx, action, raw, true)
 	if operationID != "" {
 		w.Header().Set("X-Operation-ID", operationID)

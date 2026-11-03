@@ -18,6 +18,12 @@ const imageExperimentTextMaxBytes = 12000
 // imageExperimentRequestMaxBytes 图片实验固定指令与正文合计上限，单位字节，不含图片。
 const imageExperimentRequestMaxBytes = 16000
 
+// imageExperimentMaxImages 按最长180分钟、每20秒一张限制视觉图片数量。
+const imageExperimentMaxImages = 540
+
+// imageExperimentImagesMaxBytes 图片实验全部原始图片合计上限，单位字节。
+const imageExperimentImagesMaxBytes = 32 * 1024 * 1024
+
 // ImageGenerationResult 保存图片实验的真实回执与分段耗时；图片用量包含在供应商输入总量中。
 type ImageGenerationResult struct {
 	Reply        *model.GeneratedReply `json:"reply"`
@@ -25,12 +31,13 @@ type ImageGenerationResult struct {
 	GenerationMs int64                 `json:"generationMs"`
 }
 
-// GenerateImages 仅附加调用方选好的最多六张小图，不开放模型读文件或图像工具。
+// GenerateImages 仅附加调用方选好的有界小图（最多180分钟、每20秒一张），不开放模型读文件或图像工具。
 func (g *CodexBackend) GenerateImages(ctx context.Context, instruction string, body []byte, paths []string) (*ImageGenerationResult, error) {
-	if len(paths) < 1 || len(paths) > 6 || len(body) > imageExperimentTextMaxBytes || len(instruction)+len(body) > imageExperimentRequestMaxBytes {
-		return nil, model.Fail("INPUT", "图片数量应为1–6且文字不能超过预算")
+	if len(paths) < 1 || len(paths) > imageExperimentMaxImages || len(body) > imageExperimentTextMaxBytes || len(instruction)+len(body) > imageExperimentRequestMaxBytes {
+		return nil, model.Fail("INPUT", "图片数量应为1–540且文字不能超过预算")
 	}
 	inputs := []any{map[string]any{"type": "text", "text": string(body)}}
+	var totalImageBytes int64
 	for _, path := range paths {
 		info, err := os.Stat(path)
 		if err != nil {
@@ -38,6 +45,10 @@ func (g *CodexBackend) GenerateImages(ctx context.Context, instruction string, b
 		}
 		if !info.Mode().IsRegular() || info.Size() > 2*1024*1024 {
 			return nil, model.Fail("INPUT", "图片必须为不超过2MB的普通文件")
+		}
+		totalImageBytes += info.Size()
+		if totalImageBytes > imageExperimentImagesMaxBytes {
+			return nil, model.Fail("INPUT", "图片总大小不能超过32MB")
 		}
 		data, err := os.ReadFile(path)
 		if err != nil {

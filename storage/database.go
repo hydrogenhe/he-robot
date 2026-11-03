@@ -25,6 +25,7 @@ var migrationFiles embed.FS
 
 // DatabaseInterface 集中声明机器人数据库的持久化入口。
 type DatabaseInterface interface {
+	HasMaterial(context.Context, string, string) (bool, error)
 	DiaryOperationPreview(context.Context, string) (model.ActivityPreview, error)
 	AuthEpoch(context.Context) (int64, error)
 	RecallEpisodes(context.Context, *MemoryQuery) ([]model.RecalledEpisode, error)
