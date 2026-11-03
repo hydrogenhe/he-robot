@@ -10,8 +10,8 @@ import (
 	"path/filepath"
 )
 
-// providerStickerLimit 限定每个供应商人工整理的可用表情最多24张。
-const providerStickerLimit = 24
+// providerStickerLimit 限定每个供应商人工整理的可用表情最多64张。
+const providerStickerLimit = 64
 
 func providerStickerDirectory(provider string) string {
 	switch provider {
@@ -63,7 +63,7 @@ func (s *Service) loadProviderStickers(ctx context.Context, provider string) ([]
 		return nil, model.Fail("STICKER_DATA", "供应商表情索引无法解析")
 	}
 	if len(library.Items) > providerStickerLimit {
-		return nil, model.Fail("STICKER_LIMIT", "供应商表情库超过24张限制")
+		return nil, model.Fail("STICKER_LIMIT", "供应商表情库超过64张限制")
 	}
 	for _, item := range library.Items {
 		id, err := hex.DecodeString(item.ID)

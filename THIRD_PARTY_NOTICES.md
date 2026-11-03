@@ -28,3 +28,7 @@
 ### 蓝色大肥鱼图库：新增龙娘原图
 
 10张原图来自 https://github.com/lmy414/ai-girl-stickers ，具体详情页、投稿署名、来源和上游许可备注保存在 `assets/images/stickers/providers/codex/sources.json`。图片权利归原作者；来源站代码及文字的MIT许可不覆盖图片。本项目保留原字节，不主张原创或统一再许可。
+
+### CrossPet 龙娘表情
+
+20张现成表情来自 https://github.com/lokicorvus/crosspet （固定提交6e98970f6ff9b44e8ac85215241cabcd78f67d92）。署名CrossPet / lokicorvus，GPT龙娘角色设计ZipZipPipe。CC BY-NC-SA 4.0，非商业、署名、相同方式共享；完整原文见 `assets/images/stickers/CROSSPET-LICENSE.md`。本项目仅将WebP转为PNG，保留原文件、哈希和逐张来源；没有生成新图。图片不适用项目MIT许可。

@@ -12,13 +12,13 @@
 
 人工图库不绑定机器人编号。001 以及 `data/instances/002`、003 等实例统一读取工作台根目录的同一份素材，不复制到实例目录；只按各自实际保存生效的供应商区分：`codex` 对应龙娘，`deepseek` 对应鲸鱼娘。文件放在 `assets/images/stickers/providers/<provider>/`：
 
-- `catalog.json`：可发送素材的 `items` 数组，最多 24 项。
+- `catalog.json`：可发送素材的 `items` 数组，最多 64 项。
 - `<sha256>.image`：未经修改的原始图片，发送前校验 SHA-256、2 MiB 大小限制。
 - `sources.json` 和 `gallery/`：收集来源与预览；超限原图保留但不进入候选。
 
 每项包含 `id`、`label`、`image`（格式/宽高/来源 URL）、`sourceKey`，以及人工核验的 `tags`、`scenes`、`description`、`caption`、`avoid`、`direction`。描述尤其要区分“机器人替自己委屈”和“嘲讽用户”。目录缺失不影响文字聊天。
 
-本地已收集56张不同原图：龙娘14张、鲸鱼娘24张、双人图18张。私聊可用29张（龙娘7、鲸鱼娘22），另外9张超过发送大小限制。最新一轮新增10张现成龙娘图（5张可发、5张收藏）；新增30张的目标尚差20张，用户要求只收集网上现成图。双人图独立保存在 `assets/images/stickers/group/dragon-whale/`，标记群聊预留、未启用，不进入当前私聊候选；未实现群聊发送。
+本地已收集76张不同作品：龙娘34张、鲸鱼娘24张、双人图18张。私聊可用49张（龙娘27、鲸鱼娘22），另有9张旧原图超限。龙娘新增30张目标已完成（10张公开图库原图+20张CrossPet现成表情），无自行生成。双人图独立保存在 `assets/images/stickers/group/dragon-whale/`，标记群聊预留、未启用，不进入当前私聊候选；未实现群聊发送。
 
 公共素材与索引随 Git 保存，[查看完整图库与来源许可](assets/images/stickers/README.md)。新增36张按上游条件署名、非商业分享，图片不适用项目代码的 MIT 许可；旧收藏各自的来源与权利状态保留。
 

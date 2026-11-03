@@ -279,6 +279,784 @@
       "collectedDate": "2026-11-03",
       "preview": "gallery/gpt202610260001.gif",
       "reviewStatus": "visually-reviewed"
+    },
+    {
+      "provider": "codex",
+      "id": "45f91793f20b632c5fbb5ca188eda8c9e779034117127f2c4ca2bb7c9c423cf2",
+      "label": "龙娘：抱臂不满",
+      "image": {
+        "url": "https://raw.githubusercontent.com/lokicorvus/crosspet/6e98970f6ff9b44e8ac85215241cabcd78f67d92/characters/gpt/annoyed.webp",
+        "width": 566,
+        "height": 640,
+        "format": "png"
+      },
+      "sourceKey": "https://github.com/lokicorvus/crosspet/blob/6e98970f6ff9b44e8ac85215241cabcd78f67d92/characters/gpt/annoyed.webp",
+      "sourcePage": "https://github.com/lokicorvus/crosspet/blob/6e98970f6ff9b44e8ac85215241cabcd78f67d92/characters/gpt/annoyed.webp",
+      "bytes": 522575,
+      "supported": true,
+      "tags": [
+        "生气",
+        "傲娇"
+      ],
+      "scenes": [
+        "玩笑",
+        "熟人互怼"
+      ],
+      "description": "白紫Q版龙娘，皱眉抱臂，嘴角向下。",
+      "caption": "",
+      "avoid": "真实争执、用户表达痛苦",
+      "direction": "机器人被逗后的轻微不满",
+      "author": "CrossPet (lokicorvus)",
+      "characterDesigner": "ZipZipPipe",
+      "license": "CC BY-NC-SA 4.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by-nc-sa/4.0/",
+      "originalPath": "originals/crosspet/annoyed.webp",
+      "originalSHA256": "ce9716e1a3abfdf3f0b507d903c8d64b1e3d7615b8925f56a8c912fb27763bd7",
+      "originalBytes": 101630,
+      "transformation": "原有WebP解码为PNG，保留尺寸与透明背景；未生成、裁切、改字",
+      "collectedDate": "2026-11-03",
+      "preview": "gallery/crosspet-annoyed.png",
+      "reviewStatus": "visually-reviewed",
+      "annotationSource": "本项目逐张人工看图标注"
+    },
+    {
+      "provider": "codex",
+      "id": "c99fe0b29387442cfff80969f33882c9b4fdea04d85e881de56d039f1ba5a74f",
+      "label": "龙娘：伸手求解释",
+      "image": {
+        "url": "https://raw.githubusercontent.com/lokicorvus/crosspet/6e98970f6ff9b44e8ac85215241cabcd78f67d92/characters/gpt/asking.webp",
+        "width": 595,
+        "height": 640,
+        "format": "png"
+      },
+      "sourceKey": "https://github.com/lokicorvus/crosspet/blob/6e98970f6ff9b44e8ac85215241cabcd78f67d92/characters/gpt/asking.webp",
+      "sourcePage": "https://github.com/lokicorvus/crosspet/blob/6e98970f6ff9b44e8ac85215241cabcd78f67d92/characters/gpt/asking.webp",
+      "bytes": 493057,
+      "supported": true,
+      "tags": [
+        "疑惑",
+        "期待"
+      ],
+      "scenes": [
+        "没听懂",
+        "请求解释"
+      ],
+      "description": "白紫Q版龙娘，一手伸向前方，一手抵在脸旁。",
+      "caption": "",
+      "avoid": "追问隐私、施压",
+      "direction": "机器人请用户补充说明",
+      "author": "CrossPet (lokicorvus)",
+      "characterDesigner": "ZipZipPipe",
+      "license": "CC BY-NC-SA 4.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by-nc-sa/4.0/",
+      "originalPath": "originals/crosspet/asking.webp",
+      "originalSHA256": "8bf57a6978723971a8dbcdf3409664658d0c1f2631821ce87791f21878f20f8d",
+      "originalBytes": 96664,
+      "transformation": "原有WebP解码为PNG，保留尺寸与透明背景；未生成、裁切、改字",
+      "collectedDate": "2026-11-03",
+      "preview": "gallery/crosspet-asking.png",
+      "reviewStatus": "visually-reviewed",
+      "annotationSource": "本项目逐张人工看图标注"
+    },
+    {
+      "provider": "codex",
+      "id": "fc28834d2eb59aef7cca5b502e463d36e7836e35b6b920f341543112e168ae7d",
+      "label": "龙娘：挥手拜拜",
+      "image": {
+        "url": "https://raw.githubusercontent.com/lokicorvus/crosspet/6e98970f6ff9b44e8ac85215241cabcd78f67d92/characters/gpt/bye.webp",
+        "width": 468,
+        "height": 640,
+        "format": "png"
+      },
+      "sourceKey": "https://github.com/lokicorvus/crosspet/blob/6e98970f6ff9b44e8ac85215241cabcd78f67d92/characters/gpt/bye.webp",
+      "sourcePage": "https://github.com/lokicorvus/crosspet/blob/6e98970f6ff9b44e8ac85215241cabcd78f67d92/characters/gpt/bye.webp",
+      "bytes": 413021,
+      "supported": true,
+      "tags": [
+        "告别",
+        "开心"
+      ],
+      "scenes": [
+        "告别",
+        "闲聊结束"
+      ],
+      "description": "白紫Q版龙娘，微笑侧身，手举在脸旁作告别手势。",
+      "caption": "",
+      "avoid": "用户仍有未解决的紧急问题",
+      "direction": "机器人向用户告别",
+      "author": "CrossPet (lokicorvus)",
+      "characterDesigner": "ZipZipPipe",
+      "license": "CC BY-NC-SA 4.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by-nc-sa/4.0/",
+      "originalPath": "originals/crosspet/bye.webp",
+      "originalSHA256": "192527c5ab4ea583a14cd0c9913a913a9fc406e8ee9a1c87446e70d9b2fde23e",
+      "originalBytes": 82776,
+      "transformation": "原有WebP解码为PNG，保留尺寸与透明背景；未生成、裁切、改字",
+      "collectedDate": "2026-11-03",
+      "preview": "gallery/crosspet-bye.png",
+      "reviewStatus": "visually-reviewed",
+      "annotationSource": "本项目逐张人工看图标注"
+    },
+    {
+      "provider": "codex",
+      "id": "43d54b7dc8948284b8da941ae9153cd9618b8be0cf7ee7d8b156610ff3ecd275",
+      "label": "龙娘：脸红嘴硬",
+      "image": {
+        "url": "https://raw.githubusercontent.com/lokicorvus/crosspet/6e98970f6ff9b44e8ac85215241cabcd78f67d92/characters/gpt/coaxed.webp",
+        "width": 588,
+        "height": 640,
+        "format": "png"
+      },
+      "sourceKey": "https://github.com/lokicorvus/crosspet/blob/6e98970f6ff9b44e8ac85215241cabcd78f67d92/characters/gpt/coaxed.webp",
+      "sourcePage": "https://github.com/lokicorvus/crosspet/blob/6e98970f6ff9b44e8ac85215241cabcd78f67d92/characters/gpt/coaxed.webp",
+      "bytes": 496870,
+      "supported": true,
+      "tags": [
+        "害羞",
+        "傲娇"
+      ],
+      "scenes": [
+        "被哄",
+        "被夸"
+      ],
+      "description": "白紫Q版龙娘，脸颊泛红，抱臂低头，移开视线。",
+      "caption": "",
+      "avoid": "用户拒绝亲密、真实冲突",
+      "direction": "机器人被哄后不好意思",
+      "author": "CrossPet (lokicorvus)",
+      "characterDesigner": "ZipZipPipe",
+      "license": "CC BY-NC-SA 4.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by-nc-sa/4.0/",
+      "originalPath": "originals/crosspet/coaxed.webp",
+      "originalSHA256": "488a99a07bbc413f34c64105f3e85823cb6aa742040720f0f57d7ef5f1acde6f",
+      "originalBytes": 95804,
+      "transformation": "原有WebP解码为PNG，保留尺寸与透明背景；未生成、裁切、改字",
+      "collectedDate": "2026-11-03",
+      "preview": "gallery/crosspet-coaxed.png",
+      "reviewStatus": "visually-reviewed",
+      "annotationSource": "本项目逐张人工看图标注"
+    },
+    {
+      "provider": "codex",
+      "id": "fdea99b731f89e64d9f1781682143779cdbb05b211e499b626a66d2599904d1c",
+      "label": "龙娘：脑袋转圈",
+      "image": {
+        "url": "https://raw.githubusercontent.com/lokicorvus/crosspet/6e98970f6ff9b44e8ac85215241cabcd78f67d92/characters/gpt/dizzy.webp",
+        "width": 533,
+        "height": 640,
+        "format": "png"
+      },
+      "sourceKey": "https://github.com/lokicorvus/crosspet/blob/6e98970f6ff9b44e8ac85215241cabcd78f67d92/characters/gpt/dizzy.webp",
+      "sourcePage": "https://github.com/lokicorvus/crosspet/blob/6e98970f6ff9b44e8ac85215241cabcd78f67d92/characters/gpt/dizzy.webp",
+      "bytes": 485649,
+      "supported": true,
+      "tags": [
+        "疑惑",
+        "搞怪"
+      ],
+      "scenes": [
+        "信息太多",
+        "玩笑"
+      ],
+      "description": "白紫Q版龙娘，双眼变成螺旋，摊开手掌，一脸迷糊。",
+      "caption": "",
+      "avoid": "医疗症状、严肃求助",
+      "direction": "机器人自嘲没转过弯",
+      "author": "CrossPet (lokicorvus)",
+      "characterDesigner": "ZipZipPipe",
+      "license": "CC BY-NC-SA 4.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by-nc-sa/4.0/",
+      "originalPath": "originals/crosspet/dizzy.webp",
+      "originalSHA256": "2fdda2ddcede95e299d182bf245d6d0c3c4b21d20ffa580ee9229c3f4a87e8fb",
+      "originalBytes": 95740,
+      "transformation": "原有WebP解码为PNG，保留尺寸与透明背景；未生成、裁切、改字",
+      "collectedDate": "2026-11-03",
+      "preview": "gallery/crosspet-dizzy.png",
+      "reviewStatus": "visually-reviewed",
+      "annotationSource": "本项目逐张人工看图标注"
+    },
+    {
+      "provider": "codex",
+      "id": "a4250abb21b1d1912edad00e5d9408177c2dbf7656c212489fa70e166f25f209",
+      "label": "龙娘：拿起画笔",
+      "image": {
+        "url": "https://raw.githubusercontent.com/lokicorvus/crosspet/6e98970f6ff9b44e8ac85215241cabcd78f67d92/characters/gpt/drawing.webp",
+        "width": 537,
+        "height": 640,
+        "format": "png"
+      },
+      "sourceKey": "https://github.com/lokicorvus/crosspet/blob/6e98970f6ff9b44e8ac85215241cabcd78f67d92/characters/gpt/drawing.webp",
+      "sourcePage": "https://github.com/lokicorvus/crosspet/blob/6e98970f6ff9b44e8ac85215241cabcd78f67d92/characters/gpt/drawing.webp",
+      "bytes": 475539,
+      "supported": true,
+      "tags": [
+        "开心",
+        "期待"
+      ],
+      "scenes": [
+        "画画",
+        "创作"
+      ],
+      "description": "白紫Q版龙娘，一手画笔，一手调色盘，微笑准备作画。",
+      "caption": "",
+      "avoid": "不能用来谎称已经生成图片",
+      "direction": "机器人表达愿意创作",
+      "author": "CrossPet (lokicorvus)",
+      "characterDesigner": "ZipZipPipe",
+      "license": "CC BY-NC-SA 4.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by-nc-sa/4.0/",
+      "originalPath": "originals/crosspet/drawing.webp",
+      "originalSHA256": "64ef47c78c5039e08b8d7cd0bdfdb96118a18a65a600f209a1bba0bce822c74e",
+      "originalBytes": 92236,
+      "transformation": "原有WebP解码为PNG，保留尺寸与透明背景；未生成、裁切、改字",
+      "collectedDate": "2026-11-03",
+      "preview": "gallery/crosspet-drawing.png",
+      "reviewStatus": "visually-reviewed",
+      "annotationSource": "本项目逐张人工看图标注"
+    },
+    {
+      "provider": "codex",
+      "id": "0faa24bfcce8749c5c1964fe4778326cca8975818b8b926bee40eb2fa1bb47a7",
+      "label": "龙娘：和好啦",
+      "image": {
+        "url": "https://raw.githubusercontent.com/lokicorvus/crosspet/6e98970f6ff9b44e8ac85215241cabcd78f67d92/characters/gpt/forgiven.webp",
+        "width": 564,
+        "height": 640,
+        "format": "png"
+      },
+      "sourceKey": "https://github.com/lokicorvus/crosspet/blob/6e98970f6ff9b44e8ac85215241cabcd78f67d92/characters/gpt/forgiven.webp",
+      "sourcePage": "https://github.com/lokicorvus/crosspet/blob/6e98970f6ff9b44e8ac85215241cabcd78f67d92/characters/gpt/forgiven.webp",
+      "bytes": 503144,
+      "supported": true,
+      "tags": [
+        "害羞",
+        "开心"
+      ],
+      "scenes": [
+        "和好",
+        "道歉后"
+      ],
+      "description": "白紫Q版龙娘，双手合在身前，轻轻微笑、脸红。",
+      "caption": "",
+      "avoid": "严重过错未处理、替别人原谅",
+      "direction": "机器人接受轻微玩笑后的和好",
+      "author": "CrossPet (lokicorvus)",
+      "characterDesigner": "ZipZipPipe",
+      "license": "CC BY-NC-SA 4.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by-nc-sa/4.0/",
+      "originalPath": "originals/crosspet/forgiven.webp",
+      "originalSHA256": "6386ea2f8984a613139fc1c25ade0aa11042e1eced464ce057f0edcc608fe875",
+      "originalBytes": 97674,
+      "transformation": "原有WebP解码为PNG，保留尺寸与透明背景；未生成、裁切、改字",
+      "collectedDate": "2026-11-03",
+      "preview": "gallery/crosspet-forgiven.png",
+      "reviewStatus": "visually-reviewed",
+      "annotationSource": "本项目逐张人工看图标注"
+    },
+    {
+      "provider": "codex",
+      "id": "5a85e8b5a8d71e596e94d398958952fff63ab06f99e9d22cac0b4c3b8a12ec6b",
+      "label": "龙娘：早安咖啡",
+      "image": {
+        "url": "https://raw.githubusercontent.com/lokicorvus/crosspet/6e98970f6ff9b44e8ac85215241cabcd78f67d92/characters/gpt/greet_morning.webp",
+        "width": 567,
+        "height": 640,
+        "format": "png"
+      },
+      "sourceKey": "https://github.com/lokicorvus/crosspet/blob/6e98970f6ff9b44e8ac85215241cabcd78f67d92/characters/gpt/greet_morning.webp",
+      "sourcePage": "https://github.com/lokicorvus/crosspet/blob/6e98970f6ff9b44e8ac85215241cabcd78f67d92/characters/gpt/greet_morning.webp",
+      "bytes": 500667,
+      "supported": true,
+      "tags": [
+        "问候",
+        "放松"
+      ],
+      "scenes": [
+        "早安",
+        "喝咖啡"
+      ],
+      "description": "白紫Q版龙娘，闭眼端起咖啡杯，一手放松摊开。",
+      "caption": "",
+      "avoid": "深夜问候、紧急求助",
+      "direction": "机器人向用户道早安",
+      "author": "CrossPet (lokicorvus)",
+      "characterDesigner": "ZipZipPipe",
+      "license": "CC BY-NC-SA 4.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by-nc-sa/4.0/",
+      "originalPath": "originals/crosspet/greet_morning.webp",
+      "originalSHA256": "b8ee329c5bc66b93f86fc0c3727acf53490411e75e3fdfc7d9815b269ee8651d",
+      "originalBytes": 95994,
+      "transformation": "原有WebP解码为PNG，保留尺寸与透明背景；未生成、裁切、改字",
+      "collectedDate": "2026-11-03",
+      "preview": "gallery/crosspet-greet_morning.png",
+      "reviewStatus": "visually-reviewed",
+      "annotationSource": "本项目逐张人工看图标注"
+    },
+    {
+      "provider": "codex",
+      "id": "04c4893d96ee5b704a08a258d3abd4140a177f50e14903b9bbbd64a741bfec33",
+      "label": "龙娘：夜晚暖茶",
+      "image": {
+        "url": "https://raw.githubusercontent.com/lokicorvus/crosspet/6e98970f6ff9b44e8ac85215241cabcd78f67d92/characters/gpt/greet_night.webp",
+        "width": 497,
+        "height": 640,
+        "format": "png"
+      },
+      "sourceKey": "https://github.com/lokicorvus/crosspet/blob/6e98970f6ff9b44e8ac85215241cabcd78f67d92/characters/gpt/greet_night.webp",
+      "sourcePage": "https://github.com/lokicorvus/crosspet/blob/6e98970f6ff9b44e8ac85215241cabcd78f67d92/characters/gpt/greet_night.webp",
+      "bytes": 454692,
+      "supported": true,
+      "tags": [
+        "问候",
+        "陪伴"
+      ],
+      "scenes": [
+        "晚安",
+        "夜聊"
+      ],
+      "description": "白紫Q版龙娘，双手捧着杯子放在嘴边，眼神柔和。",
+      "caption": "",
+      "avoid": "用户拒绝继续聊天时纠缠",
+      "direction": "机器人温柔道晚安",
+      "author": "CrossPet (lokicorvus)",
+      "characterDesigner": "ZipZipPipe",
+      "license": "CC BY-NC-SA 4.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by-nc-sa/4.0/",
+      "originalPath": "originals/crosspet/greet_night.webp",
+      "originalSHA256": "b784f889bc2e888f1b036c1ae2613e33cd5d8f23b1b75ade17766c36d5dba1b3",
+      "originalBytes": 88394,
+      "transformation": "原有WebP解码为PNG，保留尺寸与透明背景；未生成、裁切、改字",
+      "collectedDate": "2026-11-03",
+      "preview": "gallery/crosspet-greet_night.png",
+      "reviewStatus": "visually-reviewed",
+      "annotationSource": "本项目逐张人工看图标注"
+    },
+    {
+      "provider": "codex",
+      "id": "604a89b4d1558615d6fdb4ef36e02a9aedfa01ed542eb5adde878a5627178e29",
+      "label": "龙娘：笑眯眯",
+      "image": {
+        "url": "https://raw.githubusercontent.com/lokicorvus/crosspet/6e98970f6ff9b44e8ac85215241cabcd78f67d92/characters/gpt/happy.webp",
+        "width": 640,
+        "height": 640,
+        "format": "png"
+      },
+      "sourceKey": "https://github.com/lokicorvus/crosspet/blob/6e98970f6ff9b44e8ac85215241cabcd78f67d92/characters/gpt/happy.webp",
+      "sourcePage": "https://github.com/lokicorvus/crosspet/blob/6e98970f6ff9b44e8ac85215241cabcd78f67d92/characters/gpt/happy.webp",
+      "bytes": 525752,
+      "supported": true,
+      "tags": [
+        "开心"
+      ],
+      "scenes": [
+        "好消息",
+        "闲聊"
+      ],
+      "description": "白紫Q版龙娘，闭眼微笑，双手自然摊开，翅膀展开。",
+      "caption": "",
+      "avoid": "悲伤、真实挫折",
+      "direction": "机器人分享开心",
+      "author": "CrossPet (lokicorvus)",
+      "characterDesigner": "ZipZipPipe",
+      "license": "CC BY-NC-SA 4.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by-nc-sa/4.0/",
+      "originalPath": "originals/crosspet/happy.webp",
+      "originalSHA256": "6f7b41d53faea9c9de7ae28370e35aff30118754c3787779fd5404d7ec2ca3f5",
+      "originalBytes": 99724,
+      "transformation": "原有WebP解码为PNG，保留尺寸与透明背景；未生成、裁切、改字",
+      "collectedDate": "2026-11-03",
+      "preview": "gallery/crosspet-happy.png",
+      "reviewStatus": "visually-reviewed",
+      "annotationSource": "本项目逐张人工看图标注"
+    },
+    {
+      "provider": "codex",
+      "id": "2f7d93c2462e4513b93c4e87e9620c99075d77bbc6009f1decf87c78c2a87b7a",
+      "label": "龙娘：认真听你说",
+      "image": {
+        "url": "https://raw.githubusercontent.com/lokicorvus/crosspet/6e98970f6ff9b44e8ac85215241cabcd78f67d92/characters/gpt/listening.webp",
+        "width": 569,
+        "height": 640,
+        "format": "png"
+      },
+      "sourceKey": "https://github.com/lokicorvus/crosspet/blob/6e98970f6ff9b44e8ac85215241cabcd78f67d92/characters/gpt/listening.webp",
+      "sourcePage": "https://github.com/lokicorvus/crosspet/blob/6e98970f6ff9b44e8ac85215241cabcd78f67d92/characters/gpt/listening.webp",
+      "bytes": 508847,
+      "supported": true,
+      "tags": [
+        "陪伴",
+        "疑惑"
+      ],
+      "scenes": [
+        "倾听",
+        "补充说明"
+      ],
+      "description": "白紫Q版龙娘，睁大眼睛，一手抬到脸侧，嘴微张。",
+      "caption": "",
+      "avoid": "紧急求助时只发表情",
+      "direction": "机器人表示正在认真听",
+      "author": "CrossPet (lokicorvus)",
+      "characterDesigner": "ZipZipPipe",
+      "license": "CC BY-NC-SA 4.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by-nc-sa/4.0/",
+      "originalPath": "originals/crosspet/listening.webp",
+      "originalSHA256": "cd87b116c4d6ce1b6904f8311ba6c00c9b4567bf0cd642b7c2929ee467b9707e",
+      "originalBytes": 97300,
+      "transformation": "原有WebP解码为PNG，保留尺寸与透明背景；未生成、裁切、改字",
+      "collectedDate": "2026-11-03",
+      "preview": "gallery/crosspet-listening.png",
+      "reviewStatus": "visually-reviewed",
+      "annotationSource": "本项目逐张人工看图标注"
+    },
+    {
+      "provider": "codex",
+      "id": "9c4e52c421f31a76e9867aaa939680384153af5d29c161f6cd02e3b08b5e79dc",
+      "label": "龙娘：糟糕心虚",
+      "image": {
+        "url": "https://raw.githubusercontent.com/lokicorvus/crosspet/6e98970f6ff9b44e8ac85215241cabcd78f67d92/characters/gpt/oops.webp",
+        "width": 561,
+        "height": 640,
+        "format": "png"
+      },
+      "sourceKey": "https://github.com/lokicorvus/crosspet/blob/6e98970f6ff9b44e8ac85215241cabcd78f67d92/characters/gpt/oops.webp",
+      "sourcePage": "https://github.com/lokicorvus/crosspet/blob/6e98970f6ff9b44e8ac85215241cabcd78f67d92/characters/gpt/oops.webp",
+      "bytes": 495157,
+      "supported": true,
+      "tags": [
+        "心虚",
+        "尴尬"
+      ],
+      "scenes": [
+        "轻微失误",
+        "玩笑"
+      ],
+      "description": "白紫Q版龙娘，双手托在脸边，面带汗滴、眼神躲闪。",
+      "caption": "",
+      "avoid": "重大故障、推卸责任",
+      "direction": "机器人承认小失误",
+      "author": "CrossPet (lokicorvus)",
+      "characterDesigner": "ZipZipPipe",
+      "license": "CC BY-NC-SA 4.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by-nc-sa/4.0/",
+      "originalPath": "originals/crosspet/oops.webp",
+      "originalSHA256": "be8cfe39ce94732ae77e0ae4ff9da9a1277ed21138d7209f8cb01454af1a0301",
+      "originalBytes": 96200,
+      "transformation": "原有WebP解码为PNG，保留尺寸与透明背景；未生成、裁切、改字",
+      "collectedDate": "2026-11-03",
+      "preview": "gallery/crosspet-oops.png",
+      "reviewStatus": "visually-reviewed",
+      "annotationSource": "本项目逐张人工看图标注"
+    },
+    {
+      "provider": "codex",
+      "id": "e2ae063fbffb97c04a42cf53cd0f4324a33df8f30ae1955d4fa445dfb7ecad12",
+      "label": "龙娘：等你摸摸头",
+      "image": {
+        "url": "https://raw.githubusercontent.com/lokicorvus/crosspet/6e98970f6ff9b44e8ac85215241cabcd78f67d92/characters/gpt/pat.webp",
+        "width": 592,
+        "height": 640,
+        "format": "png"
+      },
+      "sourceKey": "https://github.com/lokicorvus/crosspet/blob/6e98970f6ff9b44e8ac85215241cabcd78f67d92/characters/gpt/pat.webp",
+      "sourcePage": "https://github.com/lokicorvus/crosspet/blob/6e98970f6ff9b44e8ac85215241cabcd78f67d92/characters/gpt/pat.webp",
+      "bytes": 499391,
+      "supported": true,
+      "tags": [
+        "撒娇",
+        "委屈"
+      ],
+      "scenes": [
+        "亲近互动",
+        "求安慰"
+      ],
+      "description": "白紫Q版龙娘，双手放在脸旁，侧头鼓嘴，尾巴扬起。",
+      "caption": "",
+      "avoid": "用户拒绝亲密、严肃求助",
+      "direction": "机器人撒娇希望被安慰",
+      "author": "CrossPet (lokicorvus)",
+      "characterDesigner": "ZipZipPipe",
+      "license": "CC BY-NC-SA 4.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by-nc-sa/4.0/",
+      "originalPath": "originals/crosspet/pat.webp",
+      "originalSHA256": "2a4a27a143d82b5cc23dd420be2c2b928e7dfc2f7e8bf32854a53a770381bcf1",
+      "originalBytes": 93814,
+      "transformation": "原有WebP解码为PNG，保留尺寸与透明背景；未生成、裁切、改字",
+      "collectedDate": "2026-11-03",
+      "preview": "gallery/crosspet-pat.png",
+      "reviewStatus": "visually-reviewed",
+      "annotationSource": "本项目逐张人工看图标注"
+    },
+    {
+      "provider": "codex",
+      "id": "8300775c00b2f064311db321417121d90b2b9e7576890fd82ddfe81578996edc",
+      "label": "龙娘：皇冠小得意",
+      "image": {
+        "url": "https://raw.githubusercontent.com/lokicorvus/crosspet/6e98970f6ff9b44e8ac85215241cabcd78f67d92/characters/gpt/proud.webp",
+        "width": 701,
+        "height": 640,
+        "format": "png"
+      },
+      "sourceKey": "https://github.com/lokicorvus/crosspet/blob/6e98970f6ff9b44e8ac85215241cabcd78f67d92/characters/gpt/proud.webp",
+      "sourcePage": "https://github.com/lokicorvus/crosspet/blob/6e98970f6ff9b44e8ac85215241cabcd78f67d92/characters/gpt/proud.webp",
+      "bytes": 569470,
+      "supported": true,
+      "tags": [
+        "得意",
+        "开心"
+      ],
+      "scenes": [
+        "被夸",
+        "完成小事"
+      ],
+      "description": "白紫Q版龙娘，戴着皇冠、抱臂微笑，张开龙翼。",
+      "caption": "",
+      "avoid": "未经验证的工作成果、嘲讽用户",
+      "direction": "机器人被夸后小小得意",
+      "author": "CrossPet (lokicorvus)",
+      "characterDesigner": "ZipZipPipe",
+      "license": "CC BY-NC-SA 4.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by-nc-sa/4.0/",
+      "originalPath": "originals/crosspet/proud.webp",
+      "originalSHA256": "a3b9e52b42ecbb6d36342a2ddfc5be58c50424396b9341cc3d2fc7eb09abd746",
+      "originalBytes": 110210,
+      "transformation": "原有WebP解码为PNG，保留尺寸与透明背景；未生成、裁切、改字",
+      "collectedDate": "2026-11-03",
+      "preview": "gallery/crosspet-proud.png",
+      "reviewStatus": "visually-reviewed",
+      "annotationSource": "本项目逐张人工看图标注"
+    },
+    {
+      "provider": "codex",
+      "id": "b91a27406e544dab58da2a3f6509c1492000478cd39ab0b39d7c92e41f642613",
+      "label": "龙娘：鼓脸哼哼",
+      "image": {
+        "url": "https://raw.githubusercontent.com/lokicorvus/crosspet/6e98970f6ff9b44e8ac85215241cabcd78f67d92/characters/gpt/puffed.webp",
+        "width": 576,
+        "height": 640,
+        "format": "png"
+      },
+      "sourceKey": "https://github.com/lokicorvus/crosspet/blob/6e98970f6ff9b44e8ac85215241cabcd78f67d92/characters/gpt/puffed.webp",
+      "sourcePage": "https://github.com/lokicorvus/crosspet/blob/6e98970f6ff9b44e8ac85215241cabcd78f67d92/characters/gpt/puffed.webp",
+      "bytes": 515041,
+      "supported": true,
+      "tags": [
+        "傲娇",
+        "生气"
+      ],
+      "scenes": [
+        "被调侃",
+        "玩笑"
+      ],
+      "description": "白紫Q版龙娘，抱臂鼓脸，眼神直视前方。",
+      "caption": "",
+      "avoid": "真实争执、用户生气",
+      "direction": "机器人假装闹小脾气",
+      "author": "CrossPet (lokicorvus)",
+      "characterDesigner": "ZipZipPipe",
+      "license": "CC BY-NC-SA 4.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by-nc-sa/4.0/",
+      "originalPath": "originals/crosspet/puffed.webp",
+      "originalSHA256": "8f70ddc1a0302f8a06ec9605ca964ec883e3e0b09d9359f99c9dc81ef4cd921a",
+      "originalBytes": 98286,
+      "transformation": "原有WebP解码为PNG，保留尺寸与透明背景；未生成、裁切、改字",
+      "collectedDate": "2026-11-03",
+      "preview": "gallery/crosspet-puffed.png",
+      "reviewStatus": "visually-reviewed",
+      "annotationSource": "本项目逐张人工看图标注"
+    },
+    {
+      "provider": "codex",
+      "id": "93ecd6f9eec9c0232da4544259d2c462dfc1619a28d1c78809004f988c4f1d00",
+      "label": "龙娘：认真读书",
+      "image": {
+        "url": "https://raw.githubusercontent.com/lokicorvus/crosspet/6e98970f6ff9b44e8ac85215241cabcd78f67d92/characters/gpt/reading.webp",
+        "width": 556,
+        "height": 640,
+        "format": "png"
+      },
+      "sourceKey": "https://github.com/lokicorvus/crosspet/blob/6e98970f6ff9b44e8ac85215241cabcd78f67d92/characters/gpt/reading.webp",
+      "sourcePage": "https://github.com/lokicorvus/crosspet/blob/6e98970f6ff9b44e8ac85215241cabcd78f67d92/characters/gpt/reading.webp",
+      "bytes": 477304,
+      "supported": true,
+      "tags": [
+        "认真",
+        "思考"
+      ],
+      "scenes": [
+        "读书",
+        "学习"
+      ],
+      "description": "白紫Q版龙娘，双手拿着打开的书，低头认真阅读。",
+      "caption": "",
+      "avoid": "不能代替实际阅读结果",
+      "direction": "机器人表达学习或阅读状态",
+      "author": "CrossPet (lokicorvus)",
+      "characterDesigner": "ZipZipPipe",
+      "license": "CC BY-NC-SA 4.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by-nc-sa/4.0/",
+      "originalPath": "originals/crosspet/reading.webp",
+      "originalSHA256": "ea5546de7fec13232ce995646a9b73ad59b016384a9233e5a42b80cae05138ea",
+      "originalBytes": 91320,
+      "transformation": "原有WebP解码为PNG，保留尺寸与透明背景；未生成、裁切、改字",
+      "collectedDate": "2026-11-03",
+      "preview": "gallery/crosspet-reading.png",
+      "reviewStatus": "visually-reviewed",
+      "annotationSource": "本项目逐张人工看图标注"
+    },
+    {
+      "provider": "codex",
+      "id": "4d4e1c11111933fa3de5ced4e75bc2bb43d5dc9656a3bf3ed09dc6a5925b9ee2",
+      "label": "龙娘：困困睡着了",
+      "image": {
+        "url": "https://raw.githubusercontent.com/lokicorvus/crosspet/6e98970f6ff9b44e8ac85215241cabcd78f67d92/characters/gpt/sleeping.webp",
+        "width": 504,
+        "height": 640,
+        "format": "png"
+      },
+      "sourceKey": "https://github.com/lokicorvus/crosspet/blob/6e98970f6ff9b44e8ac85215241cabcd78f67d92/characters/gpt/sleeping.webp",
+      "sourcePage": "https://github.com/lokicorvus/crosspet/blob/6e98970f6ff9b44e8ac85215241cabcd78f67d92/characters/gpt/sleeping.webp",
+      "bytes": 454625,
+      "supported": true,
+      "tags": [
+        "困倦",
+        "放松"
+      ],
+      "scenes": [
+        "晚安",
+        "休息"
+      ],
+      "description": "白紫Q版龙娘，低头闭眼，双手垂在身前，尾巴盘绕。",
+      "caption": "",
+      "avoid": "用户需要立即帮助",
+      "direction": "机器人表达休息或道晚安",
+      "author": "CrossPet (lokicorvus)",
+      "characterDesigner": "ZipZipPipe",
+      "license": "CC BY-NC-SA 4.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by-nc-sa/4.0/",
+      "originalPath": "originals/crosspet/sleeping.webp",
+      "originalSHA256": "05fc3b383695433882770d0b5f45695b03899627e14345a5ec0dbf0061f93bec",
+      "originalBytes": 87986,
+      "transformation": "原有WebP解码为PNG，保留尺寸与透明背景；未生成、裁切、改字",
+      "collectedDate": "2026-11-03",
+      "preview": "gallery/crosspet-sleeping.png",
+      "reviewStatus": "visually-reviewed",
+      "annotationSource": "本项目逐张人工看图标注"
+    },
+    {
+      "provider": "codex",
+      "id": "8280e54d57c259f3ebb6435a89ac56d752d58965a4cec25a98d7981334b43368",
+      "label": "龙娘：哇了一声",
+      "image": {
+        "url": "https://raw.githubusercontent.com/lokicorvus/crosspet/6e98970f6ff9b44e8ac85215241cabcd78f67d92/characters/gpt/surprised.webp",
+        "width": 565,
+        "height": 640,
+        "format": "png"
+      },
+      "sourceKey": "https://github.com/lokicorvus/crosspet/blob/6e98970f6ff9b44e8ac85215241cabcd78f67d92/characters/gpt/surprised.webp",
+      "sourcePage": "https://github.com/lokicorvus/crosspet/blob/6e98970f6ff9b44e8ac85215241cabcd78f67d92/characters/gpt/surprised.webp",
+      "bytes": 501075,
+      "supported": true,
+      "tags": [
+        "惊讶"
+      ],
+      "scenes": [
+        "意外消息",
+        "闲聊"
+      ],
+      "description": "白紫Q版龙娘，睁大眼睛张小嘴，双拳举在胸前。",
+      "caption": "",
+      "avoid": "坏消息时不能表达幸灾乐祸",
+      "direction": "机器人表示意外",
+      "author": "CrossPet (lokicorvus)",
+      "characterDesigner": "ZipZipPipe",
+      "license": "CC BY-NC-SA 4.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by-nc-sa/4.0/",
+      "originalPath": "originals/crosspet/surprised.webp",
+      "originalSHA256": "cb9f17096739dbeb8ae7dffbcd32bd80753ab248d86ce82dda3185f98a4402af",
+      "originalBytes": 95104,
+      "transformation": "原有WebP解码为PNG，保留尺寸与透明背景；未生成、裁切、改字",
+      "collectedDate": "2026-11-03",
+      "preview": "gallery/crosspet-surprised.png",
+      "reviewStatus": "visually-reviewed",
+      "annotationSource": "本项目逐张人工看图标注"
+    },
+    {
+      "provider": "codex",
+      "id": "53980dc680f8e7f0407966f2463d1cb5bc5c845ab0c76eed018a92eddaf3d428",
+      "label": "龙娘：让我想想",
+      "image": {
+        "url": "https://raw.githubusercontent.com/lokicorvus/crosspet/6e98970f6ff9b44e8ac85215241cabcd78f67d92/characters/gpt/thinking.webp",
+        "width": 535,
+        "height": 640,
+        "format": "png"
+      },
+      "sourceKey": "https://github.com/lokicorvus/crosspet/blob/6e98970f6ff9b44e8ac85215241cabcd78f67d92/characters/gpt/thinking.webp",
+      "sourcePage": "https://github.com/lokicorvus/crosspet/blob/6e98970f6ff9b44e8ac85215241cabcd78f67d92/characters/gpt/thinking.webp",
+      "bytes": 484679,
+      "supported": true,
+      "tags": [
+        "思考",
+        "疑惑"
+      ],
+      "scenes": [
+        "思考",
+        "讨论"
+      ],
+      "description": "白紫Q版龙娘，一手托臂，一手指尖抵下巴，抬眼思考。",
+      "caption": "",
+      "avoid": "不能当作已完成任务的回复",
+      "direction": "机器人表示在考虑",
+      "author": "CrossPet (lokicorvus)",
+      "characterDesigner": "ZipZipPipe",
+      "license": "CC BY-NC-SA 4.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by-nc-sa/4.0/",
+      "originalPath": "originals/crosspet/thinking.webp",
+      "originalSHA256": "01f866e66e360f01b31bddd2d5ee762796348534417a9a08c5a20ddb0978d795",
+      "originalBytes": 94268,
+      "transformation": "原有WebP解码为PNG，保留尺寸与透明背景；未生成、裁切、改字",
+      "collectedDate": "2026-11-03",
+      "preview": "gallery/crosspet-thinking.png",
+      "reviewStatus": "visually-reviewed",
+      "annotationSource": "本项目逐张人工看图标注"
+    },
+    {
+      "provider": "codex",
+      "id": "cecfc5933779a94d4ebdd5530abbee971752ae4ce1262172410940e287eab23b",
+      "label": "龙娘：累趴小龙",
+      "image": {
+        "url": "https://raw.githubusercontent.com/lokicorvus/crosspet/6e98970f6ff9b44e8ac85215241cabcd78f67d92/characters/gpt/tired.webp",
+        "width": 530,
+        "height": 640,
+        "format": "png"
+      },
+      "sourceKey": "https://github.com/lokicorvus/crosspet/blob/6e98970f6ff9b44e8ac85215241cabcd78f67d92/characters/gpt/tired.webp",
+      "sourcePage": "https://github.com/lokicorvus/crosspet/blob/6e98970f6ff9b44e8ac85215241cabcd78f67d92/characters/gpt/tired.webp",
+      "bytes": 481426,
+      "supported": true,
+      "tags": [
+        "疲惫",
+        "委屈"
+      ],
+      "scenes": [
+        "工作结束",
+        "吐槽加班"
+      ],
+      "description": "白紫Q版龙娘，半睁眼、肩膀下垂、双手放下，神情疲倦。",
+      "caption": "",
+      "avoid": "用户悲伤求助时抢话诉苦",
+      "direction": "机器人轻松自嘲累了",
+      "author": "CrossPet (lokicorvus)",
+      "characterDesigner": "ZipZipPipe",
+      "license": "CC BY-NC-SA 4.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by-nc-sa/4.0/",
+      "originalPath": "originals/crosspet/tired.webp",
+      "originalSHA256": "e63d269de0050ce626b9f30de7cfd9cd1cc0f9caa9da640484364f06567eea2f",
+      "originalBytes": 93216,
+      "transformation": "原有WebP解码为PNG，保留尺寸与透明背景；未生成、裁切、改字",
+      "collectedDate": "2026-11-03",
+      "preview": "gallery/crosspet-tired.png",
+      "reviewStatus": "visually-reviewed",
+      "annotationSource": "本项目逐张人工看图标注"
     }
   ]
 }

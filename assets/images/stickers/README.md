@@ -2,12 +2,12 @@
 
 所有机器人共享，私聊仅按实际供应商选择单人图。双人图留给未来 Codex 与 DeepSeek 的群聊互动，当前不启用。
 
-本次新增 36 张原始动态 GIF：18 张鲸鱼娘单人图、18 张龙娘与鲸鱼娘双人图。随后新增10张网上现成龙娘图。含原有素材共56张：私聊可用29张、群聊预留18张、超限收藏9张。新增30张龙娘的目标尚未完成（本次仅新增10张，其中5张可发送）。相同图片的 `.image` 与 `gallery/` 文件是原字节副本，不按两张计数。
+龙娘补充目标已完成：新增30张网上现成的不同图片（上一轮10张、本轮CrossPet 20张），不含双人图。当前龙娘共34张，其中27张可发送、7张旧原图超限仅收藏。整个图库76张：私聊可用49张、群聊预留18张、超限收藏9张。
 
-- `providers/codex/`：龙娘单人，7 张可发送，另有7张超限收藏。
-- `providers/deepseek/`：鲸鱼娘单人，22 张可发送，另有 2 张超限收藏。
-- `group/dragon-whale/`：18 张双人互动，`enabled=false`，不进入私聊候选。
-- `catalog.json` 保存可用条目和语义标注，`sources.json` 保存来源、原图字节数及许可；点击下面图片即可查看或保存原图。
+- `providers/codex/`：龙娘34张（27张可发送）。
+- `providers/deepseek/`：鲸鱼娘24张（22张可发送）。
+- `group/dragon-whale/`：双人18张，仅群聊预留。
+- `.image`、`gallery/`和`originals/`中的同一作品只计一次。CrossPet原始WebP和发送用PNG均保留，未生成、裁切或改字。
 
 ## 来源与使用条件
 
@@ -18,6 +18,8 @@
 原有10张网络收藏逐张保留原始来源，权利归各自作者，未核实统一再许可；收录不表示改为 MIT 或获得商业授权。
 
 新增10张龙娘来自[蓝色大肥鱼 GPT 图库](https://xn--pssy23gqgbz2d718b.com/characters/gpt.html)，原图存档为[lmy414/ai-girl-stickers](https://github.com/lmy414/ai-girl-stickers)。逐张记录投稿署名、来源与上游许可原文；未将来源站代码许可套用到图片。所有新增图保留原字节，未生成、裁切或改字。
+
+本轮20张来自 [CrossPet / lokicorvus](https://github.com/lokicorvus/crosspet)，角色设计署名 **ZipZipPipe**。图片按 **CC BY-NC-SA 4.0** 非商业分享，完整声明见 [CROSSPET-LICENSE.md](CROSSPET-LICENSE.md)。仅作WebP到PNG格式转换，保留透明背景。
 
 ## Codex · 龙娘单人
 
@@ -38,6 +40,27 @@
 | <img src="providers/codex/gallery/gpt202610200002.png" alt="龙娘得意：限流秘籍" width="130"> | **龙娘得意：限流秘籍**<br>得意、搞怪<br>超2MiB，仅收藏 |
 | <img src="providers/codex/gallery/gpt202610250002.jpg" alt="龙娘委屈：越说越缩水" width="130"> | **龙娘委屈：越说越缩水**<br>委屈、搞怪<br>私聊可用 |
 | <img src="providers/codex/gallery/gpt202610260001.gif" alt="龙娘乖巧：安静等你" width="130"> | **龙娘乖巧：安静等你**<br>乖巧、期待<br>私聊可用 |
+
+| <img src="providers/codex/gallery/crosspet-annoyed.png" alt="龙娘：抱臂不满" width="130"> | **龙娘：抱臂不满**<br>生气、傲娇<br>私聊可用 |
+| <img src="providers/codex/gallery/crosspet-asking.png" alt="龙娘：伸手求解释" width="130"> | **龙娘：伸手求解释**<br>疑惑、期待<br>私聊可用 |
+| <img src="providers/codex/gallery/crosspet-bye.png" alt="龙娘：挥手拜拜" width="130"> | **龙娘：挥手拜拜**<br>告别、开心<br>私聊可用 |
+| <img src="providers/codex/gallery/crosspet-coaxed.png" alt="龙娘：脸红嘴硬" width="130"> | **龙娘：脸红嘴硬**<br>害羞、傲娇<br>私聊可用 |
+| <img src="providers/codex/gallery/crosspet-dizzy.png" alt="龙娘：脑袋转圈" width="130"> | **龙娘：脑袋转圈**<br>疑惑、搞怪<br>私聊可用 |
+| <img src="providers/codex/gallery/crosspet-drawing.png" alt="龙娘：拿起画笔" width="130"> | **龙娘：拿起画笔**<br>开心、期待<br>私聊可用 |
+| <img src="providers/codex/gallery/crosspet-forgiven.png" alt="龙娘：和好啦" width="130"> | **龙娘：和好啦**<br>害羞、开心<br>私聊可用 |
+| <img src="providers/codex/gallery/crosspet-greet_morning.png" alt="龙娘：早安咖啡" width="130"> | **龙娘：早安咖啡**<br>问候、放松<br>私聊可用 |
+| <img src="providers/codex/gallery/crosspet-greet_night.png" alt="龙娘：夜晚暖茶" width="130"> | **龙娘：夜晚暖茶**<br>问候、陪伴<br>私聊可用 |
+| <img src="providers/codex/gallery/crosspet-happy.png" alt="龙娘：笑眯眯" width="130"> | **龙娘：笑眯眯**<br>开心<br>私聊可用 |
+| <img src="providers/codex/gallery/crosspet-listening.png" alt="龙娘：认真听你说" width="130"> | **龙娘：认真听你说**<br>陪伴、疑惑<br>私聊可用 |
+| <img src="providers/codex/gallery/crosspet-oops.png" alt="龙娘：糟糕心虚" width="130"> | **龙娘：糟糕心虚**<br>心虚、尴尬<br>私聊可用 |
+| <img src="providers/codex/gallery/crosspet-pat.png" alt="龙娘：等你摸摸头" width="130"> | **龙娘：等你摸摸头**<br>撒娇、委屈<br>私聊可用 |
+| <img src="providers/codex/gallery/crosspet-proud.png" alt="龙娘：皇冠小得意" width="130"> | **龙娘：皇冠小得意**<br>得意、开心<br>私聊可用 |
+| <img src="providers/codex/gallery/crosspet-puffed.png" alt="龙娘：鼓脸哼哼" width="130"> | **龙娘：鼓脸哼哼**<br>傲娇、生气<br>私聊可用 |
+| <img src="providers/codex/gallery/crosspet-reading.png" alt="龙娘：认真读书" width="130"> | **龙娘：认真读书**<br>认真、思考<br>私聊可用 |
+| <img src="providers/codex/gallery/crosspet-sleeping.png" alt="龙娘：困困睡着了" width="130"> | **龙娘：困困睡着了**<br>困倦、放松<br>私聊可用 |
+| <img src="providers/codex/gallery/crosspet-surprised.png" alt="龙娘：哇了一声" width="130"> | **龙娘：哇了一声**<br>惊讶<br>私聊可用 |
+| <img src="providers/codex/gallery/crosspet-thinking.png" alt="龙娘：让我想想" width="130"> | **龙娘：让我想想**<br>思考、疑惑<br>私聊可用 |
+| <img src="providers/codex/gallery/crosspet-tired.png" alt="龙娘：累趴小龙" width="130"> | **龙娘：累趴小龙**<br>疲惫、委屈<br>私聊可用 |
 
 ## DeepSeek · 鲸鱼娘单人
 

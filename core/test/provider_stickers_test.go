@@ -331,3 +331,60 @@ func TestGroupCollectionIsNotUsedForPrivateReplies(t *testing.T) {
 		t.Fatal("group-only collection leaked into private response")
 	}
 }
+
+// TestExpandedProviderCollection 验证超过旧24张上限的共享图库仍可完成真实私聊选图流程。
+func TestExpandedProviderCollection(t *testing.T) {
+	s, f, _ := expressionService(t)
+	writeProviderFixture(t, s, f.data)
+	folder := filepath.Join(s.Store.Root, "assets/images/stickers/providers/codex")
+	path := filepath.Join(folder, "catalog.json")
+	raw, err := os.ReadFile(path)
+	if err != nil {
+		t.Fatal(err)
+	}
+	var library struct {
+		Items []model.LearnedSticker `json:"items"`
+	}
+	if err := json.Unmarshal(raw, &library); err != nil {
+		t.Fatal(err)
+	}
+	original := library.Items[0]
+	for index := 1; index < 32; index++ {
+		data := append(append([]byte(nil), f.data...), byte(index))
+		sum := sha256.Sum256(data)
+		item := original
+		item.ID = hex.EncodeToString(sum[:])
+		item.Tags = []string{"读书"}
+		library.Items = append(library.Items, item)
+		if err := os.WriteFile(filepath.Join(folder, item.ID+".image"), data, 0600); err != nil {
+			t.Fatal(err)
+		}
+	}
+	raw, err = json.Marshal(&library)
+	if err != nil {
+		t.Fatal(err)
+	}
+	if err := os.WriteFile(path, raw, 0600); err != nil {
+		t.Fatal(err)
+	}
+	settings := model.ModelProviderInput{
+		Mode:          "local",
+		Provider:      "codex",
+		CodexModel:    "chosen",
+		CodexEffort:   "low",
+		DeepSeekModel: "deepseek-flash",
+		HarnessEffort: "low",
+	}
+	if _, err := s.SaveModelProviderConfig(ctx, &settings); err != nil {
+		t.Fatal(err)
+	}
+	generator := &providerStickerGenerator{t: t, provider: "codex"}
+	s.Generator = generator
+	f.messages = []model.PrivateMessage{privateMessage(1, "789", "123", "发个表情包")}
+	if err := s.PrivateTick(ctx); err != nil {
+		t.Fatal(err)
+	}
+	if f.images != 1 || generator.calls != 2 || f.downloads != 0 {
+		t.Fatal("expanded collection did not send a local image", f.images, generator.calls, f.downloads)
+	}
+}
