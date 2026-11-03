@@ -27,7 +27,7 @@ func Robot(state *model.RobotState) any {
 	return result
 }
 func PrivateOutbox(row *model.PrivateOutbox) any {
-	result := map[string]any{"requestId": row.RequestID, "at": row.At, "text": row.Text, "automatic": row.AutoKey != "", "status": row.Status, "messageKey": row.MessageKey, "errorCode": row.ErrorCode, "groupId": row.GroupID, "part": row.Part, "sticker": row.StickerID != ""}
+	result := map[string]any{"requestId": row.RequestID, "at": row.At, "text": row.Text, "automatic": row.AutoKey != "", "proactive": row.Proactive, "status": row.Status, "messageKey": row.MessageKey, "errorCode": row.ErrorCode, "groupId": row.GroupID, "part": row.Part, "sticker": row.StickerID != ""}
 	return result
 }
 func PrivateOverview(page *model.PrivateOverview) any {

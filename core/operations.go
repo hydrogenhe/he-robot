@@ -115,7 +115,7 @@ func (s *Service) initializeOperations(ctx context.Context) error {
 
 // StartOperation 在副作用前保存运行状态，不触发平台或模型查询。
 func (s *Service) StartOperation(ctx context.Context, input *model.OperationStart) (string, error) {
-	if input == nil || !model.Text(input.Platform, 40) || !model.Text(input.Action, 60) || (input.Source != "web" && input.Source != "mcp" && input.Source != "automation") {
+	if input == nil || !model.Text(input.Platform, 40) || !model.Text(input.Action, 60) || (input.Source != "web" && input.Source != "mcp" && input.Source != "automation" && input.Source != "local") {
 		return "", model.Fail("INPUT", "业务流水参数不正确")
 	}
 	var account *model.Account

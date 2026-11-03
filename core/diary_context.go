@@ -51,6 +51,11 @@ func (s *Service) diaryPrompt(ctx context.Context, day string) (*model.DiaryProm
 		case "comments":
 			summary = "只读到视频评论材料，未看视频画面：" + model.Clip(event.Summary, 70)
 			rows = append(rows, diaryPublicComments(&event, owner, account)...)
+		case "material-understood":
+			summary, _ = event.Data["description"].(string)
+			if reaction, ok := event.Data["reaction"].(string); ok {
+				summary += "；当时感想：" + reaction
+			}
 		case "video-browsed":
 			summary = "只读取视频标题、简介与评论资料，未看画面/音轨：" + model.Clip(event.Summary, 80)
 		case "sent":
@@ -63,7 +68,13 @@ func (s *Service) diaryPrompt(ctx context.Context, day string) (*model.DiaryProm
 			continue
 		}
 		seen[key] = true
-		item := model.DiaryExperience{Platform: "bilibili", Account: account, Source: event.ID, OccurredAt: event.At, Visibility: "public", Kind: event.Kind, Text: summary}
+		platform := "bilibili"
+		if event.Kind == "material-understood" {
+			if value, ok := event.Data["platform"].(string); ok {
+				platform = value
+			}
+		}
+		item := model.DiaryExperience{Platform: platform, Account: account, Source: event.ID, OccurredAt: event.At, Visibility: "public", Kind: event.Kind, Text: summary}
 		rows = append(rows, item)
 	}
 	s.developmentDiaryWeights(rows)

@@ -48,7 +48,7 @@ func effectiveCharacter(state *model.CharacterState, now time.Time) model.Charac
 			result.Mood = "calm"
 		}
 	}
-	result.Description = fmt.Sprintf("当前情绪：%s（强度%d/100）；成长倾向：亲切%d、好奇%d、活泼%d（0–100）；已积累%d次真实互动。情绪为角色模拟状态，不是真实感受。", moodName(result.Mood), result.Intensity, result.Traits.Warmth, result.Traits.Curiosity, result.Traits.Playfulness, result.Experiences)
+	result.Description = fmt.Sprintf("当前情绪：%s（强度%d/100）；成长倾向：亲切%d、好奇%d、活泼%d（0–100）；已积累%d次真实经历。情绪为角色模拟状态，不是真实感受。", moodName(result.Mood), result.Intensity, result.Traits.Warmth, result.Traits.Curiosity, result.Traits.Playfulness, result.Experiences)
 	return result
 }
 func (s *Service) CharacterStatus(ctx context.Context) (*model.CharacterState, error) {
@@ -77,7 +77,7 @@ func (s *Service) applyCharacterSignal(ctx context.Context, source, channel stri
 	if !validMood(signal.Mood) || signal.Intensity < 0 || signal.Intensity > 100 || !validTraits(&delta, -1, 1) {
 		return model.Fail("AI_STATE", "AI成长建议超出允许范围，未应用")
 	}
-	if !model.ValidID(source) || (channel != "video-comment" && channel != "private-message") {
+	if !model.ValidID(source) || (channel != "video-comment" && channel != "private-message" && channel != "material") {
 		return model.Fail("INPUT", "缺少真实互动来源")
 	}
 	s.characterMu.Lock()

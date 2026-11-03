@@ -52,6 +52,7 @@ func Init(ctx context.Context, cfg *Config, service core.ServiceInterface) (*Ser
 	if err != nil || host != "127.0.0.1" {
 		return nil, model.Fail("CONFIG", "工作台只允许绑定127.0.0.1")
 	}
+	managed := service == nil
 	if service == nil {
 		service = core.NewService(cfg.Root, nil)
 	}
@@ -83,11 +84,22 @@ func Init(ctx context.Context, cfg *Config, service core.ServiceInterface) (*Ser
 	}
 	app := &Server{stopping: make(chan struct{})}
 	opt := handler.WorkbenchOptions{Shutdown: app.requestShutdown, Origin: origin, Bootstrap: values[0], Session: values[1], CSRF: values[2], MCP: values[3]}
-	actions := handler.NewActions(service)
+	var actions handler.ActionsInterface = handler.NewActions(service)
+	background := service.RunAutomation
+	if managed {
+		primary := service.(*core.Service)
+		manager, managerErr := core.NewRobotManager(ctx, cfg.Root, primary)
+		if managerErr != nil {
+			return nil, managerErr
+		}
+		actions = handler.NewRobotActions(manager, actions)
+		background = manager.Run
+	}
+
 	workbench := handler.NewWorkbench(actions, &opt)
 	router := RegisterRoutes(workbench, origin)
 	httpServer := &http.Server{Handler: router, ReadHeaderTimeout: 5 * time.Second, IdleTimeout: 60 * time.Second, MaxHeaderBytes: 32768}
-	app.Background = service.RunAutomation
+	app.Background = background
 	app.HTTP, app.Listener, app.Origin, app.OpenURL = httpServer, listener, origin, origin+"/"
 	runtime := model.Runtime{Origin: origin, Token: values[3], PID: os.Getpid()}
 	launch := model.Launch{URL: app.OpenURL}

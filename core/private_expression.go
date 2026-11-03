@@ -60,6 +60,11 @@ func (s *Service) prepareExpression(ctx context.Context, round *conversationRoun
 			return err
 		}
 	}
+	round.stickerProvider = s.modelRouter.Config().Provider
+	curated, err := s.loadProviderStickers(ctx, round.stickerProvider)
+	if err != nil {
+		return err
+	}
 	mentioned := false
 	for _, item := range items {
 		if len([]rune(item.Label)) >= 2 && item.Label != "你教我的表情" && strings.Contains(prompt.Text, item.Label) {
@@ -80,8 +85,20 @@ func (s *Service) prepareExpression(ctx context.Context, round *conversationRoun
 		}
 	}
 	s.privateMu.Unlock()
+	round.providerStickers = map[string]model.LearnedSticker{}
+	// 公共人工图库独立于私人学习；在固定候选预算内优先提供当前形象。
+	for _, item := range curated {
+		if len(prompt.Stickers) >= 5 {
+			break
+		}
+		if recentStickers[item.ID] {
+			continue
+		}
+		round.providerStickers[item.ID] = item
+		prompt.Stickers = append(prompt.Stickers, model.StickerChoice{ID: item.ID, Label: item.Label})
+	}
 	for _, item := range native {
-		if !recentStickers[item.Choice.ID] {
+		if !recentStickers[item.Choice.ID] && len(prompt.Stickers) < 8 {
 			round.native = append(round.native, item)
 			prompt.Stickers = append(prompt.Stickers, item.Choice)
 		}
@@ -123,6 +140,19 @@ type privateReplyBatch struct {
 
 func (s *Service) privateReplyParts(ctx context.Context, round *conversationRound, text string) ([]privateReplyPart, error) {
 	parts := []privateReplyPart{}
+	if len(round.document) > 0 {
+		if !s.selfQueryAuthorized(ctx, round) || len(round.document) > privateReplyMaxParts {
+			return nil, model.Fail("PRIVATE_SCOPE", "日记交付范围已变化")
+		}
+		for _, text := range round.document {
+			if !model.Text(text, 450) || model.ContainsSensitiveText(text, s.generationSecrets(ctx)...) {
+				return nil, model.Fail("SENSITIVE_OUTPUT", "日记内容超限或含敏感信息")
+			}
+			part := privateReplyPart{Text: text}
+			parts = append(parts, part)
+		}
+		return parts, nil
+	}
 	for _, message := range round.messages {
 		parts = append(parts, privateReplyPart{Text: message})
 	}
@@ -130,6 +160,17 @@ func (s *Service) privateReplyParts(ctx context.Context, round *conversationRoun
 		parts = append(parts, privateReplyPart{Text: text})
 	}
 	if round.stickerID != "" && len(parts) < round.maxParts {
+		if item, ok := round.providerStickers[round.stickerID]; ok {
+			if s.modelRouter.Config().Provider != round.stickerProvider {
+				return nil, model.Fail("MODEL_CHANGED", "生成后模型已切换，未发送旧形象表情")
+			}
+			image, err := s.readStickerImage(ctx, providerStickerDirectory(round.stickerProvider), &item)
+			if err != nil {
+				return nil, err
+			}
+			parts = append(parts, privateReplyPart{Text: "[表情包：" + item.Label + "]", StickerID: item.ID, Image: image})
+			return parts, nil
+		}
 		for _, item := range round.native {
 			if item.Choice.ID == round.stickerID {
 				parts = append(parts, privateReplyPart{Text: item.TextCode, StickerID: item.Choice.ID})
@@ -175,6 +216,9 @@ func (s *Service) sendPrivateReplyBatch(ctx context.Context, round *conversation
 					return last, strings.Join(sent, " "), false, nil
 				}
 			}
+		}
+		if _, curated := round.providerStickers[part.StickerID]; curated && s.modelRouter.Config().Provider != round.stickerProvider {
+			return last, strings.Join(sent, " "), false, model.Fail("MODEL_CHANGED", "分条发送前模型已切换，未发送旧形象表情")
 		}
 		round.batch.Next = index
 		input := model.PrivateSendInput{RequestID: model.ID(), Text: part.Text, AutoKey: round.message.Key, GroupID: round.batch.ID, Part: index, StickerID: part.StickerID}

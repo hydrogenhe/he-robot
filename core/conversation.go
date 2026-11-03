@@ -12,8 +12,12 @@ import (
 
 type conversationRoundKey struct{}
 type conversationRound struct {
+	document []string
+
 	maxParts  int
 	messages  []string
+	stickerProvider string
+	providerStickers map[string]model.LearnedSticker
 	stickerID string
 	native    []model.NativeSticker
 	learned   map[string]model.LearnedSticker

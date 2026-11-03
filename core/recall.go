@@ -15,6 +15,7 @@ func (s *Service) completeRecall(ctx context.Context, operationID string, prompt
 		return first, nil
 	}
 	next := *prompt
+	next.SelfCapabilities = nil
 	next.AllowRecall = false
 	next.RecallComplete = true
 	next.Conversation = nil

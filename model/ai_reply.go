@@ -21,6 +21,10 @@ type RecalledEpisode struct {
 	SourceID   string `json:"source"`
 }
 type ReplyPrompt struct {
+	SelfCapabilities []string         `json:"selfCapabilities,omitempty"`
+	SelfToday        string           `json:"selfToday,omitempty"`
+	SelfResult       *SelfQueryResult `json:"selfResult,omitempty"`
+
 	Episodes []RecalledEpisode `json:"episodes,omitempty"`
 
 	AllowRecall        bool                   `json:"allowRecall,omitempty"`
@@ -43,6 +47,8 @@ type ReplyPrompt struct {
 	Recent             []string               `json:"recent,omitempty"`
 }
 type GeneratedReply struct {
+	SelfAction *SelfAction
+
 	RecallQuery string
 	Actions     []ContentAction
 	Messages    []string

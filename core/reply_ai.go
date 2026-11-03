@@ -93,6 +93,10 @@ func (s *Service) generateReplyWithMemories(ctx context.Context, operationID, ch
 			return "", err
 		}
 		s.preparePrivateContents(round, &prompt)
+		if s.selfQueryAuthorized(ctx, round) {
+			prompt.SelfCapabilities = []string{"diary", "memories", "experiences", "growth", "activities", "status", "write_diary"}
+			prompt.SelfToday = diaryDay(s.DiaryNow())
+		}
 		if err := s.prepareExpression(ctx, round, &prompt); err != nil {
 			return "", err
 		}
@@ -106,7 +110,12 @@ func (s *Service) generateReplyWithMemories(ctx context.Context, operationID, ch
 	if err != nil {
 		return "", err
 	}
-	if result.RecallQuery != "" && bounded.AllowRecall {
+	if result.SelfAction != nil {
+		result, err = s.completeSelfAction(ctx, operationID, round, bounded, result)
+		if err != nil {
+			return "", err
+		}
+	} else if result.RecallQuery != "" && bounded.AllowRecall {
 		result, err = s.completeRecall(ctx, operationID, bounded, result, experience)
 		if err != nil {
 			return "", err

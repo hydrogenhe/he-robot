@@ -1,3 +1,5 @@
+function storedRobotID(){try{return globalThis.localStorage?.getItem("managed-robot")||"001"}catch{return "001"}}
+let selectedRobotID=storedRobotID(), deleteRobotID="";
 const $ = (id) => document.getElementById(id);
 let csrf = "",
   data;
@@ -17,6 +19,7 @@ let selectedPlatform = null, usageScope = "", diaryData = null, diaryBusy = fals
 let activeTab = "home", usageLoaded = false, usagePage = 1, usageFilters = {}, usageBusy = false;
 let modelConfigLoaded = false, modelConfig = null, codexModelsLoaded = false;
 const titles = {
+ robots:"管理每一个独立的角色。",
   home: "今天，从一次对话开始。",
   platforms: "让她在不同的世界里，认识更多人。",
   diary: "把一天，写成自己的故事。",
@@ -137,7 +140,7 @@ async function api(action, input = {}, retryAuth = true) {
   try {
     const r = await fetch("/api/" + action, {
       method: "POST",
-      headers: { "Content-Type": "application/json", "X-CSRF-Token": csrf },
+      headers: { "Content-Type": "application/json", "X-CSRF-Token": csrf, "X-Robot-ID":selectedRobotID },
       body: JSON.stringify(input),
       signal: AbortSignal.timeout(localRead ? 8000 : 120000),
     });
@@ -149,7 +152,7 @@ async function api(action, input = {}, retryAuth = true) {
     }
     if (!r.ok) {
       if (r.status === 401 && j.error?.code === "AUTH") connectionFailed("网页会话已失效");
-      throw new Error(j.error?.message || "请求失败");
+      const failure=new Error(j.error?.message || "请求失败");failure.code=j.error?.code;throw failure;
     }
     return j;
   } catch (e) {
@@ -363,7 +366,7 @@ function routeFromHash() {
  if(parts[0]==="platforms"&&parts[2]==="auto") replyPage=["history","rules"].includes(parts[3])?parts[3]:"settings";
 
  if(parts[0]==="platforms" && ["bilibili","qq","douyin"].includes(parts[1])) return {tab:parts[2] || "platform-overview",platform:parts[1]};
- return {tab:["home","character","models","platforms","diary","memory","logs","operations"].includes(parts[0]) ? parts[0] : "home",platform:null};
+ return {tab:["home","robots","character","models","platforms","diary","memory","logs","operations"].includes(parts[0]) ? parts[0] : "home",platform:null};
 }
 async function navigate(tab, platform=null, updateHistory=true) {
  if(tab==="logs")tab="operations";
@@ -412,6 +415,7 @@ async function navigate(tab, platform=null, updateHistory=true) {
  if(activeTab==="platform-overview") await Promise.all([autoData?Promise.resolve():loadAuto(),privateData?Promise.resolve():loadPrivate()]);
  if(activeTab==="character" && !characterLoaded) await loadCharacter();
  if(activeTab==="models" && !modelConfigLoaded) await loadModelConfig();
+ if(activeTab==="robots") await loadRobotManager();
  if(activeTab==="private" && !privateData && !privateBusy) await loadPrivate();
  if(activeTab==="browsing" && !browsingData&&!browsingBusy) await loadBrowsing();
  if(activeTab==="auto" && !autoData && !autoBusy) await loadAuto();
@@ -604,6 +608,8 @@ task($("diary-write"),async()=>{
 const operationNames = {
  "browsing-read":"浏览视频资料",
   "diary-generate":"写角色日记",
+  "material-understood":"阅读视频材料",
+  "proactive-morning":"早安问候","proactive-night":"晚安问候","proactive-random":"主动找主人聊天",
   "auto-reply": "AI自动回复", "private-auto-reply": "大号私信AI回复", "private-send": "发送大号私信", context: "读取角色资料", search: "检索记忆", note: "记录记忆 / 日记",
   comments: "读取视频评论", draft: "准备回复草稿", "dynamic-draft": "准备动态草稿",
   send: "发送", sent: "提交回复", send_result: "发送结果", cancel: "取消草稿",
@@ -664,7 +670,8 @@ async function loadOperations(page) {
     for (const op of r.items) {
       const title=op.action==="private-auto-reply"?"回复了绑定主人":(operationNames[op.action]||op.action);
       const observed=(data?.events||[]).find(e=>e.id===op.reference);
-      const compact=entry(op.activityTitle||observed?.summary||title,when(op.at)+" · "+(platformNames[op.platform]||op.platform)+" · "+(operationStatusNames[op.status]||op.status),op.activityText||operationStatusNames[op.status]||op.status,operationStatusNames[op.status]||op.status);
+      const notification=op.notificationStatus?" · 通知"+({queued:"待发送",partial:"部分已发送",sent:"已发送",failed:"失败",unknown:"结果未知"}[op.notificationStatus]||op.notificationStatus):"";
+      const compact=entry(op.activityTitle||observed?.summary||title,when(op.at)+" · "+(platformNames[op.platform]||op.platform)+" · "+(operationStatusNames[op.status]||op.status)+notification,op.activityText||operationStatusNames[op.status]||op.status,operationStatusNames[op.status]||op.status);
       compact.append(el("p",op.tokens===null?"Token 未获取":op.tokens+" Token"));
       appendOperationDetails(compact,op,false);
       if(op.action==="private-auto-reply") {const show=el("button","查看私聊内容","quiet");show.addEventListener("click",()=>navigate("private","bilibili").catch(navigationError));compact.append(show);}
@@ -816,12 +823,12 @@ function renderPrivate(r) {
  $("private-inbox").replaceChildren();
  for (const m of r.inbox) appendHistory("private-inbox",entry(m.sender === c.peerUid ? "大号" : "小龙", when(m.timestamp*1000), m.withdrawn ? "消息已撤回" : m.text || "非文字消息"));
  $("private-outbox").replaceChildren();
- for (const m of [...r.outbox].reverse()) appendHistory("private-outbox",entry((m.automatic ? "自动回复了主人" : "手动发给主人")+(m.groupId?" · 第"+(m.part+1)+"条":"")+" · "+({sent:"已发送",unknown:"结果未知，请人工核对",sending:"发送中",failed:"发送失败"}[m.status] || m.status), when(m.at), m.text));
+ for (const m of [...r.outbox].reverse()) appendHistory("private-outbox",entry((m.proactive ? "主动联系了主人" : m.automatic ? "自动回复了主人" : "手动发给主人")+(m.groupId?" · 第"+(m.part+1)+"条":"")+" · "+({sent:"已发送",unknown:"结果未知，请人工核对",sending:"发送中",failed:"发送失败"}[m.status] || m.status), when(m.at), m.text));
 }
 async function loadPrivate() {
  if (privateBusy) return;
  privateBusy = true;
- try { renderPrivate(await api("private-status")); } finally { privateBusy = false; }
+ try { const [privateResult,proactiveResult]=await Promise.all([api("private-status"),api("proactive-status")]);renderPrivate(privateResult);renderProactive(proactiveResult); } finally { privateBusy = false; }
 }
 async function loadPrivateMemories(page = 1) {
  const query = $("private-memory-query").value.trim();
@@ -904,7 +911,7 @@ async function initializeSession() {
 }
 try {
   await initializeSession();
-  await refresh();
+  try{await refresh()}catch(e){if(e.code!=="ROBOT_DELETED"&&e.code!=="NOT_FOUND")throw e;await loadRobotManager();await refresh()}
   const initialRoute=routeFromHash();
   await navigate(initialRoute.tab,initialRoute.platform,false);
 } catch (e) {
@@ -1007,3 +1014,48 @@ async function loadConversation(){renderConversation(await api("conversation-sta
 task($("conversation-refresh"),loadConversation);
 task($("conversation-save"),async()=>{renderConversation(await api("conversation-config",{enabled:$("conversation-enabled").checked,maxTurns:Number($("conversation-turns").value),idleSeconds:Number($("conversation-idle").value)*60,maxAgeSeconds:Number($("conversation-age").value)*60,contextTokens:Number($("conversation-context").value),totalTokens:Number($("conversation-total").value)}));notice("会话策略已保存，后续消息使用新窗口；未调用模型。");});
 for(const b of document.querySelectorAll("[data-reply-page]"))b.addEventListener("click",()=>{replyPage=b.dataset.replyPage;navigate("auto","bilibili").catch(navigationError);});
+
+function renderProactive(r){
+ const c=r.config;
+ $("proactive-enabled").checked=c.enabled;$("proactive-videos").checked=c.videoReflections;$("proactive-diary").checked=c.diaryDelivery;$("proactive-greetings").checked=c.greetings;
+ $("proactive-min").value=c.randomMin;$("proactive-max").value=c.randomMax;$("proactive-limit").value=c.videoDailyLimit;
+ $("proactive-state").textContent=(c.enabled?"已开启":"已关闭")+` · 待处理 ${r.pending} · 已发送 ${r.sent} · 失败或未知 ${r.failed}；北京时间，免打扰 ${r.quiet}`;
+}
+task($("proactive-save"),async()=>{renderProactive(await api("proactive-config",{enabled:$("proactive-enabled").checked,videoReflections:$("proactive-videos").checked,diaryDelivery:$("proactive-diary").checked,greetings:$("proactive-greetings").checked,randomMin:Number($("proactive-min").value),randomMax:Number($("proactive-max").value),videoDailyLimit:Number($("proactive-limit").value)}));notice("主动联系设置已保存");});
+
+function switchManagedRobot(id){
+ selectedRobotID=id;try{globalThis.localStorage?.setItem("managed-robot",id)}catch{}
+ location.reload();
+}
+function renderRobotManager(r){
+ const items=Array.isArray(r.items)?r.items:[];
+ if(!items.length)return;
+ const active=items.filter(x=>!x.deletedAt);
+ if(!active.some(x=>x.id===selectedRobotID)&&active.length){selectedRobotID=active[0].id;try{globalThis.localStorage?.setItem("managed-robot",selectedRobotID)}catch{}}
+ const select=$("robot-selector");select.replaceChildren();
+ for(const robot of active){const option=document.createElement("option");option.value=robot.id;option.textContent=robot.id+" · "+robot.name;select.append(option)}select.value=selectedRobotID;
+ $("robot-manager-state").textContent=`当前管理 ${selectedRobotID}；${active.length} 个可用，${items.length-active.length} 个在回收站。`;
+ $("robot-manager-list").replaceChildren();$("robot-manager-trash").replaceChildren();
+ for(const robot of items){
+  const row=document.createElement("div");row.className="log";
+  const title=document.createElement("strong");title.textContent=robot.id+" · "+robot.name;
+  const status=document.createElement("p");status.className="muted";status.textContent=({running:"运行中",paused:"已暂停",stopped:"已停止",deleted:"已软删除"}[robot.status]||robot.status)+(robot.id===selectedRobotID?" · 当前管理":"");row.append(title,status);
+  const controls=document.createElement("div");controls.className="row";
+  if(robot.deletedAt){const restore=document.createElement("button");restore.className="quiet";restore.textContent="恢复（保持停止）";task(restore,async()=>renderRobotManager(await api("robots-restore",{id:robot.id})));controls.append(restore)}else{
+   const manage=document.createElement("button");manage.className="quiet";manage.textContent="管理此机器人";manage.disabled=robot.id===selectedRobotID;manage.addEventListener("click",()=>switchManagedRobot(robot.id));controls.append(manage);
+   const control=document.createElement("button");control.className="quiet";control.textContent=robot.status==="running"?"停止":"启动";task(control,async()=>{renderRobotManager(await api(robot.status==="running"?"robots-stop":"robots-start",{id:robot.id}));if(robot.id===selectedRobotID)await refresh()});controls.append(control);
+   const remove=document.createElement("button");remove.className="danger quiet";remove.textContent="软删除…";remove.disabled=robot.id===selectedRobotID;remove.title=remove.disabled?"先切换到其他机器人再删除":"停止并移入回收站，保留资料";remove.addEventListener("click",()=>openRobotDelete(robot));controls.append(remove);
+  }
+  row.append(controls);$(robot.deletedAt?"robot-manager-trash":"robot-manager-list").append(row);
+ }
+}
+async function loadRobotManager(){renderRobotManager(await api("robots-list"))}
+function openRobotDelete(robot){deleteRobotID=robot.id;$("robot-delete-description").textContent="即将软删除："+robot.id+" · "+robot.name;$("robot-delete-id").value="";$("robot-delete-understand").checked=false;$("robot-delete-confirm").disabled=true;$("robot-delete-dialog").showModal();$("robot-delete-id").focus()}
+function validateRobotDelete(){$("robot-delete-confirm").disabled=$("robot-delete-id").value!==deleteRobotID||!$("robot-delete-understand").checked}
+$("robot-selector").addEventListener("change",()=>switchManagedRobot($("robot-selector").value));
+$("robot-delete-id").addEventListener("input",validateRobotDelete);$("robot-delete-understand").addEventListener("change",validateRobotDelete);$("robot-delete-cancel").addEventListener("click",()=>$("robot-delete-dialog").close());
+task($("robot-delete-confirm"),async()=>{if($("robot-delete-id").value!==deleteRobotID||!$("robot-delete-understand").checked)throw new Error("请手动输入完整编号并确认目标");renderRobotManager(await api("robots-delete",{id:deleteRobotID,confirmId:$("robot-delete-id").value}));$("robot-delete-dialog").close();notice("已软删除，资料保留，可在回收站恢复")});
+task($("robot-create"),async()=>{renderRobotManager(await api("robots-create",{name:$("robot-create-name").value.trim()}));$("robot-create-name").value="";notice("已创建独立机器人，请切换后设置模型和扫码登录")});
+
+if(data?.robot){const initialRobotOption=document.createElement("option");initialRobotOption.value=selectedRobotID;initialRobotOption.textContent=selectedRobotID+" · 当前管理";$("robot-selector").replaceChildren(initialRobotOption);$("robot-selector").value=selectedRobotID;}
+$("robot-selector").addEventListener("focus",()=>loadRobotManager().catch(e=>notice(e.message)));

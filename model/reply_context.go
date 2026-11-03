@@ -24,7 +24,7 @@ func BoundReplyPrompt(input *ReplyPrompt) (*ReplyPrompt, error) {
 	if input.Channel != "private-message" && input.Channel != "video-comment" {
 		return nil, Fail("INPUT", "不支持的回复渠道")
 	}
-	if input.Channel != "private-message" && (len(input.PrivateMemories) > 0 || len(input.Recent) > 0 || len(input.Handoff) > 0 || input.Conversation != nil || len(input.Stickers) > 0 || input.ReplyParts > 0) {
+	if input.Channel != "private-message" && (len(input.SelfCapabilities) > 0 || input.SelfResult != nil || len(input.PrivateMemories) > 0 || len(input.Recent) > 0 || len(input.Handoff) > 0 || input.Conversation != nil || len(input.Stickers) > 0 || input.ReplyParts > 0) {
 		return nil, Fail("PRIVATE_SCOPE", "公开生成不可携带私聊记忆或会话历史")
 	}
 	result := &ReplyPrompt{
@@ -45,6 +45,17 @@ func BoundReplyPrompt(input *ReplyPrompt) (*ReplyPrompt, error) {
 		}
 		item := RecalledEpisode{Private: episode.Private, Summary: Clip(episode.Summary, 160), Reaction: Clip(episode.Reaction, 60), OccurredAt: episode.OccurredAt, SourceID: episode.SourceID}
 		result.Episodes = append(result.Episodes, item)
+	}
+	if input.Channel == "private-message" && input.Owner {
+		result.SelfToday = Clip(input.SelfToday, 10)
+		result.SelfCapabilities = append([]string{}, input.SelfCapabilities[:min(7, len(input.SelfCapabilities))]...)
+		if input.SelfResult != nil {
+			result.SelfResult = &SelfQueryResult{Resource: Clip(input.SelfResult.Resource, 20), Records: []SelfRecord{}}
+			for _, item := range input.SelfResult.Records[:min(5, len(input.SelfResult.Records))] {
+				record := SelfRecord{Date: Clip(item.Date, 35), Title: Clip(item.Title, 60), Text: Clip(item.Text, 160), Status: Clip(item.Status, 24), Source: Clip(item.Source, 80)}
+				result.SelfResult.Records = append(result.SelfResult.Records, record)
+			}
+		}
 	}
 	if input.Channel == "private-message" {
 		for _, item := range input.Contents[:min(6, len(input.Contents))] {

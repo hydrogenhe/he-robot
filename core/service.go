@@ -17,6 +17,10 @@ import (
 )
 
 type ServiceInterface interface {
+	ProactiveStatus(context.Context) (*model.ProactiveOverview, error)
+	SaveProactiveConfig(context.Context, *model.ProactiveConfig) (*model.ProactiveOverview, error)
+	ProactiveTick(context.Context) error
+	RecordMaterialExperience(context.Context, *model.MaterialExperienceInput) (*model.MaterialExperienceResult, error)
 	ConversationStatus(context.Context) (*model.ConversationStatus, error)
 	SaveConversationConfig(context.Context, *model.ConversationConfig) (*model.ConversationStatus, error)
 	OperationPreviews(context.Context, []model.Operation) (map[string]model.ActivityPreview, error)
@@ -83,6 +87,15 @@ type loginAttempt struct {
 	nextPoll time.Time
 }
 type Service struct {
+	browsingWorkerMu sync.Mutex
+	videoRunMu       sync.Mutex
+	videoCancel      context.CancelFunc
+	proactiveMu      sync.Mutex
+	proactiveConfig  model.ProactiveConfig
+	proactiveState   model.ProactiveState
+	ProactiveNow     func() time.Time
+	VideoReader      model.VideoMaterialReader
+	materialMu       sync.Mutex
 	// ExpressionDraw 为系统表达策略提供随机数，默认使用加密随机源；测试可注入确定结果。
 	ExpressionDraw func(int) int
 	// ExpressionWait 为分条发送提供可取消等待，不产生模型调用。
@@ -163,6 +176,7 @@ func NewService(root string, bili bilibili.ClientInterface) *Service {
 		ExpressionWait:  waitExpression,
 		modelRouter:     router,
 		DevelopmentNow:  time.Now,
+		ProactiveNow:    time.Now,
 		DiaryNow:        time.Now,
 		DiaryGenerator:  generator,
 		Store:           NewStore(root),
@@ -176,6 +190,7 @@ func NewService(root string, bili bilibili.ClientInterface) *Service {
 	if s.Bili == nil {
 		s.Bili = bilibili.New(s.Credentials, nil)
 	}
+	s.VideoReader = businesshost.NewVideoReader(root, s.modelRouter.Config, root)
 	s.PrivatePush = s.Bili
 	return s
 }
@@ -254,7 +269,10 @@ func (s *Service) Initialize(ctx context.Context) error {
 	if err := s.initializeDevelopment(ctx); err != nil {
 		return err
 	}
-	return s.initializeBrowsing(ctx)
+	if err := s.initializeBrowsing(ctx); err != nil {
+		return err
+	}
+	return s.initializeProactive(ctx)
 }
 func (s *Service) Credentials(ctx context.Context) (*model.Credentials, error) {
 	var c *model.Credentials
