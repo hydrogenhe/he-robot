@@ -24,10 +24,14 @@ func BoundReplyPrompt(input *ReplyPrompt) (*ReplyPrompt, error) {
 	if input.Channel != "private-message" && input.Channel != "video-comment" {
 		return nil, Fail("INPUT", "不支持的回复渠道")
 	}
-	if input.Channel != "private-message" && (len(input.PrivateMemories) > 0 || len(input.Recent) > 0 || len(input.Handoff) > 0 || input.Conversation != nil || len(input.Stickers) > 0 || input.ReplyParts > 0) {
+	if input.Channel != "private-message" && (len(input.PrivateMemories) > 0 || len(input.Recent) > 0 || len(input.Handoff) > 0 || input.Conversation != nil || len(input.Stickers) > 0 || input.ReplyParts > 0 || input.AnalyzeSticker || input.SelectSticker || input.StickerIntent != nil || input.Draft != "") {
 		return nil, Fail("PRIVATE_SCOPE", "公开生成不可携带私聊记忆或会话历史")
 	}
 	result := &ReplyPrompt{
+		AnalyzeSticker: input.AnalyzeSticker,
+		SelectSticker:  input.SelectSticker,
+		Draft:          Clip(input.Draft, 60),
+		StickerIntent:  BoundStickerIntent(input.StickerIntent),
 		AllowRecall:    input.AllowRecall,
 		RecallComplete: input.RecallComplete,
 		ReplyParts:     min(3, max(0, input.ReplyParts)),
@@ -56,6 +60,7 @@ func BoundReplyPrompt(input *ReplyPrompt) (*ReplyPrompt, error) {
 		result.Capabilities = append([]ContentCapability{}, input.Capabilities[:min(4, len(input.Capabilities))]...)
 		for _, item := range input.Stickers[:min(8, len(input.Stickers))] {
 			if Text(item.ID, 80) && Text(item.Label, 30) {
+				item.StickerMeaning = BoundStickerMeaning(&item.StickerMeaning)
 				result.Stickers = append(result.Stickers, item)
 			}
 		}
@@ -140,4 +145,37 @@ func BoundReplyPrompt(input *ReplyPrompt) (*ReplyPrompt, error) {
 			return nil, Fail("CONTEXT_BUDGET", "当前消息超出上下文预算")
 		}
 	}
+}
+
+// BoundStickerIntent 统一限制首轮标签，防止模型输出扩大选图上下文。
+func BoundStickerIntent(input *StickerIntent) *StickerIntent {
+	if input == nil {
+		return nil
+	}
+	result := &StickerIntent{Suitable: input.Suitable, ImageOnly: input.ImageOnly, Scene: Clip(input.Scene, 30)}
+	for _, tag := range input.Tags[:min(6, len(input.Tags))] {
+		if Text(tag, 12) {
+			result.Tags = append(result.Tags, tag)
+		}
+	}
+	return result
+}
+
+// BoundStickerMeaning 对人工与学习素材的模型描述采用同一有界协议。
+func BoundStickerMeaning(input *StickerMeaning) StickerMeaning {
+	if input == nil {
+		return StickerMeaning{}
+	}
+	result := StickerMeaning{Description: Clip(input.Description, 80), Caption: Clip(input.Caption, 60), Avoid: Clip(input.Avoid, 60), Direction: Clip(input.Direction, 30)}
+	for _, tag := range input.Tags[:min(6, len(input.Tags))] {
+		if Text(tag, 12) {
+			result.Tags = append(result.Tags, tag)
+		}
+	}
+	for _, scene := range input.Scenes[:min(4, len(input.Scenes))] {
+		if Text(scene, 30) {
+			result.Scenes = append(result.Scenes, scene)
+		}
+	}
+	return result
 }

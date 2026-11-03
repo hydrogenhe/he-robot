@@ -12,7 +12,26 @@ type ImageAttachment struct {
 	Data   []byte `json:"-"`
 }
 
+// StickerMeaning 人工核验的画面语义；适用/禁用场景均为资料，不是指令。
+type StickerMeaning struct {
+	Tags        []string `json:"tags,omitempty"`
+	Scenes      []string `json:"scenes,omitempty"`
+	Description string   `json:"description,omitempty"`
+	Caption     string   `json:"caption,omitempty"`
+	Avoid       string   `json:"avoid,omitempty"`
+	Direction   string   `json:"direction,omitempty"`
+}
+
+// StickerIntent 首轮正常回复附带的语义判断，不提前选择图片。
+type StickerIntent struct {
+	Suitable  bool     `json:"suitable"`
+	ImageOnly bool     `json:"imageOnly"`
+	Tags      []string `json:"tags"`
+	Scene     string   `json:"scene"`
+}
+
 type StickerChoice struct {
+	StickerMeaning
 	ID    string `json:"id"`
 	Label string `json:"label"`
 }
@@ -23,6 +42,7 @@ type NativeSticker struct {
 }
 
 type LearnedSticker struct {
+	StickerMeaning
 	ID        string          `json:"id"`
 	Label     string          `json:"label"`
 	Image     ImageAttachment `json:"image"`

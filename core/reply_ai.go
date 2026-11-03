@@ -124,7 +124,7 @@ func (s *Service) generateReplyWithMemories(ctx context.Context, operationID, ch
 	if round != nil {
 		round.remember = result.Remember
 		round.messages = result.Messages
-		round.stickerID = result.StickerID
+		round.stickerID = ""
 		if len(round.messages) > round.maxParts {
 			return "", model.Fail("AI_REPLY", "回复分条超过本轮上限")
 		}
@@ -146,7 +146,12 @@ func (s *Service) generateReplyWithMemories(ctx context.Context, operationID, ch
 	if round != nil {
 		s.contentActionFeedback(ctx, round, result)
 		round.messages = result.Messages
-		round.stickerID = result.StickerID
+		round.stickerID = ""
+	}
+	if round != nil && channel == "private-message" && round.generationCalls == 1 && len(result.Actions) == 0 {
+		if err := s.selectReplySticker(ctx, operationID, round, bounded, result); err != nil {
+			return "", err
+		}
 	}
 	if err := s.applyCharacterSignal(ctx, operationID, channel, result.Signal); err != nil {
 		return "", err
@@ -179,6 +184,9 @@ func (s *Service) generateReplyRound(ctx context.Context, operationID string, ow
 	day, err := s.reserveGeneration(ctx, owner)
 	if err != nil {
 		return nil, err
+	}
+	if round, ok := ctx.Value(conversationRoundKey{}).(*conversationRound); ok {
+		round.generationCalls++
 	}
 	result, runErr := s.Generator.Generate(ctx, prompt)
 	var actual *model.TokenUsage

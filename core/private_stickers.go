@@ -68,6 +68,10 @@ func (s *Service) loadStickers(ctx context.Context, scope *model.ConversationSco
 }
 
 func (s *Service) stickerImage(ctx context.Context, scope *model.ConversationScope, item *model.LearnedSticker) (*model.ImageAttachment, error) {
+	return readStickerFile(ctx, filepath.Join(s.Store.Root, stickerDirectory(scope)), item)
+}
+
+func readStickerFile(ctx context.Context, directory string, item *model.LearnedSticker) (*model.ImageAttachment, error) {
 	decoded, err := hex.DecodeString(item.ID)
 	if err != nil || len(decoded) != sha256.Size {
 		return nil, model.Fail("STICKER_ID", "表情编号无效")
@@ -75,10 +79,7 @@ func (s *Service) stickerImage(ctx context.Context, scope *model.ConversationSco
 	if err := ctx.Err(); err != nil {
 		return nil, err
 	}
-	name, err := s.Store.file(stickerDirectory(scope) + "/" + item.ID + ".image")
-	if err != nil {
-		return nil, err
-	}
+	name := filepath.Join(directory, item.ID+".image")
 	file, err := os.Open(name)
 	if err != nil {
 		return nil, model.Fail("STICKER_MISSING", "已保存表情文件不可用")

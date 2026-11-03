@@ -21,7 +21,11 @@ type RecalledEpisode struct {
 	SourceID   string `json:"source"`
 }
 type ReplyPrompt struct {
-	Episodes []RecalledEpisode `json:"episodes,omitempty"`
+	AnalyzeSticker bool              `json:"analyzeSticker,omitempty"`
+	SelectSticker  bool              `json:"selectSticker,omitempty"`
+	Draft          string            `json:"draft,omitempty"`
+	StickerIntent  *StickerIntent    `json:"stickerIntent,omitempty"`
+	Episodes       []RecalledEpisode `json:"episodes,omitempty"`
 
 	AllowRecall        bool                   `json:"allowRecall,omitempty"`
 	RecallComplete     bool                   `json:"recallComplete,omitempty"`
@@ -43,12 +47,13 @@ type ReplyPrompt struct {
 	Recent             []string               `json:"recent,omitempty"`
 }
 type GeneratedReply struct {
-	RecallQuery string
-	Actions     []ContentAction
-	Messages    []string
-	StickerID   string
-	Remember    []string
-	Signal      *CharacterSignal
-	Text        string
-	Usage       *TokenUsage
+	StickerIntent *StickerIntent
+	RecallQuery   string
+	Actions       []ContentAction
+	Messages      []string
+	StickerID     string
+	Remember      []string
+	Signal        *CharacterSignal
+	Text          string
+	Usage         *TokenUsage
 }

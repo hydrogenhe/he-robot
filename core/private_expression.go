@@ -49,63 +49,8 @@ func waitExpression(ctx context.Context, delay time.Duration) error {
 func (s *Service) prepareExpression(ctx context.Context, round *conversationRound, prompt *model.ReplyPrompt) error {
 	round.maxParts = 1 + s.ExpressionDraw(privateReplyMaxParts)
 	prompt.ReplyParts = round.maxParts
-	if seriousExpression.MatchString(prompt.Text) {
-		return nil
-	}
-	items := []model.LearnedSticker{}
-	if round.config.MemoryEnabled {
-		var err error
-		items, err = s.loadStickers(ctx, &round.scope)
-		if err != nil {
-			return err
-		}
-	}
-	mentioned := false
-	for _, item := range items {
-		if len([]rune(item.Label)) >= 2 && item.Label != "你教我的表情" && strings.Contains(prompt.Text, item.Label) {
-			mentioned = true
-			break
-		}
-	}
-	if !mentioned && !requestedSticker.MatchString(prompt.Text) && s.ExpressionDraw(100) >= privateStickerChance {
-		return nil
-	}
-	native := s.Bili.NativeStickers()
-	s.privateMu.Lock()
-	recentStickers := map[string]bool{}
-	for _, out := range s.privateState.Outbox {
-		at, _ := time.Parse(time.RFC3339Nano, out.At)
-		if out.StickerID != "" && time.Since(at) < 10*time.Minute {
-			recentStickers[out.StickerID] = true
-		}
-	}
-	s.privateMu.Unlock()
-	for _, item := range native {
-		if !recentStickers[item.Choice.ID] {
-			round.native = append(round.native, item)
-			prompt.Stickers = append(prompt.Stickers, item.Choice)
-		}
-	}
-	if !round.config.MemoryEnabled {
-		return nil
-	}
-	round.learned = map[string]model.LearnedSticker{}
-	// 显式点名的旧表情优先，不能只因不在最近五张中就找不到。
-	for i := len(items) - 1; i >= 0 && len(prompt.Stickers) < 8; i-- {
-		item := items[i]
-		if item.Label != "你教我的表情" && strings.Contains(prompt.Text, item.Label) && !recentStickers[item.ID] {
-			round.learned[item.ID] = item
-			prompt.Stickers = append(prompt.Stickers, model.StickerChoice{ID: item.ID, Label: item.Label})
-		}
-	}
-	for i := len(items) - 1; i >= 0 && len(prompt.Stickers) < 8; i-- {
-		item := items[i]
-		if _, selected := round.learned[item.ID]; selected || recentStickers[item.ID] {
-			continue
-		}
-		round.learned[item.ID] = item
-		prompt.Stickers = append(prompt.Stickers, model.StickerChoice{ID: item.ID, Label: item.Label})
-	}
+	prompt.AnalyzeSticker = true
+	round.stickerProvider = s.modelRouter.Config().Provider
 	return nil
 }
 
@@ -129,7 +74,21 @@ func (s *Service) privateReplyParts(ctx context.Context, round *conversationRoun
 	if len(parts) == 0 && text != "" {
 		parts = append(parts, privateReplyPart{Text: text})
 	}
-	if round.stickerID != "" && len(parts) < round.maxParts {
+	if round.stickerID != "" {
+		if round.stickerOnly {
+			parts = nil
+		} else if len(parts) >= round.maxParts {
+			// 保留全部正文，合并为一条，为表情留出位置。
+			parts = []privateReplyPart{{Text: text}}
+		}
+		if item, ok := round.providerStickers[round.stickerID]; ok {
+			if s.modelRouter.Config().Provider != round.stickerProvider {
+				return nil, model.Fail("MODEL_CHANGED", "选图期间供应商已变化")
+			}
+			part := privateReplyPart{Text: "[表情包：" + item.Label + "]", StickerID: item.ID, Image: round.selectedImage}
+			parts = append(parts, part)
+			return parts, nil
+		}
 		for _, item := range round.native {
 			if item.Choice.ID == round.stickerID {
 				parts = append(parts, privateReplyPart{Text: item.TextCode, StickerID: item.Choice.ID})
@@ -137,10 +96,7 @@ func (s *Service) privateReplyParts(ctx context.Context, round *conversationRoun
 			}
 		}
 		if item, ok := round.learned[round.stickerID]; ok {
-			image, err := s.stickerImage(ctx, &round.scope, &item)
-			if err != nil {
-				return nil, err
-			}
+			image := round.selectedImage
 			parts = append(parts, privateReplyPart{Text: "[表情包：" + item.Label + "]", StickerID: item.ID, Image: image})
 		}
 	}
@@ -175,6 +131,9 @@ func (s *Service) sendPrivateReplyBatch(ctx context.Context, round *conversation
 					return last, strings.Join(sent, " "), false, nil
 				}
 			}
+		}
+		if part.StickerID != "" && s.modelRouter.Config().Provider != round.stickerProvider {
+			return last, strings.Join(sent, " "), false, model.Fail("MODEL_CHANGED", "发送前供应商已变化")
 		}
 		round.batch.Next = index
 		input := model.PrivateSendInput{RequestID: model.ID(), Text: part.Text, AutoKey: round.message.Key, GroupID: round.batch.ID, Part: index, StickerID: part.StickerID}

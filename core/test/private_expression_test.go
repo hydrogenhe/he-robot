@@ -38,7 +38,10 @@ func (g *expressionGenerator) Generate(_ context.Context, prompt *model.ReplyPro
 		result.Actions = g.actions
 	}
 
-	if g.learned {
+	if g.learned && !prompt.SelectSticker {
+		result.StickerIntent = &model.StickerIntent{Suitable: true, Tags: []string{"开心"}, Scene: "闲聊"}
+	}
+	if g.learned && prompt.SelectSticker {
 		for _, choice := range prompt.Stickers {
 			if choice.Label == "开心猫" {
 				result.StickerID = choice.ID
@@ -229,7 +232,7 @@ func TestOwnerLearnsFromSemanticActionAndReusesAfterModelSwitch(t *testing.T) {
 	if err := s.PrivateTick(ctx); err != nil {
 		t.Fatal(err)
 	}
-	if g.calls != 3 || f.images != 1 {
+	if g.calls != 4 || f.images != 1 {
 		t.Fatal("re-use added model calls or lost image", g.calls, f.images)
 	}
 	public, err := s.Context(ctx)

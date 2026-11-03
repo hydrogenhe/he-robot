@@ -12,20 +12,25 @@ import (
 
 type conversationRoundKey struct{}
 type conversationRound struct {
-	maxParts  int
-	messages  []string
-	stickerID string
-	native    []model.NativeSticker
-	learned   map[string]model.LearnedSticker
-	batch     *privateReplyBatch
-	contents  map[string]model.PrivateMessage
-	scope     model.ConversationScope
-	config    model.PrivateConfig
-	message   model.PrivateMessage
-	handoff   model.ConversationHandoff
-	remember  []string
-	user      string
-	epoch     string
+	generationCalls  int
+	stickerProvider  string
+	providerStickers map[string]model.LearnedSticker
+	stickerOnly      bool
+	selectedImage    *model.ImageAttachment
+	maxParts         int
+	messages         []string
+	stickerID        string
+	native           []model.NativeSticker
+	learned          map[string]model.LearnedSticker
+	batch            *privateReplyBatch
+	contents         map[string]model.PrivateMessage
+	scope            model.ConversationScope
+	config           model.PrivateConfig
+	message          model.PrivateMessage
+	handoff          model.ConversationHandoff
+	remember         []string
+	user             string
+	epoch            string
 }
 
 func conversationDigest(value any) string {
@@ -128,7 +133,9 @@ func (s *Service) prepareConversation(ctx context.Context, round *conversationRo
 
 // finishConversation 仅在平台明确sent后保存有限交接，空回复、失败、取消和未知结果不进入下一轮。
 func (s *Service) finishConversation(ctx context.Context, round *conversationRound, reply string, sent bool) (resultErr error) {
-	defer func() { s.modelRouter.FinishConversation(&round.scope, sent && resultErr == nil) }()
+	defer func() {
+		s.modelRouter.FinishConversation(&round.scope, sent && resultErr == nil && round.stickerID == "")
+	}()
 	if !sent || !round.config.MemoryEnabled {
 		return nil
 	}
